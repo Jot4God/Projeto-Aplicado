@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Player\PlayerHP.cs" />
     <Compile Include="Assets\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Player\PlayerController.cs" />
   </ItemGroup>

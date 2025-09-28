@@ -2,52 +2,43 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    float groundDist;
-    float speed;
-    int health;
-    int power;
-
+    public float speed = 5f;
+    public float groundDist = 1f;
     public LayerMask terrainLayer;
     public Rigidbody rd;
     public SpriteRenderer sr;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rd = GetComponent<Rigidbody>();
+        rd.constraints = RigidbodyConstraints.FreezeRotation; 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        Vector3 castPos = transform.position;
-        castPos.y += 1;
-        if (Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity, terrainLayer))
-        {
-            if (hit.collider != null)
-            {
-                Vector3 movePos = transform.position;
-                movePos.y = hit.point.y + groundDist;
-                transform.position = movePos;
-            }
-        }
+        float x = Input.GetAxis("Horizontal"); // A/D
+        float z = Input.GetAxis("Vertical");   // W/S
 
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-        float z = Input.GetAxis("Depth");
+        Vector3 moveDir = new Vector3(x, 0, z).normalized;
 
-        Vector3 moveDir = new Vector3(x, 0, y);
+        rd.linearVelocity = new Vector3(moveDir.x * speed, rd.linearVelocity.y, moveDir.z * speed);
 
-        rd.linearVelocity = moveDir * speed;
-
-        if (x != 0 && x < 0)
-        {
+        if (x < 0)
             sr.flipX = true;
-        }
-        else if (x != 0 && x > 0)
-        {
+        else if (x > 0)
             sr.flipX = false;
+    }
+
+    void FixedUpdate()
+    {
+        
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, terrainLayer))
+        {
+            float targetY = hit.point.y + groundDist;
+            Vector3 pos = rd.position;
+            pos.y = Mathf.Lerp(pos.y, targetY, 0.2f); 
+            rd.MovePosition(pos); 
         }
     }
 }

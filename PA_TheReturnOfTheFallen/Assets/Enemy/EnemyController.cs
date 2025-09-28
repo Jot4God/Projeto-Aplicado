@@ -16,6 +16,9 @@ public class EnemyController : MonoBehaviour
     private enum State { Patrolling, Chasing, Attacking }
     private State state = State.Patrolling;
 
+    private float attackCooldown = 1f;
+    private float lastAttackTime = 0f;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -48,12 +51,16 @@ public class EnemyController : MonoBehaviour
 
     void Patrol()
     {
-        if (patrolPoints.Length == 0) { rb.linearVelocity = Vector3.zero; return; }
+        if (patrolPoints.Length == 0) 
+        { 
+            rb.linearVelocity = Vector3.zero; 
+            return; 
+        }
 
         Vector3 target = patrolPoints[currentPatrol].position;
         Vector3 moveDir = (target - transform.position).normalized;
 
-        rb.linearVelocity = new Vector3(moveDir.x, rb.linearVelocity.y, moveDir.z) * speed;
+        rb.linearVelocity = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
 
         if (Vector3.Distance(transform.position, target) < 0.3f)
         {
@@ -70,13 +77,22 @@ public class EnemyController : MonoBehaviour
     void Chase()
     {
         Vector3 moveDir = (player.position - transform.position).normalized;
-        rb.linearVelocity = new Vector3(moveDir.x, rb.linearVelocity.y, moveDir.z) * speed;
+        rb.linearVelocity = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
     }
 
     void Attack()
     {
-        rb.linearVelocity = Vector3.zero;
-        // Para depois poder o Enemy atacar
+        rb.linearVelocity = Vector3.zero; 
+
+        if (player == null) return;
+
+        // Pega o script de HP do player
+        PlayerHP ph = player.GetComponent<PlayerHP>();
+        if (ph != null && Time.time >= lastAttackTime + attackCooldown)
+        {
+            ph.TakeDamage(10); 
+            lastAttackTime = Time.time;
+        }
     }
 
     void OnDrawGizmosSelected()
