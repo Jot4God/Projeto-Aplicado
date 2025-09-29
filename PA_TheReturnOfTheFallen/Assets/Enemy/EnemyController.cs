@@ -10,6 +10,10 @@ public class EnemyController : MonoBehaviour
     public Transform[] patrolPoints;
     public float patrolWait = 2f;
 
+    // Vida do inimigo
+    public int maxHealth = 50;
+    private int currentHealth;
+
     private int currentPatrol = 0;
     private float waitTimer = 0f;
     private Rigidbody rb;
@@ -23,6 +27,8 @@ public class EnemyController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        currentHealth = maxHealth; // Inicializa vida
 
         if (player == null)
         {
@@ -86,13 +92,32 @@ public class EnemyController : MonoBehaviour
 
         if (player == null) return;
 
-        // Pega o script de HP do player
         PlayerHP ph = player.GetComponent<PlayerHP>();
         if (ph != null && Time.time >= lastAttackTime + attackCooldown)
         {
-            ph.TakeDamage(10); 
+            ph.TakeDamage(10);
             lastAttackTime = Time.time;
         }
+    }
+
+    // **Novo método para receber dano**
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        currentHealth = Mathf.Max(currentHealth, 0);
+
+        Debug.Log(name + " recebeu " + damage + " de dano! Vida atual: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log(name + " morreu!");
+        Destroy(gameObject);
     }
 
     void OnDrawGizmosSelected()
