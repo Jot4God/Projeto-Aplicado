@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange = 1f;    
     public LayerMask enemyLayers;    
     public int attackDamage = 20;      
-    public float slashDuration = 0.3f; // tempo do efeito
+    public float slashDuration = 0.3f; 
 
     void Update()
     {
@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
-        // Dano aos inimigos
+        
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider enemy in hitEnemies)
         {
@@ -25,7 +25,6 @@ public class PlayerAttack : MonoBehaviour
                 ec.TakeDamage(attackDamage);
         }
 
-        // Efeito visual tipo slash
         GameObject slash = GameObject.CreatePrimitive(PrimitiveType.Cube);
         slash.transform.position = attackPoint.position;
         slash.transform.localScale = new Vector3(0.1f, 0.1f, attackRange * 2);
@@ -34,8 +33,8 @@ public class PlayerAttack : MonoBehaviour
         Renderer rend = slash.GetComponent<Renderer>();
         if (rend != null) rend.material.color = Color.red;
 
-        // Faz o slash “girar” rapidamente para parecer movimento
-        slash.transform.Rotate(Vector3.up * 45); // inicial
+        
+        slash.transform.Rotate(Vector3.up * 45); 
         StartCoroutine(RotateSlash(slash));
 
         Destroy(slash, slashDuration);
@@ -46,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < slashDuration)
         {
-            slash.transform.Rotate(Vector3.up * 720 * Time.deltaTime); // gira rápido
+            slash.transform.Rotate(Vector3.up * 720 * Time.deltaTime); 
             elapsed += Time.deltaTime;
             yield return null;
         }

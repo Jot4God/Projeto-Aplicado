@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class PlayerSpawnFade : MonoBehaviour
 {
-    public float fadeDuration = 1f; // tempo do desvanecer
+    public float fadeDuration = 1f; 
     private Renderer rend;
 
     void Start()
     {
         rend = GetComponent<Renderer>();
         Color c = rend.material.color;
-        c.a = 0f; // começa invisível
+        c.a = 0f; 
         rend.material.color = c;
 
-        // Começa o fade-in
         StartCoroutine(FadeIn());
     }
 
@@ -29,7 +28,7 @@ public class PlayerSpawnFade : MonoBehaviour
             yield return null;
         }
 
-        // garante alpha final a 1
+
         c.a = 1f;
         rend.material.color = c;
     }
