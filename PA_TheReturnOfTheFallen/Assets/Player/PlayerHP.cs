@@ -9,6 +9,7 @@ public class PlayerHP : MonoBehaviour
     {
         currentHealth = maxHealth; 
     }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -22,9 +23,21 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
+    public void Heal(int amount)
+    {
+        int oldHealth = currentHealth;
+
+        currentHealth += amount;
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
+
+        int actualHealed = currentHealth - oldHealth;
+
+        Debug.Log("Player curado +" + actualHealed + "! Vida atual: " + currentHealth);
+    }
+
     void Die()
     {
         Debug.Log("Player morreu!");
-        // Continuar
+        // Continua a tua lógica de game over, respawn, etc.
     }
 }

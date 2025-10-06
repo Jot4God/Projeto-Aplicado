@@ -14,6 +14,9 @@ public class EnemyController : MonoBehaviour
     public int maxHealth = 50;
     private int currentHealth;
 
+    // Prefab do health pickup
+    public GameObject healthPickupPrefab;
+
     private int currentPatrol = 0;
     private float waitTimer = 0f;
     private Rigidbody rb;
@@ -52,6 +55,12 @@ public class EnemyController : MonoBehaviour
             case State.Patrolling: Patrol(); break;
             case State.Chasing: Chase(); break;
             case State.Attacking: Attack(); break;
+        }
+
+        // 🔹 TESTE: tecla para dar dano no inimigo manualmente
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            TakeDamage(10); // Dano fixo (10) quando carregas em K
         }
     }
 
@@ -95,12 +104,11 @@ public class EnemyController : MonoBehaviour
         PlayerHP ph = player.GetComponent<PlayerHP>();
         if (ph != null && Time.time >= lastAttackTime + attackCooldown)
         {
-            ph.TakeDamage(10);
+            ph.TakeDamage(30);
             lastAttackTime = Time.time;
         }
     }
 
-    // **Novo método para receber dano**
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -115,10 +123,17 @@ public class EnemyController : MonoBehaviour
     }
 
     void Die()
+{
+    Debug.Log(name + " morreu!");
+
+    if (healthPickupPrefab != null)
     {
-        Debug.Log(name + " morreu!");
-        Destroy(gameObject);
+        Vector3 spawnPosition = transform.position + new Vector3(0f, -6f, 0f);
+        Instantiate(healthPickupPrefab, spawnPosition, Quaternion.identity);
     }
+
+    Destroy(gameObject);
+}
 
     void OnDrawGizmosSelected()
     {
