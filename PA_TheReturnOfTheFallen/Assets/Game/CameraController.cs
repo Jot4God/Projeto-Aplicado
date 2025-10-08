@@ -19,4 +19,10 @@ public class CameraController : MonoBehaviour
         Vector3 targetPos = player.position + offset;
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothSpeed * Time.deltaTime);
     }
+    
+    void Awake() 
+    {
+        
+        DontDestroyOnLoad(gameObject);
+    }
 }

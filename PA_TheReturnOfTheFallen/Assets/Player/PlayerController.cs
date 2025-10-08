@@ -41,4 +41,10 @@ public class PlayerController : MonoBehaviour
             rd.MovePosition(pos); 
         }
     }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
 }
