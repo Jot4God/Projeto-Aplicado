@@ -3,7 +3,11 @@ using UnityEngine;
 public class NPCInteraction : MonoBehaviour
 {
     public GameObject dialogueUI;   
+    public GameObject shopUI;       
     [HideInInspector] public bool PlayerPerto = false; 
+
+    private enum InteractionState { Nenhum, Dialogo, Loja }
+    private InteractionState estadoAtual = InteractionState.Nenhum;
 
     void Start()
     {
@@ -12,15 +16,49 @@ public class NPCInteraction : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeAll;
 
         if (dialogueUI != null)
-            dialogueUI.SetActive(false);     
+            dialogueUI.SetActive(false);  
+
+        if (shopUI != null)
+            shopUI.SetActive(false);     
     }
 
     void Update()
     {
-        if (PlayerPerto && Input.GetKeyDown(KeyCode.E))
+        if (!PlayerPerto) return;
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            dialogueUI.SetActive(!dialogueUI.activeSelf);
-            Debug.Log("E pressionado! Abrindo diálogo");
+            switch (estadoAtual)
+            {
+                case InteractionState.Nenhum:
+                    
+                    if (dialogueUI != null)
+                        dialogueUI.SetActive(true);
+                    estadoAtual = InteractionState.Dialogo;
+                    Debug.Log("Diálogo aberto!");
+                    break;
+
+                case InteractionState.Dialogo:
+                    
+                    if (dialogueUI != null)
+                        dialogueUI.SetActive(false);
+
+                    if (shopUI != null)
+                        shopUI.SetActive(true);
+
+                    estadoAtual = InteractionState.Loja;
+                    Debug.Log("Diálogo fechado, loja aberta!");
+                    break;
+
+                case InteractionState.Loja:
+                    
+                    if (shopUI != null)
+                        shopUI.SetActive(false);
+
+                    estadoAtual = InteractionState.Nenhum;
+                    Debug.Log("Loja fechada, estado inicial!");
+                    break;
+            }
         }
     }
 }
