@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rd;
     public SpriteRenderer sr;
 
+    [HideInInspector] public bool podeMover = true;
+
     void Start()
     {
         rd = GetComponent<Rigidbody>();
@@ -16,11 +18,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal"); // A/D
-        float z = Input.GetAxis("Vertical");   // W/S
+        if (!podeMover)
+        {
+            rd.linearVelocity = Vector3.zero;
+            return;
+        }
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
         Vector3 moveDir = new Vector3(x, 0, z).normalized;
-
         rd.linearVelocity = new Vector3(moveDir.x * speed, rd.linearVelocity.y, moveDir.z * speed);
 
         if (x < 0)
@@ -31,7 +38,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        
         RaycastHit hit;
         if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, terrainLayer))
         {
@@ -46,5 +52,4 @@ public class PlayerController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
-
 }

@@ -9,6 +9,8 @@ public class NPCInteraction : MonoBehaviour
     private enum InteractionState { Nenhum, Dialogo, Loja }
     private InteractionState estadoAtual = InteractionState.Nenhum;
 
+    private PlayerController playerController;
+
     void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -22,6 +24,24 @@ public class NPCInteraction : MonoBehaviour
             shopUI.SetActive(false);     
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerPerto = true;
+            playerController = other.GetComponent<PlayerController>();
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerPerto = false;
+            playerController = null;
+        }
+    }
+
     void Update()
     {
         if (!PlayerPerto) return;
@@ -31,15 +51,17 @@ public class NPCInteraction : MonoBehaviour
             switch (estadoAtual)
             {
                 case InteractionState.Nenhum:
-                    
                     if (dialogueUI != null)
                         dialogueUI.SetActive(true);
+
+                    if (playerController != null)
+                        playerController.podeMover = false; 
+
                     estadoAtual = InteractionState.Dialogo;
                     Debug.Log("Diálogo aberto!");
                     break;
 
                 case InteractionState.Dialogo:
-                    
                     if (dialogueUI != null)
                         dialogueUI.SetActive(false);
 
@@ -51,9 +73,11 @@ public class NPCInteraction : MonoBehaviour
                     break;
 
                 case InteractionState.Loja:
-                    
                     if (shopUI != null)
                         shopUI.SetActive(false);
+
+                    if (playerController != null)
+                        playerController.podeMover = true; 
 
                     estadoAtual = InteractionState.Nenhum;
                     Debug.Log("Loja fechada, estado inicial!");
