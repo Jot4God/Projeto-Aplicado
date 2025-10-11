@@ -222,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 4982187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -700.60803, y: 5, z: -765.58}
+  m_LocalPosition: {x: -750.7, y: 5, z: -893.4}
   m_LocalScale: {x: 6.5, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6280,7 +6280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1541408972}
-  speed: 4
+  speed: 10
   chaseDistance: 6.78
   attackDistance: 7.56
   patrolPoints:
@@ -7072,7 +7072,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -860.9, y: 6.61, z: -866.92}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 17, y: 17, z: 17}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2103053079}
@@ -8721,8 +8721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045cd5e53fd71554b9605622e68693f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  groundDist: 5
+  speed: 30
+  groundDist: 15
   terrainLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -8908,6 +8908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21abdccba189c549855a9e4781d95e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newPlayerScale: {x: 3, y: 3, z: 3}
+  speedIncrease: 20
 --- !u!1 &1542576154
 GameObject:
   m_ObjectHideFlags: 0

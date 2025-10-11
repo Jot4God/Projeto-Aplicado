@@ -20,18 +20,22 @@ public class EnemyController : MonoBehaviour
     private int currentPatrol = 0;
     private float waitTimer = 0f;
     private Rigidbody rb;
+
     private enum State { Patrolling, Chasing, Attacking }
     private State state = State.Patrolling;
 
     private float attackCooldown = 1f;
     private float lastAttackTime = 0f;
 
+    private Vector3 currentDirection = Vector3.zero; // <- guarda direção para mover no FixedUpdate
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true; // impede empurrão
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
-        currentHealth = maxHealth; // Inicializa vida
+        currentHealth = maxHealth;
 
         if (player == null)
         {
@@ -57,29 +61,36 @@ public class EnemyController : MonoBehaviour
             case State.Attacking: Attack(); break;
         }
 
-        // 🔹 TESTE: tecla para dar dano no inimigo manualmente
+        // Teste manual de dano
         if (Input.GetKeyDown(KeyCode.K))
+            TakeDamage(10);
+    }
+
+    void FixedUpdate()
+    {
+        if (currentDirection != Vector3.zero)
         {
-            TakeDamage(10); // Dano fixo (10) quando carregas em K
+            Vector3 newPos = transform.position + currentDirection * speed * Time.fixedDeltaTime;
+            rb.MovePosition(newPos);
         }
     }
 
     void Patrol()
     {
         if (patrolPoints.Length == 0) 
-        { 
-            rb.linearVelocity = Vector3.zero; 
-            return; 
+        {
+            currentDirection = Vector3.zero;
+            return;
         }
 
         Vector3 target = patrolPoints[currentPatrol].position;
         Vector3 moveDir = (target - transform.position).normalized;
 
-        rb.linearVelocity = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
+        currentDirection = moveDir;
 
         if (Vector3.Distance(transform.position, target) < 0.3f)
         {
-            rb.linearVelocity = Vector3.zero;
+            currentDirection = Vector3.zero;
             waitTimer += Time.deltaTime;
             if (waitTimer >= patrolWait)
             {
@@ -92,20 +103,23 @@ public class EnemyController : MonoBehaviour
     void Chase()
     {
         Vector3 moveDir = (player.position - transform.position).normalized;
-        rb.linearVelocity = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
+        currentDirection = moveDir;
     }
 
     void Attack()
     {
-        rb.linearVelocity = Vector3.zero; 
+        currentDirection = Vector3.zero; // pára de mover
 
         if (player == null) return;
 
-        PlayerHP ph = player.GetComponent<PlayerHP>();
-        if (ph != null && Time.time >= lastAttackTime + attackCooldown)
+        if (Time.time >= lastAttackTime + attackCooldown)
         {
-            ph.TakeDamage(30);
-            lastAttackTime = Time.time;
+            PlayerHP ph = player.GetComponent<PlayerHP>();
+            if (ph != null)
+            {
+                ph.TakeDamage(30);
+                lastAttackTime = Time.time;
+            }
         }
     }
 
@@ -117,23 +131,21 @@ public class EnemyController : MonoBehaviour
         Debug.Log(name + " recebeu " + damage + " de dano! Vida atual: " + currentHealth);
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     void Die()
-{
-    Debug.Log(name + " morreu!");
-
-    if (healthPickupPrefab != null)
     {
-        Vector3 spawnPosition = transform.position + new Vector3(0f, -6f, 0f);
-        Instantiate(healthPickupPrefab, spawnPosition, Quaternion.identity);
-    }
+        Debug.Log(name + " morreu!");
 
-    Destroy(gameObject);
-}
+        if (healthPickupPrefab != null)
+        {
+            Vector3 spawnPosition = transform.position + new Vector3(0f, 1f, 0f);
+            Instantiate(healthPickupPrefab, spawnPosition, Quaternion.identity);
+        }
+
+        Destroy(gameObject);
+    }
 
     void OnDrawGizmosSelected()
     {

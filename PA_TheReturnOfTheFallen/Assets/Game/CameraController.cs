@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player").transform;
         if (player != null)
             offset = transform.position - player.position;
     }
@@ -20,9 +21,4 @@ public class CameraController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothSpeed * Time.deltaTime);
     }
     
-    void Awake() 
-    {
-        
-        DontDestroyOnLoad(gameObject);
-    }
 }

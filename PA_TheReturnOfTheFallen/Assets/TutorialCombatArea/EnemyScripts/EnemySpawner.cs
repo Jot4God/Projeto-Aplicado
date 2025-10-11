@@ -1,11 +1,13 @@
 using UnityEngine;
+using System.Collections; // Necessário para usar corrotinas
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;  // Seu inimigo
-    public int numberOfEnemies = 5; // Quantos inimigos spawnar no total
-    public float spawnRadius = 5f;  // Raio máximo de spawn ao redor do player
+    public GameObject enemyPrefab;          // Prefab do inimigo
+    public int numberOfEnemies = 5;         // Quantos inimigos spawnar no total
+    public float spawnRadius = 5f;          // Raio máximo de spawn ao redor do player
     public float minDistanceFromPlayer = 3f; // Distância mínima do player para spawn seguro
+    public float spawnDelay = 3f;           // Tempo em segundos antes de começar o spawn
 
     private Transform player;
 
@@ -20,7 +22,16 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        // Spawn inicial de inimigos
+        // Inicia a corrotina que espera antes de spawnar os inimigos
+        StartCoroutine(SpawnEnemiesWithDelay());
+    }
+
+    IEnumerator SpawnEnemiesWithDelay()
+    {
+        // Espera o tempo definido antes de começar o spawn
+        yield return new WaitForSeconds(spawnDelay);
+
+        // Spawn inicial de inimigos após o atraso
         for (int i = 0; i < numberOfEnemies; i++)
         {
             SpawnEnemy();
@@ -34,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPos;
         int tries = 0;
 
-        // Garante que o inimigo não spawn no player
+        // Garante que o inimigo não spawn em cima do player
         do
         {
             Vector3 randomOffset = new Vector3(
