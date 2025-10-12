@@ -1,22 +1,30 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Transform attackPoint;      
-    public float attackRange = 1f;    
-    public LayerMask enemyLayers;    
-    public int attackDamage = 20;      
-    public float slashDuration = 0.3f; 
+    public Transform attackPoint;      // Ponta da espada
+    public float attackRange = 1.5f;   // Alcance do ataque
+    public LayerMask enemyLayers;      // Layer dos inimigos
+    public int attackDamage = 20;      // Dano do ataque
+    public GameObject sword;           // A espada já na mão
+    public float attackCooldown = 0.3f;
+
+    private bool isAttacking = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Attack();
+        if (Input.GetKeyDown(KeyCode.Space) && !isAttacking)
+        {
+            StartCoroutine(Attack());
+        }
     }
 
-    void Attack()
+    IEnumerator Attack()
     {
-        
+        isAttacking = true;
+
+        // 1️⃣ Dano aos inimigos
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider enemy in hitEnemies)
         {
@@ -25,29 +33,32 @@ public class PlayerAttack : MonoBehaviour
                 ec.TakeDamage(attackDamage);
         }
 
-        GameObject slash = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        slash.transform.position = attackPoint.position;
-        slash.transform.localScale = new Vector3(0.1f, 0.1f, attackRange * 2);
-        Destroy(slash.GetComponent<Collider>());
+        // 2️⃣ Animação visual simples da espada
+        if (sword != null)
+        {
+            float swingAngle = 90f; // swing horizontal
+            float swingTime = attackCooldown;
+            float elapsed = 0f;
 
-        Renderer rend = slash.GetComponent<Renderer>();
-        if (rend != null) rend.material.color = Color.red;
+            while (elapsed < swingTime)
+            {
+                float step = (swingAngle / swingTime) * Time.deltaTime;
+                sword.transform.Rotate(Vector3.forward * step);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
 
-        
-        slash.transform.Rotate(Vector3.up * 45); 
-        StartCoroutine(RotateSlash(slash));
+            sword.transform.Rotate(Vector3.forward * -swingAngle); // volta para posição inicial
+        }
 
-        Destroy(slash, slashDuration);
+        yield return new WaitForSeconds(attackCooldown);
+        isAttacking = false;
     }
 
-    System.Collections.IEnumerator RotateSlash(GameObject slash)
+    void OnDrawGizmosSelected()
     {
-        float elapsed = 0f;
-        while (elapsed < slashDuration)
-        {
-            slash.transform.Rotate(Vector3.up * 720 * Time.deltaTime); 
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
+        if (attackPoint == null) return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

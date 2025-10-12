@@ -5,6 +5,6 @@ public class GameOverUI : MonoBehaviour
 {
     public void RestartGame()
     {
-        SceneManager.LoadScene("Test Area"); 
+        SceneManager.LoadScene("TestArea"); 
     }
 }
