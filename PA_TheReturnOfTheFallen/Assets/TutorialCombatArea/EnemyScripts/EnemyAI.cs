@@ -1,42 +1,37 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class EnemyController : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
     public Transform player;
     public float speed = 4f;
     public float chaseDistance = 8f;
     public float attackDistance = 1.5f;
-    public Transform[] patrolPoints;
-    public float patrolWait = 2f;
 
-    // Vida do inimigo
     public int maxHealth = 50;
     private int currentHealth;
 
-    // Prefab do health pickup
     public GameObject healthPickupPrefab;
 
-    private int currentPatrol = 0;
-    private float waitTimer = 0f;
     private Rigidbody rb;
 
-    private enum State { Patrolling, Chasing, Attacking }
-    private State state = State.Patrolling;
+    private enum State { Idle, Chasing, Attacking }
+    private State state = State.Idle;
 
     private float attackCooldown = 1f;
     private float lastAttackTime = 0f;
 
-    private Vector3 currentDirection = Vector3.zero; // <- guarda direção para mover no FixedUpdate
+    private Vector3 currentDirection = Vector3.zero;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true; // impede empurrão
+        rb.isKinematic = true; // impede empurrões
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
         currentHealth = maxHealth;
 
+        // Procura automaticamente o player pela tag
         if (player == null)
         {
             GameObject p = GameObject.FindGameObjectWithTag("Player");
@@ -46,19 +41,27 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null)
+        {
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p) player = p.transform;
+            return;
+        }
 
         float dist = Vector3.Distance(transform.position, player.position);
 
-        if (dist <= attackDistance) state = State.Attacking;
-        else if (dist <= chaseDistance) state = State.Chasing;
-        else state = State.Patrolling;
+        if (dist <= attackDistance)
+            state = State.Attacking;
+        else if (dist <= chaseDistance)
+            state = State.Chasing;
+        else
+            state = State.Idle;
 
         switch (state)
         {
-            case State.Patrolling: Patrol(); break;
-            case State.Chasing: Chase(); break;
-            case State.Attacking: Attack(); break;
+            case State.Idle:       FollowPlayer(); break; // em vez de patrulhar, segue o player sempre
+            case State.Chasing:    FollowPlayer(); break;
+            case State.Attacking:  Attack();       break;
         }
 
         // Teste manual de dano
@@ -72,44 +75,25 @@ public class EnemyController : MonoBehaviour
         {
             Vector3 newPos = transform.position + currentDirection * speed * Time.fixedDeltaTime;
             rb.MovePosition(newPos);
+
         }
     }
 
-    void Patrol()
+    void FollowPlayer()
     {
-        if (patrolPoints.Length == 0) 
+        if (!player)
         {
             currentDirection = Vector3.zero;
             return;
         }
 
-        Vector3 target = patrolPoints[currentPatrol].position;
-        Vector3 moveDir = (target - transform.position).normalized;
-
-        currentDirection = moveDir;
-
-        if (Vector3.Distance(transform.position, target) < 0.3f)
-        {
-            currentDirection = Vector3.zero;
-            waitTimer += Time.deltaTime;
-            if (waitTimer >= patrolWait)
-            {
-                currentPatrol = (currentPatrol + 1) % patrolPoints.Length;
-                waitTimer = 0f;
-            }
-        }
-    }
-
-    void Chase()
-    {
         Vector3 moveDir = (player.position - transform.position).normalized;
         currentDirection = moveDir;
     }
 
     void Attack()
     {
-        currentDirection = Vector3.zero; // pára de mover
-
+        currentDirection = Vector3.zero;
         if (player == null) return;
 
         if (Time.time >= lastAttackTime + attackCooldown)
@@ -127,7 +111,6 @@ public class EnemyController : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
-
         Debug.Log(name + " recebeu " + damage + " de dano! Vida atual: " + currentHealth);
 
         if (currentHealth <= 0)
@@ -151,6 +134,7 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, chaseDistance);
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackDistance);
     }

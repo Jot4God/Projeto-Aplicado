@@ -13,7 +13,6 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        // Procura o player na cena
         player = GameObject.FindWithTag("Player")?.transform;
 
         if (player == null)

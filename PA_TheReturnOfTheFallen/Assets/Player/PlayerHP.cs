@@ -1,17 +1,31 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // Para manipular a barra de vida
+using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
-    public int maxHealth = 100;    
+    public int maxHealth = 100;
     public int currentHealth;
 
-    public Slider healthBar; // Slider da UI
+    public Slider healthBar; // Slider da UI (pode ser arrastado no Inspector)
 
     void Awake()
     {
         currentHealth = maxHealth;
+
+        // Se a healthBar não estiver atribuída manualmente, tenta encontrar pela tag
+        if (healthBar == null)
+        {
+            GameObject hb = GameObject.FindGameObjectWithTag("HealthBar");
+            if (hb != null)
+            {
+                healthBar = hb.GetComponent<Slider>();
+            }
+            else
+            {
+                Debug.LogWarning("⚠️ Nenhum objeto com a tag 'HealthBar' foi encontrado na cena.");
+            }
+        }
 
         // Inicializa a barra de vida
         if (healthBar != null)
@@ -56,6 +70,6 @@ public class PlayerHP : MonoBehaviour
     void Die()
     {
         Debug.Log("Player morreu!");
-        SceneManager.LoadScene("GameOver"); 
+        SceneManager.LoadScene("GameOver");
     }
 }
