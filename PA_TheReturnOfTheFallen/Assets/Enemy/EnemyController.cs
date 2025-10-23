@@ -31,8 +31,17 @@ public class EnemyController : MonoBehaviour
 
     void Awake()
     {
+        // 🔹 Se este inimigo é o "prefab base" na cena (não instanciado em runtime),
+        // desativa-o apenas uma vez no início.
+        if (!Application.isEditor && gameObject.scene.rootCount > 0 && transform.parent == null && !gameObject.name.Contains("(Clone)"))
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true; // impede empurrão
+        rb.isKinematic = false;
+        rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
         currentHealth = maxHealth;
@@ -77,7 +86,7 @@ public class EnemyController : MonoBehaviour
 
     void Patrol()
     {
-        if (patrolPoints.Length == 0) 
+        if (patrolPoints.Length == 0)
         {
             currentDirection = Vector3.zero;
             return;
@@ -85,7 +94,6 @@ public class EnemyController : MonoBehaviour
 
         Vector3 target = patrolPoints[currentPatrol].position;
         Vector3 moveDir = (target - transform.position).normalized;
-
         currentDirection = moveDir;
 
         if (Vector3.Distance(transform.position, target) < 0.3f)
@@ -140,7 +148,7 @@ public class EnemyController : MonoBehaviour
 
         if (healthPickupPrefab != null)
         {
-            Vector3 spawnPosition = transform.position + new Vector3(0f, -5f, 0f);
+            Vector3 spawnPosition = transform.position + new Vector3(0f, 1f, 0f);
             Instantiate(healthPickupPrefab, spawnPosition, Quaternion.identity);
         }
 

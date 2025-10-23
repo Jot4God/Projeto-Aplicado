@@ -1,15 +1,22 @@
 using UnityEngine;
-using System.Collections; // Necessário para usar corrotinas
+using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Configuração de Spawn")]
     public GameObject enemyPrefab;          // Prefab do inimigo
-    public int numberOfEnemies = 5;         // Quantos inimigos spawnar no total
-    public float spawnRadius = 5f;          // Raio máximo de spawn ao redor do player
-    public float minDistanceFromPlayer = 3f; // Distância mínima do player para spawn seguro
-    public float spawnDelay = 3f;           // Tempo em segundos antes de começar o spawn
+    public int numberOfEnemies = 5;         // Quantos inimigos spawnar
+    public float spawnRadius = 5f;          // Raio ao redor do spawner
+    public float spawnDelay = 1f;           // Tempo entre spawns
 
+    [Header("Detecção do Player")]
+    public float activationRadius = 10f;    // Distância que ativa o spawner
     private Transform player;
+
+    [Header("Altura fixa de spawn")]
+    public float spawnHeight = 1f;          // Altura Y fixa para spawn (acima do terreno)
+
+    private bool hasSpawned = false;        // Evita spawn repetido
 
     void Start()
     {
@@ -17,51 +24,56 @@ public class EnemySpawner : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogWarning("Player não encontrado! Verifique se ele tem a tag 'Player'.");
-            return;
+            Debug.LogWarning("⚠️ Player não encontrado! Verifique se ele tem a tag 'Player'.");
         }
+    }
 
-        // Inicia a corrotina que espera antes de spawnar os inimigos
-        StartCoroutine(SpawnEnemiesWithDelay());
+    void Update()
+    {
+        if (player == null || hasSpawned) return;
+
+        // Ativa o spawn quando o player entra no raio
+        float distanceToPlayer = Vector3.Distance(player.position, transform.position);
+        if (distanceToPlayer <= activationRadius)
+        {
+            StartCoroutine(SpawnEnemiesWithDelay());
+            hasSpawned = true;
+        }
     }
 
     IEnumerator SpawnEnemiesWithDelay()
     {
-        // Espera o tempo definido antes de começar o spawn
-        yield return new WaitForSeconds(spawnDelay);
-
-        // Spawn inicial de inimigos após o atraso
         for (int i = 0; i < numberOfEnemies; i++)
         {
             SpawnEnemy();
+            yield return new WaitForSeconds(spawnDelay);
         }
     }
 
     void SpawnEnemy()
     {
-        if (player == null) return;
+        // Gera posição aleatória ao redor do spawner
+        Vector3 randomOffset = new Vector3(
+            Random.Range(-spawnRadius, spawnRadius),
+            0,
+            Random.Range(-spawnRadius, spawnRadius)
+        );
 
-        Vector3 spawnPos;
-        int tries = 0;
+        // Define a posição final (mantendo o Y fixo)
+        Vector3 spawnPos = transform.position + randomOffset;
+        spawnPos.y = spawnHeight; // Mantém o Y fixo em 1 (ou valor definido no Inspector)
 
-        // Garante que o inimigo não spawn em cima do player
-        do
-        {
-            Vector3 randomOffset = new Vector3(
-                Random.Range(-spawnRadius, spawnRadius),
-                0,
-                Random.Range(-spawnRadius, spawnRadius)
-            );
-
-            spawnPos = player.position + randomOffset;
-            tries++;
-
-            // Evita loop infinito caso não consiga achar posição
-            if (tries > 20)
-                break;
-
-        } while (Vector3.Distance(spawnPos, player.position) < minDistanceFromPlayer);
-
+        // Cria o inimigo
         Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Mostra o raio de ativação e de spawn no editor
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, activationRadius);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
 }
