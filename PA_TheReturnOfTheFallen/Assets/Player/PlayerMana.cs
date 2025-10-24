@@ -3,27 +3,30 @@ using UnityEngine.UI;
 
 public class PlayerMana : MonoBehaviour
 {
+    [Header("Mana Settings")]
     public int maxMana = 100;
     public int currentMana;
 
-    public Slider manaBar; 
-    public float regenRate = 10f; 
+    [Header("Regen Settings")]
+    public float regenRate = 10f;
+    public float regenDelay = 2f;
 
-    void Awake()
+    private float lastManaUseTime;
+    private float currentManaFloat; // ✅ guarda valor float para regeneração suave
+
+    [Header("UI")]
+    public Slider manaBar;
+
+    void Start()
     {
         currentMana = maxMana;
+        currentManaFloat = maxMana;
 
         if (manaBar == null)
         {
             GameObject mb = GameObject.FindGameObjectWithTag("ManaBar");
             if (mb != null)
-            {
                 manaBar = mb.GetComponent<Slider>();
-            }
-            else
-            {
-                Debug.LogWarning("⚠️ Nenhum objeto com a tag 'ManaBar' foi encontrado na cena.");
-            }
         }
 
         if (manaBar != null)
@@ -31,21 +34,28 @@ public class PlayerMana : MonoBehaviour
             manaBar.maxValue = maxMana;
             manaBar.value = currentMana;
         }
+
+        lastManaUseTime = -regenDelay;
     }
 
     void Update()
     {
         RegenerateMana();
+
+        currentMana = Mathf.RoundToInt(currentManaFloat);
         if (manaBar != null)
             manaBar.value = currentMana;
     }
 
     void RegenerateMana()
     {
-        if (currentMana < maxMana)
+        if (lastManaUseTime > 0f && Time.time - lastManaUseTime < regenDelay)
+            return;
+
+        if (currentManaFloat < maxMana)
         {
-            currentMana += Mathf.RoundToInt(regenRate * Time.deltaTime);
-            currentMana = Mathf.Min(currentMana, maxMana);
+            currentManaFloat += regenRate * Time.deltaTime; // 🔹 suave e contínuo
+            currentManaFloat = Mathf.Min(currentManaFloat, maxMana);
         }
     }
 
@@ -53,29 +63,17 @@ public class PlayerMana : MonoBehaviour
     {
         if (currentMana >= amount)
         {
-            currentMana -= amount;
-            if (manaBar != null)
-                manaBar.value = currentMana;
-
-            Debug.Log("Mana gasta: " + amount + " | Mana atual: " + currentMana);
+            currentManaFloat -= amount;
+            lastManaUseTime = Time.time;
             return true;
         }
 
-        Debug.Log("❌ Mana insuficiente!");
         return false;
     }
 
     public void RestoreMana(int amount)
     {
-        int oldMana = currentMana;
-
-        currentMana += amount;
-        currentMana = Mathf.Min(currentMana, maxMana);
-
-        int actualRestored = currentMana - oldMana;
-        Debug.Log("Mana restaurada +" + actualRestored + "! Mana atual: " + currentMana);
-
-        if (manaBar != null)
-            manaBar.value = currentMana;
+        currentManaFloat += amount;
+        currentManaFloat = Mathf.Min(currentManaFloat, maxMana);
     }
 }

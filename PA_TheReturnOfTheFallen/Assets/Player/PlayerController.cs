@@ -50,17 +50,14 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
 {
-    // Verifica se já existe outro Player
     PlayerController[] players = Object.FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
 
     if (players.Length > 1)
     {
-        // Já existe um player anterior, destrói este novo
         Destroy(gameObject);
         return;
     }
 
-    // Mantém este player entre as cenas
     DontDestroyOnLoad(gameObject);
 }
 }

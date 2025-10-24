@@ -10,15 +10,30 @@ public class PlayerAttack : MonoBehaviour
     public GameObject sword;           // A espada já na mão
     public float attackCooldown = 0.3f;
 
+    public int manaCost = 10;          // Custo de mana por ataque
+    private PlayerMana playerMana;     // Referência ao sistema de mana
     private bool isAttacking = false;
 
-    void Update()
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isAttacking)
+        playerMana = GetComponent<PlayerMana>();
+    }
+
+    void Update()
+{
+    // Mouse1 = 0, Mouse2 = 1
+    if (Input.GetMouseButtonDown(0) && !isAttacking)
+    {
+        if (playerMana != null && playerMana.UseMana(manaCost))
         {
             StartCoroutine(Attack());
         }
+        else
+        {
+            Debug.Log("❌ Sem mana suficiente para atacar!");
+        }
     }
+}
 
     IEnumerator Attack()
     {
@@ -36,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
         // 2️⃣ Animação visual simples da espada
         if (sword != null)
         {
-            float swingAngle = 90f; // swing horizontal
+            float swingAngle = 90f;
             float swingTime = attackCooldown;
             float elapsed = 0f;
 
@@ -48,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
                 yield return null;
             }
 
-            sword.transform.Rotate(Vector3.forward * -swingAngle); // volta para posição inicial
+            sword.transform.Rotate(Vector3.forward * -swingAngle);
         }
 
         yield return new WaitForSeconds(attackCooldown);
