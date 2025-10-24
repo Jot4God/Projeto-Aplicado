@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\Irina\\Documents\\GitHub\\Projeto-Aplicado\\PA_TheReturnOfTheFallen\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CBA538EE-4434-952A-6B0A-D41C09DA3234}|Assembly-CSharp.csproj|c:\\users\\irina\\documents\\github\\projeto-aplicado\\pa_thereturnofthefallen\\assets\\enemy\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBA538EE-4434-952A-6B0A-D41C09DA3234}|Assembly-CSharp.csproj|solutionrelative:assets\\enemy\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CBA538EE-4434-952A-6B0A-D41C09DA3234}|Assembly-CSharp.csproj|c:\\users\\irina\\documents\\github\\projeto-aplicado\\pa_thereturnofthefallen\\assets\\scripts\\manaefficiencybook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CBA538EE-4434-952A-6B0A-D41C09DA3234}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\manaefficiencybook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -30,24 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EnemyController.cs",
-              "DocumentMoniker": "C:\\Users\\Irina\\Documents\\GitHub\\Projeto-Aplicado\\PA_TheReturnOfTheFallen\\Assets\\Enemy\\EnemyController.cs",
-              "RelativeDocumentMoniker": "Assets\\Enemy\\EnemyController.cs",
-              "ToolTip": "C:\\Users\\Irina\\Documents\\GitHub\\Projeto-Aplicado\\PA_TheReturnOfTheFallen\\Assets\\Enemy\\EnemyController.cs",
-              "RelativeToolTip": "Assets\\Enemy\\EnemyController.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T21:11:38.933Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "PlayerMana.cs",
               "DocumentMoniker": "C:\\Users\\Irina\\Documents\\GitHub\\Projeto-Aplicado\\PA_TheReturnOfTheFallen\\Assets\\Player\\PlayerMana.cs",
               "RelativeDocumentMoniker": "Assets\\Player\\PlayerMana.cs",
@@ -60,7 +43,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "HealthPickup.cs",
               "DocumentMoniker": "C:\\Users\\Irina\\Documents\\GitHub\\Projeto-Aplicado\\PA_TheReturnOfTheFallen\\Assets\\Scripts\\HealthPickup.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\HealthPickup.cs",
@@ -73,20 +56,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ManaEfficiencyBook.cs",
               "DocumentMoniker": "C:\\Users\\Irina\\Documents\\GitHub\\Projeto-Aplicado\\PA_TheReturnOfTheFallen\\Assets\\Scripts\\ManaEfficiencyBook.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ManaEfficiencyBook.cs",
               "ToolTip": "C:\\Users\\Irina\\Documents\\GitHub\\Projeto-Aplicado\\PA_TheReturnOfTheFallen\\Assets\\Scripts\\ManaEfficiencyBook.cs",
               "RelativeToolTip": "Assets\\Scripts\\ManaEfficiencyBook.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-24T20:32:38.591Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "NPCInteraction.cs",
               "DocumentMoniker": "C:\\Users\\Irina\\Documents\\GitHub\\Projeto-Aplicado\\PA_TheReturnOfTheFallen\\Assets\\NPC\\NPCInteraction.cs",
               "RelativeDocumentMoniker": "Assets\\NPC\\NPCInteraction.cs",
