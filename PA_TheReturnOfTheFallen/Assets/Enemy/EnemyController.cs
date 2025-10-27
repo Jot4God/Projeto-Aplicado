@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
 
     // Prefab do health pickup
     public GameObject healthPickupPrefab;
+    public GameObject moneyPickupPrefab; // Prefab da moeda
+    public int moneyDropAmount = 1;      // Quantas moedas dropar
 
     private int currentPatrol = 0;
     private float waitTimer = 0f;
@@ -143,17 +145,35 @@ public class EnemyController : MonoBehaviour
     }
 
     void Die()
+{
+    Debug.Log(name + " morreu!");
+
+    // Chance de dropar vida (ex: 50%)
+    if (healthPickupPrefab != null && Random.value < 0.5f)
     {
-        Debug.Log(name + " morreu!");
-
-        if (healthPickupPrefab != null)
-        {
-            Vector3 spawnPosition = transform.position + new Vector3(0f, -5f, 0f);
-            Instantiate(healthPickupPrefab, spawnPosition, Quaternion.identity);
-        }
-
-        Destroy(gameObject);
+        Vector3 spawnPos = transform.position + new Vector3(0f, 0.5f, 0f);
+        Instantiate(healthPickupPrefab, spawnPos, Quaternion.identity);
     }
+
+    // Chance de dropar moedas (ex: 70%)
+    if (moneyPickupPrefab != null && Random.value < 0.7f)
+    {
+        float radius = 1f; // distância do inimigo
+        for (int i = 0; i < moneyDropAmount; i++)
+        {
+            // spawn aleatório em volta do inimigo
+            Vector3 spawnPos = transform.position + new Vector3(
+                Random.Range(-radius, radius), 
+                0.5f, 
+                Random.Range(-radius, radius)
+            );
+            Instantiate(moneyPickupPrefab, spawnPos, Quaternion.identity);
+        }
+    }
+
+    Destroy(gameObject);
+}
+
 
     void OnDrawGizmosSelected()
     {
