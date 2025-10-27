@@ -151,7 +151,7 @@ public class EnemyController : MonoBehaviour
     // Chance de dropar vida (ex: 50%)
     if (healthPickupPrefab != null && Random.value < 0.5f)
     {
-        Vector3 spawnPos = transform.position + new Vector3(0f, 0.5f, 0f);
+        Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
         Instantiate(healthPickupPrefab, spawnPos, Quaternion.identity);
     }
 
@@ -162,11 +162,7 @@ public class EnemyController : MonoBehaviour
         for (int i = 0; i < moneyDropAmount; i++)
         {
             // spawn aleatório em volta do inimigo
-            Vector3 spawnPos = transform.position + new Vector3(
-                Random.Range(-radius, radius), 
-                0.5f, 
-                Random.Range(-radius, radius)
-            );
+            Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
             Instantiate(moneyPickupPrefab, spawnPos, Quaternion.identity);
         }
     }
