@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
         }
 
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = false;
+        rb.isKinematic = true;
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
 
@@ -148,7 +148,7 @@ public class EnemyController : MonoBehaviour
 
         if (healthPickupPrefab != null)
         {
-            Vector3 spawnPosition = transform.position + new Vector3(0f, 1f, 0f);
+            Vector3 spawnPosition = transform.position + new Vector3(0f, -5f, 0f);
             Instantiate(healthPickupPrefab, spawnPosition, Quaternion.identity);
         }
 

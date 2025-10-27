@@ -21,7 +21,7 @@ public class PlayerSpawnHandler : MonoBehaviour
         if (!string.IsNullOrEmpty(PlayerSpawnData.nextSpawnPoint))
         {
             GameObject spawnPoint = GameObject.Find(PlayerSpawnData.nextSpawnPoint);
-
+    
             if (spawnPoint != null)
             {
                 transform.position = spawnPoint.transform.position;

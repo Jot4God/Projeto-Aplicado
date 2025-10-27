@@ -3,8 +3,11 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Inimigo base (na cena, não prefab)")]
+    [Tooltip("Arrasta aqui o slime principal que está na cena (com HideOnPlay).")]
+    public GameObject sceneEnemy;           // Slime principal da cena
+
     [Header("Configuração de Spawn")]
-    public GameObject enemyPrefab;          // Prefab do inimigo
     public int numberOfEnemies = 5;         // Quantos inimigos spawnar
     public float spawnRadius = 5f;          // Raio ao redor do spawner
     public float spawnDelay = 1f;           // Tempo entre spawns
@@ -26,13 +29,17 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.LogWarning("⚠️ Player não encontrado! Verifique se ele tem a tag 'Player'.");
         }
+
+        if (sceneEnemy == null)
+        {
+            Debug.LogError("❌ Falta arrastar o slime principal para o campo 'Scene Enemy' no spawner.");
+        }
     }
 
     void Update()
     {
-        if (player == null || hasSpawned) return;
+        if (player == null || hasSpawned || sceneEnemy == null) return;
 
-        // Ativa o spawn quando o player entra no raio
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
         if (distanceToPlayer <= activationRadius)
         {
@@ -55,21 +62,30 @@ public class EnemySpawner : MonoBehaviour
         // Gera posição aleatória ao redor do spawner
         Vector3 randomOffset = new Vector3(
             Random.Range(-spawnRadius, spawnRadius),
-            0,
+            0f,
             Random.Range(-spawnRadius, spawnRadius)
         );
 
-        // Define a posição final (mantendo o Y fixo)
         Vector3 spawnPos = transform.position + randomOffset;
-        spawnPos.y = spawnHeight; // Mantém o Y fixo em 1 (ou valor definido no Inspector)
+        spawnPos.y = spawnHeight;
 
-        // Cria o inimigo
-        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        // ✅ Clona o inimigo base mesmo que esteja desativado
+        GameObject clone = Instantiate(sceneEnemy, spawnPos, Quaternion.identity);
+
+        // Ativa o clone (já que o template está desativado)
+        if (!clone.activeSelf) clone.SetActive(true);
+
+        // ✅ Reatribui o Player (para follow e ataque)
+        EnemyController ec = clone.GetComponent<EnemyController>();
+        if (ec != null && ec.player == null)
+        {
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p) ec.player = p.transform;
+        }
     }
 
     void OnDrawGizmosSelected()
     {
-        // Mostra o raio de ativação e de spawn no editor
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, activationRadius);
 
