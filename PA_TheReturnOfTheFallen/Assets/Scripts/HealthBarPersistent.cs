@@ -16,7 +16,6 @@ public class HealthBarPersistent : MonoBehaviour
         // Define esta como a instância única
         instance = this;
 
-        // Impede que o objeto seja destruído ao mudar de cena
-        DontDestroyOnLoad(gameObject);
+
     }
 }
