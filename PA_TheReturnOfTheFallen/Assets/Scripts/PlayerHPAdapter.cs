@@ -35,26 +35,23 @@ public class PlayerHPAdapter : MonoBehaviour
     }
 
     private void ApplyBonusesToHP()
+{
+    if (!playerHP) return;
+
+    int newMax = Mathf.Max(1, Mathf.RoundToInt(baseMaxHealth * (1f + extraPercent) + extraFlat));
+    
+    // Atualiza maxHealth
+    playerHP.maxHealth = newMax;
+
+    // Mantém a vida atual do jogador, sem sobrescrever
+    playerHP.currentHealth = Mathf.Min(playerHP.currentHealth, playerHP.maxHealth);
+
+    // Atualiza apenas maxValue da barra, não value
+    if (playerHP.healthBar != null)
     {
-        if (!playerHP) return;
-
-        // manter % de vida atual ao alterar o máximo
-        float percent = (playerHP.maxHealth > 0) ? (float)playerHP.currentHealth / playerHP.maxHealth : 1f;
-
-        int newMax = Mathf.Max(1, Mathf.RoundToInt(baseMaxHealth * (1f + extraPercent) + extraFlat));
-        playerHP.maxHealth = newMax;
-
-        // repor current mantendo a percentagem
-        playerHP.currentHealth = Mathf.Clamp(Mathf.RoundToInt(newMax * percent), 0, newMax);
-
-        // atualizar UI se existir
-        if (playerHP.healthBar != null)
-        {
-            playerHP.healthBar.maxValue = playerHP.maxHealth;
-            playerHP.healthBar.value = playerHP.currentHealth;
-        }
-
-        // opcional: Debug
-        // Debug.Log($"[HPAdapter] base={baseMaxHealth}, flat={extraFlat}, %={extraPercent:P0} => max={playerHP.maxHealth}");
+        playerHP.healthBar.maxValue = playerHP.maxHealth;
+        // Não tocar em healthBar.value aqui!
     }
+}
+
 }

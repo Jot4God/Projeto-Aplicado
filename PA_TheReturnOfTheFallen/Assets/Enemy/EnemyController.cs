@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyController : MonoBehaviour
 {
+    [Header("Movimento")]
     public Transform player;
     public float speed = 4f;
     public float chaseDistance = 8f;
@@ -10,18 +11,20 @@ public class EnemyController : MonoBehaviour
     public Transform[] patrolPoints;
     public float patrolWait = 2f;
 
-    // Vida do inimigo
+    [Header("Vida")]
     public int maxHealth = 50;
     private int currentHealth;
 
-    // Prefab do health pickup
-    public GameObject healthPickupPrefab;
-    public GameObject moneyPickupPrefab; // Prefab da moeda
-    public int moneyDropAmount = 1;      // Quantas moedas dropar
+    [Header("Recompensas")]
+    public int xpReward = 20;                // XP ganho pelo jogador ao matar
+    public GameObject healthPickupPrefab;    // Chance de dropar vida
+    public GameObject moneyPickupPrefab;     // Prefab de moedas
+    public int moneyDropAmount = 1;          // Quantas moedas dropar
 
     private int currentPatrol = 0;
     private float waitTimer = 0f;
     private Rigidbody rb;
+    private Vector3 currentDirection = Vector3.zero;
 
     private enum State { Patrolling, Chasing, Attacking }
     private State state = State.Patrolling;
@@ -29,18 +32,8 @@ public class EnemyController : MonoBehaviour
     private float attackCooldown = 1f;
     private float lastAttackTime = 0f;
 
-    private Vector3 currentDirection = Vector3.zero; // <- guarda direção para mover no FixedUpdate
-
     void Awake()
     {
-        // 🔹 Se este inimigo é o "prefab base" na cena (não instanciado em runtime),
-        // desativa-o apenas uma vez no início.
-        if (!Application.isEditor && gameObject.scene.rootCount > 0 && transform.parent == null && !gameObject.name.Contains("(Clone)"))
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         rb.useGravity = true;
@@ -72,7 +65,7 @@ public class EnemyController : MonoBehaviour
             case State.Attacking: Attack(); break;
         }
 
-        // Teste manual de dano
+        // Teste manual de dano (pressiona K para simular ataque)
         if (Input.GetKeyDown(KeyCode.K))
             TakeDamage(10);
     }
@@ -95,8 +88,7 @@ public class EnemyController : MonoBehaviour
         }
 
         Vector3 target = patrolPoints[currentPatrol].position;
-        Vector3 moveDir = (target - transform.position).normalized;
-        currentDirection = moveDir;
+        currentDirection = (target - transform.position).normalized;
 
         if (Vector3.Distance(transform.position, target) < 0.3f)
         {
@@ -112,15 +104,12 @@ public class EnemyController : MonoBehaviour
 
     void Chase()
     {
-        Vector3 moveDir = (player.position - transform.position).normalized;
-        currentDirection = moveDir;
+        currentDirection = (player.position - transform.position).normalized;
     }
 
     void Attack()
     {
-        currentDirection = Vector3.zero; // pára de mover
-
-        if (player == null) return;
+        currentDirection = Vector3.zero;
 
         if (Time.time >= lastAttackTime + attackCooldown)
         {
@@ -137,7 +126,6 @@ public class EnemyController : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
-
         Debug.Log(name + " recebeu " + damage + " de dano! Vida atual: " + currentHealth);
 
         if (currentHealth <= 0)
@@ -145,31 +133,39 @@ public class EnemyController : MonoBehaviour
     }
 
     void Die()
-{
-    Debug.Log(name + " morreu!");
-
-    // Chance de dropar vida (ex: 50%)
-    if (healthPickupPrefab != null && Random.value < 0.5f)
     {
-        Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
-        Instantiate(healthPickupPrefab, spawnPos, Quaternion.identity);
-    }
+        Debug.Log(name + " morreu!");
 
-    // Chance de dropar moedas (ex: 70%)
-    if (moneyPickupPrefab != null && Random.value < 0.7f)
-    {
-        float radius = 1f; // distância do inimigo
-        for (int i = 0; i < moneyDropAmount; i++)
+        // 🔹 Dá XP ao jogador
+        if (player != null)
         {
-            // spawn aleatório em volta do inimigo
-            Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
-            Instantiate(moneyPickupPrefab, spawnPos, Quaternion.identity);
+            PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
+            if (playerLevel != null)
+            {
+                playerLevel.AddXP(xpReward);
+                Debug.Log("Jogador ganhou " + xpReward + " XP!");
+            }
         }
+
+        // 🔹 Chance de dropar vida (50%)
+        if (healthPickupPrefab != null && Random.value < 0.5f)
+        {
+            Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
+            Instantiate(healthPickupPrefab, spawnPos, Quaternion.identity);
+        }
+
+        // 🔹 Chance de dropar moedas (70%)
+        if (moneyPickupPrefab != null && Random.value < 0.7f)
+        {
+            for (int i = 0; i < moneyDropAmount; i++)
+            {
+                Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
+                Instantiate(moneyPickupPrefab, spawnPos, Quaternion.identity);
+            }
+        }
+
+        Destroy(gameObject);
     }
-
-    Destroy(gameObject);
-}
-
 
     void OnDrawGizmosSelected()
     {

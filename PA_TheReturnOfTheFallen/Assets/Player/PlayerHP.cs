@@ -7,32 +7,34 @@ public class PlayerHP : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
-    public Slider healthBar; // Slider da UI (pode ser arrastado no Inspector)
+    [Header("UI")]
+    public Slider healthBar;
+    public Text healthText;  // Texto que mostra "vida atual / vida máxima"
 
     void Awake()
     {
         currentHealth = maxHealth;
 
-        // Se a healthBar não estiver atribuída manualmente, tenta encontrar pela tag
+        // Tenta encontrar a barra automaticamente
         if (healthBar == null)
         {
             GameObject hb = GameObject.FindGameObjectWithTag("HealthBar");
-            if (hb != null)
-            {
-                healthBar = hb.GetComponent<Slider>();
-            }
-            else
-            {
-                Debug.LogWarning("⚠️ Nenhum objeto com a tag 'HealthBar' foi encontrado na cena.");
-            }
+            if (hb != null) healthBar = hb.GetComponent<Slider>();
         }
 
-        // Inicializa a barra de vida
         if (healthBar != null)
         {
             healthBar.maxValue = maxHealth;
             healthBar.value = currentHealth;
         }
+
+        UpdateHealthText();
+    }
+
+    void UpdateHealthText()
+    {
+        if (healthText != null)
+            healthText.text = currentHealth + " / " + maxHealth;
     }
 
     public void TakeDamage(int damage)
@@ -40,31 +42,20 @@ public class PlayerHP : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
 
-        Debug.Log("Player recebeu " + damage + " de dano! Vida atual: " + currentHealth);
+        if (healthBar != null) healthBar.value = currentHealth;
+        UpdateHealthText();
 
-        // Atualiza a barra de vida
-        if (healthBar != null)
-            healthBar.value = currentHealth;
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        if (currentHealth <= 0) Die();
     }
 
     public void Heal(int amount)
     {
         int oldHealth = currentHealth;
-
         currentHealth += amount;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
 
-        int actualHealed = currentHealth - oldHealth;
-        Debug.Log("Player curado +" + actualHealed + "! Vida atual: " + currentHealth);
-
-        // Atualiza a barra de vida
-        if (healthBar != null)
-            healthBar.value = currentHealth;
+        if (healthBar != null) healthBar.value = currentHealth;
+        UpdateHealthText();
     }
 
     void Die()

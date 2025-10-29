@@ -12,10 +12,11 @@ public class PlayerMana : MonoBehaviour
     public float regenDelay = 2f;
 
     private float lastManaUseTime;
-    private float currentManaFloat; // ✅ guarda valor float para regeneração suave
+    private float currentManaFloat;
 
     [Header("UI")]
     public Slider manaBar;
+    public Text manaText; // Texto que mostra "mana atual / mana máxima"
 
     void Start()
     {
@@ -25,8 +26,7 @@ public class PlayerMana : MonoBehaviour
         if (manaBar == null)
         {
             GameObject mb = GameObject.FindGameObjectWithTag("ManaBar");
-            if (mb != null)
-                manaBar = mb.GetComponent<Slider>();
+            if (mb != null) manaBar = mb.GetComponent<Slider>();
         }
 
         if (manaBar != null)
@@ -36,6 +36,7 @@ public class PlayerMana : MonoBehaviour
         }
 
         lastManaUseTime = -regenDelay;
+        UpdateManaText();
     }
 
     void Update()
@@ -43,18 +44,24 @@ public class PlayerMana : MonoBehaviour
         RegenerateMana();
 
         currentMana = Mathf.RoundToInt(currentManaFloat);
-        if (manaBar != null)
-            manaBar.value = currentMana;
+
+        if (manaBar != null) manaBar.value = currentMana;
+        UpdateManaText();
+    }
+
+    void UpdateManaText()
+    {
+        if (manaText != null)
+            manaText.text = currentMana + " / " + maxMana;
     }
 
     void RegenerateMana()
     {
-        if (lastManaUseTime > 0f && Time.time - lastManaUseTime < regenDelay)
-            return;
+        if (lastManaUseTime > 0f && Time.time - lastManaUseTime < regenDelay) return;
 
         if (currentManaFloat < maxMana)
         {
-            currentManaFloat += regenRate * Time.deltaTime; // 🔹 suave e contínuo
+            currentManaFloat += regenRate * Time.deltaTime;
             currentManaFloat = Mathf.Min(currentManaFloat, maxMana);
         }
     }
@@ -67,7 +74,6 @@ public class PlayerMana : MonoBehaviour
             lastManaUseTime = Time.time;
             return true;
         }
-
         return false;
     }
 
