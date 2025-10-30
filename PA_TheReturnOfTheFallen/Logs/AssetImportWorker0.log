@@ -1,0 +1,2336 @@
+Using pre-set license
+Built from '6000.0/staging' branch; Version is '6000.0.23f1 (1c4764c07fb4) revision 1853284'; Using compiler version '193933523'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) 64bit Professional' Language: 'pt' Physical Memory: 16288 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\Documents\6000.0.23f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+D:/UnityProjects/github/VERSAODEFINITIVA/Projeto-Aplicado/PA_TheReturnOfTheFallen
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+57845
+-job-worker-count
+5
+-background-job-worker-count
+8
+-asset-garbage-collectors
+1
+Successfully changed project path to: D:/UnityProjects/github/VERSAODEFINITIVA/Projeto-Aplicado/PA_TheReturnOfTheFallen
+D:/UnityProjects/github/VERSAODEFINITIVA/Projeto-Aplicado/PA_TheReturnOfTheFallen
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [10856]  Target information:
+
+Player connection [10856]  * "[IP] 192.168.1.71 [Port] 0 [Flags] 2 [Guid] 4035750543 [EditorId] 4035750543 [Version] 1048832 [Id] WindowsEditor(7,ASUS) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [10856] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [10856] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 5
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 2.64 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.23f1 (1c4764c07fb4)
+[Subsystems] Discovering subsystems at path D:/Documents/6000.0.23f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/UnityProjects/github/VERSAODEFINITIVA/Projeto-Aplicado/PA_TheReturnOfTheFallen/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3060 (ID=0x2503)
+    Vendor:   NVIDIA
+    VRAM:     12115 MB
+    Driver:   32.0.15.8129
+Initialize mono
+Mono path[0] = 'D:/Documents/6000.0.23f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Documents/6000.0.23f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/Documents/6000.0.23f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56328
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Documents/6000.0.23f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003741 seconds.
+- Loaded All Assemblies, in  0.807 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.543 seconds
+Domain Reload Profiling: 1350ms
+	BeginReloadAssembly (350ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (67ms)
+	RebuildNativeTypeToScriptingClass (24ms)
+	initialDomainReloadingComplete (72ms)
+	LoadAllAssembliesAndSetupDomain (293ms)
+		LoadAssemblies (349ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (288ms)
+			TypeCache.Refresh (283ms)
+				TypeCache.ScanAssembly (252ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (544ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (465ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (34ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (9ms)
+			ProcessInitializeOnLoadAttributes (306ms)
+			ProcessInitializeOnLoadMethodAttributes (105ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  3.739 seconds
+Refreshing native plugins compatible for Editor in 2.52 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.077 seconds
+Domain Reload Profiling: 5809ms
+	BeginReloadAssembly (734ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (40ms)
+	RebuildCommonClasses (56ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (71ms)
+	LoadAllAssembliesAndSetupDomain (2851ms)
+		LoadAssemblies (720ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (2302ms)
+			TypeCache.Refresh (1512ms)
+				TypeCache.ScanAssembly (1421ms)
+			BuildScriptInfoCaches (724ms)
+			ResolveRequiredComponents (56ms)
+	FinalizeReload (2078ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1340ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (13ms)
+			SetLoadedEditorAssemblies (9ms)
+			BeforeProcessingInitializeOnLoad (147ms)
+			ProcessInitializeOnLoadAttributes (996ms)
+			ProcessInitializeOnLoadMethodAttributes (162ms)
+			AfterProcessingInitializeOnLoad (11ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (12ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 2.01 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 212 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6162 unused Assets / (4.3 MB). Loaded Objects now: 6943.
+Memory consumption went from 187.4 MB to 183.1 MB.
+Total: 20.810900 ms (FindLiveObjects: 2.323900 ms CreateObjectMapping: 2.094500 ms MarkObjects: 11.559600 ms  DeleteObjects: 4.830800 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 9594.132155 seconds.
+  path: Assets/SlimeBoss.png
+  artifactKey: Guid(55bdd68ae2948e0408d766e808afb576) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SlimeBoss.png using Guid(55bdd68ae2948e0408d766e808afb576) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4d70b2f37d877f913384274f2a29e52a') in 0.1622003 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/HealthDrop.png
+  artifactKey: Guid(47c10e14a21fdc74bbd78803c31be7db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HealthDrop.png using Guid(47c10e14a21fdc74bbd78803c31be7db) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b9cd7d9cb7ed6c825babcbff54c8aa78') in 0.0367189 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Log2.png
+  artifactKey: Guid(cb653eb077743b94085e29ec8a6462c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Log2.png using Guid(cb653eb077743b94085e29ec8a6462c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8545f3457111410c5532ed175a3b6aa4') in 0.0391735 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/GrassTexture2.png
+  artifactKey: Guid(6fb1a3ceddb39e24e8a09dfb60798f7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GrassTexture2.png using Guid(6fb1a3ceddb39e24e8a09dfb60798f7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3c9321d27d6ae7d0423fdbe2b50af591') in 0.0345104 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/New Terrain.asset
+  artifactKey: Guid(22e0a9f7d36f4fa49aa41c81b6391dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/New Terrain.asset using Guid(22e0a9f7d36f4fa49aa41c81b6391dc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c51ffe37921586c11944fabaeb299a61') in 0.0442222 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000114 seconds.
+  path: Assets/SwordAttack.png
+  artifactKey: Guid(a27a88d468fde64489d2ac11578b99a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SwordAttack.png using Guid(a27a88d468fde64489d2ac11578b99a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4ffe12af8bc9ab786acede2a13857f26') in 0.0340356 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/BG_Material.mat
+  artifactKey: Guid(558f3dc5f7ef76d469b47ed29fa3167f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/BG_Material.mat using Guid(558f3dc5f7ef76d469b47ed29fa3167f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '42f4a37269e41de1511c8b29985fe24c') in 0.9289552 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/Cave.png
+  artifactKey: Guid(62900e51bfd59f448878640f31e7a38d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Cave.png using Guid(62900e51bfd59f448878640f31e7a38d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '64c77257218f0dd2e872609e94d24eef') in 0.0297521 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Gold Coin.png
+  artifactKey: Guid(b1cc3de85afc30c4fafc4397f2033e64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Gold Coin.png using Guid(b1cc3de85afc30c4fafc4397f2033e64) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f0350df0239739c19f04ff4d75b93eeb') in 0.0350129 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/grasstile.png
+  artifactKey: Guid(3349f2272e8df654d9b0c37d27760849) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/grasstile.png using Guid(3349f2272e8df654d9b0c37d27760849) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b0b7f47e83a1e2a5bb6730c1b0833b65') in 0.0309121 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Casa_Mat.mat
+  artifactKey: Guid(70c6735ba21f41043b1ebb1335d7d049) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Casa_Mat.mat using Guid(70c6735ba21f41043b1ebb1335d7d049) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e0f4fb1eb7fa687cc404b80d8ca9ab19') in 0.0628614 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Bush3.png
+  artifactKey: Guid(9d5e528c3af3ca74b913fbdc8ad9d3a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bush3.png using Guid(9d5e528c3af3ca74b913fbdc8ad9d3a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'deeea9ad2ae1a653fcaf3990619419ad') in 0.0344333 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/WallArena.png
+  artifactKey: Guid(f7ab86ce15a8b194cbe2134b30408e98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/WallArena.png using Guid(f7ab86ce15a8b194cbe2134b30408e98) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b306c989e6e6df62acf97842271fa642') in 0.031263 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/arbusto.png
+  artifactKey: Guid(ab7fd16f5c6431741b5f3ecc7586d08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/arbusto.png using Guid(ab7fd16f5c6431741b5f3ecc7586d08f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a1ffa8d950dbbb4b12d36b2d28da81db') in 0.0291933 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Dirt.png
+  artifactKey: Guid(ad207e7661aa65648bc7a1b9f7b925ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dirt.png using Guid(ad207e7661aa65648bc7a1b9f7b925ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f1fd5cebc53c20ff5fda1910c5f6b689') in 0.0318343 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/portoes.png
+  artifactKey: Guid(f4f1185fa38048949a9713598c1b3fe9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/portoes.png using Guid(f4f1185fa38048949a9713598c1b3fe9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a4b358b61a03a44175cd510d097e82ff') in 0.0562695 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000065 seconds.
+  path: Assets/HouseTemporaria.fbx
+  artifactKey: Guid(f907608790a19a546bc0630feb1d4fe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HouseTemporaria.fbx using Guid(f907608790a19a546bc0630feb1d4fe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bff3b5a35b8d5084c222ed3d4d07d7e4') in 7.6753475 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 18
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Scenes/TestArea.unity
+  artifactKey: Guid(7f566c6df12a5a64982d2f9563064087) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TestArea.unity using Guid(7f566c6df12a5a64982d2f9563064087) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '11fce733bf84febd5d5c7d8970c5f651') in 0.0014343 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/NewBrush.brush
+  artifactKey: Guid(8becfa6725764f541be2218677559304) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NewBrush.brush using Guid(8becfa6725764f541be2218677559304) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '21a4306a7e43caf2648cff73e2186753') in 0.0333329 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/gameoverscreen.jpg
+  artifactKey: Guid(c145a15f4327c84489ff099c881f996a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/gameoverscreen.jpg using Guid(c145a15f4327c84489ff099c881f996a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '62931afc2e3dec6f908d044c847d78a4') in 0.025289 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Log1.png
+  artifactKey: Guid(2239ba28de580374db80c93210e264cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Log1.png using Guid(2239ba28de580374db80c93210e264cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '34b2f2a4ddbc72e4f88964ee9d65e6dc') in 0.0235049 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/pedra.png
+  artifactKey: Guid(dfc7c0041d9afa846ac969868a01de5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/pedra.png using Guid(dfc7c0041d9afa846ac969868a01de5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6f062a39e177cb8277960e3fc4b33e6a') in 0.0217716 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/arvore.png
+  artifactKey: Guid(0c4fa456e6747e04792d9489533d7aa0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/arvore.png using Guid(0c4fa456e6747e04792d9489533d7aa0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f49987ee58c17dc10c9ab42fc151215b') in 0.0211121 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.937 seconds
+Refreshing native plugins compatible for Editor in 1.21 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.076 seconds
+Domain Reload Profiling: 2016ms
+	BeginReloadAssembly (284ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (23ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (69ms)
+	RebuildCommonClasses (46ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (28ms)
+	LoadAllAssembliesAndSetupDomain (566ms)
+		LoadAssemblies (429ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (279ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (245ms)
+			ResolveRequiredComponents (19ms)
+	FinalizeReload (1076ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (675ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (2ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (82ms)
+			ProcessInitializeOnLoadAttributes (510ms)
+			ProcessInitializeOnLoadMethodAttributes (70ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Refreshing native plugins compatible for Editor in 1.61 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 23 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6159 unused Assets / (4.4 MB). Loaded Objects now: 7046.
+Memory consumption went from 172.9 MB to 168.5 MB.
+Total: 14.146300 ms (FindLiveObjects: 1.188800 ms CreateObjectMapping: 2.194300 ms MarkObjects: 6.896300 ms  DeleteObjects: 3.865400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.939 seconds
+Refreshing native plugins compatible for Editor in 1.21 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.112 seconds
+Domain Reload Profiling: 2053ms
+	BeginReloadAssembly (263ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (8ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (58ms)
+	RebuildCommonClasses (46ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (28ms)
+	LoadAllAssembliesAndSetupDomain (587ms)
+		LoadAssemblies (442ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (289ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (260ms)
+			ResolveRequiredComponents (16ms)
+	FinalizeReload (1112ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (711ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (7ms)
+			BeforeProcessingInitializeOnLoad (93ms)
+			ProcessInitializeOnLoadAttributes (528ms)
+			ProcessInitializeOnLoadMethodAttributes (74ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (15ms)
+Refreshing native plugins compatible for Editor in 1.69 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6158 unused Assets / (4.6 MB). Loaded Objects now: 7048.
+Memory consumption went from 171.0 MB to 166.4 MB.
+Total: 12.670000 ms (FindLiveObjects: 0.958900 ms CreateObjectMapping: 1.397000 ms MarkObjects: 6.423600 ms  DeleteObjects: 3.889000 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.900 seconds
+Refreshing native plugins compatible for Editor in 1.32 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.052 seconds
+Domain Reload Profiling: 1955ms
+	BeginReloadAssembly (275ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (10ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (58ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (19ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (529ms)
+		LoadAssemblies (408ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (275ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (247ms)
+			ResolveRequiredComponents (14ms)
+	FinalizeReload (1053ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (643ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (75ms)
+			ProcessInitializeOnLoadAttributes (483ms)
+			ProcessInitializeOnLoadMethodAttributes (70ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (17ms)
+Refreshing native plugins compatible for Editor in 1.67 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6158 unused Assets / (4.4 MB). Loaded Objects now: 7050.
+Memory consumption went from 171.0 MB to 166.6 MB.
+Total: 13.721900 ms (FindLiveObjects: 0.996900 ms CreateObjectMapping: 1.605400 ms MarkObjects: 7.277800 ms  DeleteObjects: 3.840300 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 481.070449 seconds.
+  path: Assets/Scripts
+  artifactKey: Guid(9a808badac32edb4d8cde7ca8feb8554) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts using Guid(9a808badac32edb4d8cde7ca8feb8554) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'df613d1de62022b1a4a62e58bb132a71') in 0.0213211 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.614048 seconds.
+  path: Assets/Scripts/SkillDefinition.cs
+  artifactKey: Guid(126644e8f08df7b49b7b1649930b015a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/SkillDefinition.cs using Guid(126644e8f08df7b49b7b1649930b015a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ea81c6b959275cbc32e89794495d6106') in 0.0005213 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 3609.876779 seconds.
+  path: Assets/NPC/NPCInteractionTrigger.cs
+  artifactKey: Guid(e124f757b2f2b26428d145037b20e0b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/NPC/NPCInteractionTrigger.cs using Guid(e124f757b2f2b26428d145037b20e0b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f26479597b760f10ebba2a6cd0344881') in 0.0576067 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 1751.678513 seconds.
+  path: Assets/Settings
+  artifactKey: Guid(709f11a7f3c4041caa4ef136ea32d874) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings using Guid(709f11a7f3c4041caa4ef136ea32d874) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3daf5943cade026999cb2baf358ade14') in 0.021477 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000141 seconds.
+  path: Assets/Settings/DefaultVolumeProfile.asset
+  artifactKey: Guid(ab09877e2e707104187f6f83e2f62510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/DefaultVolumeProfile.asset using Guid(ab09877e2e707104187f6f83e2f62510) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2b49ee66048a657f1a2c2c26a8e96c10') in 0.891117 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Settings/SampleSceneProfile.asset
+  artifactKey: Guid(10fc4df2da32a41aaa32d77bc913491c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/SampleSceneProfile.asset using Guid(10fc4df2da32a41aaa32d77bc913491c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1e5256597be48f32d466b378cdbba058') in 0.0084022 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Settings/UniversalRenderPipelineGlobalSettings.asset
+  artifactKey: Guid(18dc0cd2c080841dea60987a38ce93fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/UniversalRenderPipelineGlobalSettings.asset using Guid(18dc0cd2c080841dea60987a38ce93fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7144a86aa02917318664056e53d38b02') in 0.0059812 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Settings/PC_Renderer.asset
+  artifactKey: Guid(f288ae1f4751b564a96ac7587541f7a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/PC_Renderer.asset using Guid(f288ae1f4751b564a96ac7587541f7a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b5595849c30a826d437072badaba5c31') in 0.0053976 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Settings/PC_RPAsset.asset
+  artifactKey: Guid(4b83569d67af61e458304325a23e5dfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/PC_RPAsset.asset using Guid(4b83569d67af61e458304325a23e5dfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '91af3463924372b8f3f2f4939a1f1e03') in 0.0021947 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Settings/Mobile_RPAsset.asset
+  artifactKey: Guid(5e6cbd92db86f4b18aec3ed561671858) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/Mobile_RPAsset.asset using Guid(5e6cbd92db86f4b18aec3ed561671858) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '48422a85c2c122c07104640ff3264d51') in 0.0444001 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 953.644616 seconds.
+  path: Assets/SecondScene
+  artifactKey: Guid(bec09b05d5918b6498c78900d34b2b03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SecondScene using Guid(bec09b05d5918b6498c78900d34b2b03) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6a456af828949bb24921f33f8cafb2b7') in 0.0066758 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.002833 seconds.
+  path: Assets/Scripts/SkillTreeToggle.cs
+  artifactKey: Guid(54754ec45eee3ff448f1a8f353386124) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/SkillTreeToggle.cs using Guid(54754ec45eee3ff448f1a8f353386124) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2468faf405097ec83079f50682b16b1e') in 0.0077647 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.056227 seconds.
+  path: Assets/Scripts/PlayerSpellAdapter.cs
+  artifactKey: Guid(419875af62a3a2148a160e0d2ceaf9af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/PlayerSpellAdapter.cs using Guid(419875af62a3a2148a160e0d2ceaf9af) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '39a52092eedccfe2e9bed7e50f6473ef') in 0.0038819 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 1.98 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6152 unused Assets / (3.0 MB). Loaded Objects now: 7051.
+Memory consumption went from 171.2 MB to 168.2 MB.
+Total: 260.999300 ms (FindLiveObjects: 4.486300 ms CreateObjectMapping: 1.109600 ms MarkObjects: 252.068800 ms  DeleteObjects: 3.333500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 158.157051 seconds.
+  path: Assets/Scripts/PlayerWeaponSwap.cs
+  artifactKey: Guid(32646187586f8f64f93e0f539343b751) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/PlayerWeaponSwap.cs using Guid(32646187586f8f64f93e0f539343b751) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e17d8e817b3f3540a5c648d91dc36d3e') in 0.170358 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  4.594 seconds
+Refreshing native plugins compatible for Editor in 1.15 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.040 seconds
+Domain Reload Profiling: 6638ms
+	BeginReloadAssembly (1200ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (89ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (440ms)
+	RebuildCommonClasses (73ms)
+	RebuildNativeTypeToScriptingClass (23ms)
+	initialDomainReloadingComplete (46ms)
+	LoadAllAssembliesAndSetupDomain (3256ms)
+		LoadAssemblies (3227ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (510ms)
+			TypeCache.Refresh (37ms)
+				TypeCache.ScanAssembly (3ms)
+			BuildScriptInfoCaches (446ms)
+			ResolveRequiredComponents (17ms)
+	FinalizeReload (2041ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1329ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (36ms)
+			BeforeProcessingInitializeOnLoad (200ms)
+			ProcessInitializeOnLoadAttributes (988ms)
+			ProcessInitializeOnLoadMethodAttributes (93ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (21ms)
+Refreshing native plugins compatible for Editor in 1.77 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6159 unused Assets / (4.0 MB). Loaded Objects now: 7053.
+Memory consumption went from 171.0 MB to 167.0 MB.
+Total: 11.169600 ms (FindLiveObjects: 0.995700 ms CreateObjectMapping: 1.340800 ms MarkObjects: 5.661300 ms  DeleteObjects: 3.170500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.115 seconds
+Refreshing native plugins compatible for Editor in 1.51 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.357 seconds
+Domain Reload Profiling: 2474ms
+	BeginReloadAssembly (357ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (13ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (72ms)
+	RebuildCommonClasses (55ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (39ms)
+	LoadAllAssembliesAndSetupDomain (644ms)
+		LoadAssemblies (504ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (344ms)
+			TypeCache.Refresh (14ms)
+				TypeCache.ScanAssembly (1ms)
+			BuildScriptInfoCaches (309ms)
+			ResolveRequiredComponents (17ms)
+	FinalizeReload (1358ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (863ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (81ms)
+			ProcessInitializeOnLoadAttributes (680ms)
+			ProcessInitializeOnLoadMethodAttributes (80ms)
+			AfterProcessingInitializeOnLoad (13ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (19ms)
+Refreshing native plugins compatible for Editor in 2.05 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6159 unused Assets / (3.8 MB). Loaded Objects now: 7055.
+Memory consumption went from 171.0 MB to 167.1 MB.
+Total: 15.255600 ms (FindLiveObjects: 1.013100 ms CreateObjectMapping: 1.465200 ms MarkObjects: 9.142900 ms  DeleteObjects: 3.633000 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 41.975725 seconds.
+  path: Assets/Scripts/PlayerWeaponSwap.cs
+  artifactKey: Guid(32646187586f8f64f93e0f539343b751) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/PlayerWeaponSwap.cs using Guid(32646187586f8f64f93e0f539343b751) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5a1cbc9de23d6eb25446cf7252d747b9') in 0.0159419 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 1.23 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6153 unused Assets / (4.3 MB). Loaded Objects now: 7056.
+Memory consumption went from 171.1 MB to 166.9 MB.
+Total: 9.721800 ms (FindLiveObjects: 0.746700 ms CreateObjectMapping: 1.055000 ms MarkObjects: 5.423200 ms  DeleteObjects: 2.495800 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 122.137931 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6d265b920e7894cd94dfb5fa09692a03') in 0.0056292 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.387 seconds
+Refreshing native plugins compatible for Editor in 1.82 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.189 seconds
+Domain Reload Profiling: 3581ms
+	BeginReloadAssembly (378ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (24ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (82ms)
+	RebuildCommonClasses (62ms)
+	RebuildNativeTypeToScriptingClass (22ms)
+	initialDomainReloadingComplete (42ms)
+	LoadAllAssembliesAndSetupDomain (887ms)
+		LoadAssemblies (683ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (392ms)
+			TypeCache.Refresh (15ms)
+				TypeCache.ScanAssembly (2ms)
+			BuildScriptInfoCaches (347ms)
+			ResolveRequiredComponents (23ms)
+	FinalizeReload (2190ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1050ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (25ms)
+			SetLoadedEditorAssemblies (43ms)
+			BeforeProcessingInitializeOnLoad (219ms)
+			ProcessInitializeOnLoadAttributes (665ms)
+			ProcessInitializeOnLoadMethodAttributes (88ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (22ms)
+Refreshing native plugins compatible for Editor in 1.28 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6160 unused Assets / (4.2 MB). Loaded Objects now: 7058.
+Memory consumption went from 171.0 MB to 166.9 MB.
+Total: 13.027000 ms (FindLiveObjects: 0.849200 ms CreateObjectMapping: 1.221100 ms MarkObjects: 7.718000 ms  DeleteObjects: 3.237500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 11.826389 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0070176 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.4078646Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.4078646Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006377 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.6091479Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.6091479Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006829 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.6091479Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.6091479Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005033 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.6091479Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.6091479Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005674 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.6091479Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.6091479Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005023 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.6091479Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.6091479Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004938 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004633 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005339 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005552 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.014181 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005365 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004939 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005215 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.00059 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005888 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.001302 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005783 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0018542 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005754 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007938 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005354 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005863 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000095 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006662 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005618 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005135 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000771 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005006 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005495 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007292 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005497 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0009379 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0028927 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0010481 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004808 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007055 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005038 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000516 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005572 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004547 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005933 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004749 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005071 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005079 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004804 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004684 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006459 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005319 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000491 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004996 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004824 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005977 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004894 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004774 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007107 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006988 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006604 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0008842 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006146 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004718 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004535 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000449 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005533 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005948 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004562 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004691 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004563 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000439 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004836 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004761 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004623 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000669 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005221 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004984 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004693 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004576 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006814 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005131 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004582 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004655 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004889 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004589 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000605 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006025 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004915 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006395 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005518 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005706 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006796 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0012337 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0011153 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005337 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004865 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007047 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006895 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0008029 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006443 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006878 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0008456 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006036 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005175 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000537 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004502 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004671 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004795 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0007102 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005464 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005196 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000562 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005002 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005852 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006891 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005459 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004977 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0008191 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000521 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004805 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005018 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006888 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004975 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004626 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0006797 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000551 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000514 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004794 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.00068 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005357 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0009167 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000455 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.000446 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004908 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004388 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004978 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0005472 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004524 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Scripts/WeaponData.cs
+  artifactKey: Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/WeaponData.cs using Guid(a383de3bbd16330428437b1c56a56a7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00000000000000000000000000000000') in 0.0004526 seconds
+Import Error Code:(4)
+Message: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+  ERROR: Build asset version error: assets/scripts/weapondata.cs in SourceAssetDB has modification time of '2025-10-30T19:33:19.9957527Z' while content on disk has modification time of '2025-10-30T19:33:32.7992957Z'
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.924 seconds
+Refreshing native plugins compatible for Editor in 1.14 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.247 seconds
+Domain Reload Profiling: 2175ms
+	BeginReloadAssembly (295ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (58ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (541ms)
+		LoadAssemblies (441ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (274ms)
+			TypeCache.Refresh (12ms)
+				TypeCache.ScanAssembly (1ms)
+			BuildScriptInfoCaches (243ms)
+			ResolveRequiredComponents (15ms)
+	FinalizeReload (1248ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (858ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (2ms)
+			SetLoadedEditorAssemblies (9ms)
+			BeforeProcessingInitializeOnLoad (100ms)
+			ProcessInitializeOnLoadAttributes (667ms)
+			ProcessInitializeOnLoadMethodAttributes (72ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (16ms)
+Refreshing native plugins compatible for Editor in 1.88 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6160 unused Assets / (4.1 MB). Loaded Objects now: 7060.
+Memory consumption went from 171.1 MB to 167.0 MB.
+Total: 11.098400 ms (FindLiveObjects: 0.776500 ms CreateObjectMapping: 1.412300 ms MarkObjects: 5.563700 ms  DeleteObjects: 3.344500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
