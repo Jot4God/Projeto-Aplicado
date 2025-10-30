@@ -31,6 +31,18 @@ public class PlayerHP : MonoBehaviour
         UpdateHealthText();
     }
 
+    // <<< ADIÇÃO MINÍMA >>> 
+    // Garante que a UI reflete mudanças feitas por outros scripts (ex.: adapters)
+    void Update()
+    {
+        if (healthBar != null)
+        {
+            if (healthBar.maxValue != maxHealth) healthBar.maxValue = maxHealth;
+            if (healthBar.value != currentHealth) healthBar.value = currentHealth;
+        }
+        UpdateHealthText();
+    }
+
     void UpdateHealthText()
     {
         if (healthText != null)
