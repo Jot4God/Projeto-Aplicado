@@ -4,15 +4,19 @@ using UnityEngine;
 public class Portal3D : MonoBehaviour
 {
     [Header("Ligação")]
-    public Portal3D target;        // Outro portal (destino)
-    public Transform exitPoint;    // Onde QUEM VEM DO OUTRO aparece neste portal
+    public Portal3D target;              // Outro portal (destino)
+    public Transform exitPoint;          // Onde QUEM VEM DO OUTRO aparece neste portal
 
     [Header("Opções")]
-    public float reentryCooldown = 0.30f;   // evitar reentrada imediata
-    public bool requirePlayerTag = true;    // só teleporta objetos com Tag "Player"
-    public bool matchExitRotation = true;   // alinhar rotação ao sair
-    public bool preserveVelocity = true;    // manter velocidade (reorientada)
-    public float exitForwardBoost = 0f;     // boost extra na direção do ExitPoint
+    public float reentryCooldown = 0.30f;    // evitar reentrada imediata
+    public bool requirePlayerTag = true;     // só teleporta objetos com Tag "Player"
+    public bool matchExitRotation = true;    // alinhar rotação ao sair
+    public bool preserveVelocity = true;     // manter velocidade (reorientada)
+    public float exitForwardBoost = 0f;      // boost extra na direção do ExitPoint
+
+    [Header("Câmara (salto instantâneo)")]
+    public bool snapMainCamera = true;       // faz a câmara “saltar” sem mostrar a viagem
+    public bool alignCameraWithExit = false; // opcional: alinhar também a rotação da câmara com o Exit
 
     private Collider trigger;
 
@@ -52,6 +56,10 @@ public class Portal3D : MonoBehaviour
         var rb = obj.GetComponent<Rigidbody>();
         var cc = obj.GetComponent<CharacterController>(); // se existir
 
+        // --- 0) Guardar estado antes do teleporte ---
+        Vector3 oldPos = obj.transform.position;
+        Quaternion oldRot = obj.transform.rotation;
+
         // 1) Capturar velocidade antes de mexer na pose
         Vector3 vWorld = Vector3.zero;
         if (rb && preserveVelocity)
@@ -87,7 +95,30 @@ public class Portal3D : MonoBehaviour
                 rb.linearVelocity += dest.forward * exitForwardBoost;
         }
 
-        // 5) Cooldown para evitar ping-pong
+        // 5) “Snapping” da câmara para evitar mostrar a viagem
+        //    Estratégia: deslocar imediatamente a câmara pelo mesmo delta do Player.
+        if (snapMainCamera && Camera.main != null)
+        {
+            Transform cam = Camera.main.transform;
+
+            // Delta do teleporte do objeto
+            Vector3 delta = obj.transform.position - oldPos;
+
+            // Reposicionar a câmara instantaneamente mantendo o offset relativo
+            cam.position += delta;
+
+            // Opcional: alinhar rotação da câmara ao Exit (normalmente não necessário)
+            if (alignCameraWithExit)
+                cam.rotation = matchExitRotation ? dest.rotation : cam.rotation;
+
+            // Nota:
+            // - Isto funciona com câmaras "simples" (follow manual).
+            // - Se estiveres a usar Cinemachine, este ajuste já evita o "passeio" no frame do teleporte.
+            //   Para um corte 100% “a direito” com damping zero nesse mesmo frame, garante que o virtual camera
+            //   não está a aplicar blends lentos (ou usa um blend do tipo Cut).
+        }
+
+        // 6) Cooldown para evitar ping-pong
         if (traveler != null)
             traveler.lockedUntil = Time.time + target.reentryCooldown;
 
@@ -105,3 +136,4 @@ public class Portal3D : MonoBehaviour
         }
     }
 }
+
