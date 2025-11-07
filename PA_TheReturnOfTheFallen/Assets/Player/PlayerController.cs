@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     public Transform attackPoint;       // filho do Player
     public SpriteRenderer swordSprite;  // sprite da espada (filho do attackPoint)
 
+    [Header("Animation")]
+    public Animator animator;           // podes deixar vazio no Inspector
+    public string runSideBool = "isRunningSide";
+
     [HideInInspector] public bool podeMover = true;
 
     // privados
@@ -31,6 +35,10 @@ public class PlayerController : MonoBehaviour
         if (attackPoint != null)
             attackPointLocalStart = attackPoint.localPosition;
 
+        // se não ligaste o Animator no inspector, tenta apanhar num filho
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
+
         // opção: persistência
         PlayerController[] players = Object.FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
         if (players.Length > 1) { Destroy(gameObject); return; }
@@ -42,62 +50,76 @@ public class PlayerController : MonoBehaviour
         if (!podeMover)
         {
             inputDir = Vector3.zero;
+
+            if (animator != null)
+                animator.SetBool(runSideBool, false);
+
             return;
         }
 
-        // Input IMEDIATO (sem smoothing)
+        // input
         float x = Input.GetAxisRaw("Horizontal"); // -1,0,1
         float z = Input.GetAxisRaw("Vertical");   // -1,0,1
         inputDir = new Vector3(x, 0f, z).normalized;
 
-        // Atualiza direção e gira o attackPoint
-        if (attackPoint != null && Mathf.Abs(x) > 0.0001f)
+        // animação de correr lado
+        if (animator != null)
         {
-            facingDirection = x > 0 ? 1 : -1;
+            bool isRunningSide = Mathf.Abs(x) > 0.0001f;  // só A/D
+            animator.SetBool(runSideBool, isRunningSide);
+        }
 
-            Vector3 lp = attackPointLocalStart;
-            lp.x = Mathf.Abs(attackPointLocalStart.x) * facingDirection;
-            attackPoint.localPosition = lp;
+        // FLIP do sprite do player (andar para a esquerda mostra virado à esquerda)
+        if (Mathf.Abs(x) > 0.0001f)
+        {
+            int dir = x > 0 ? 1 : -1;
 
-            attackPoint.localEulerAngles = Vector3.zero;
-            Vector3 scale = attackPoint.localScale;
-            scale.x = Mathf.Abs(scale.x);
-            attackPoint.localScale = scale;
+            if (sr != null)
+                sr.flipX = dir < 0;   // esquerda = flip
 
-            if (swordSprite != null)
-                swordSprite.flipX = facingDirection < 0;
+            // Atualiza direção e gira o attackPoint
+            if (attackPoint != null)
+            {
+                facingDirection = dir;
+
+                Vector3 lp = attackPointLocalStart;
+                lp.x = Mathf.Abs(attackPointLocalStart.x) * facingDirection;
+                attackPoint.localPosition = lp;
+
+                attackPoint.localEulerAngles = Vector3.zero;
+                Vector3 scale = attackPoint.localScale;
+                scale.x = Mathf.Abs(scale.x);
+                attackPoint.localScale = scale;
+
+                if (swordSprite != null)
+                    swordSprite.flipX = facingDirection < 0;
+            }
         }
     }
 
     void FixedUpdate()
     {
-        // MOVIMENTO por física (Rigidbody) — SEM delay
         if (podeMover)
         {
             if (inputDir.sqrMagnitude > 0f)
             {
                 Vector3 desired = inputDir * speed;
                 Vector3 vel = rb.linearVelocity;
-                // aplica apenas no plano XZ; mantém Y (gravidade/grounding)
                 rb.linearVelocity = new Vector3(desired.x, vel.y, desired.z);
             }
             else
             {
                 if (instantStop)
                 {
-                    // parar seco no plano XZ
                     rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
                 }
-                // senão, deixa inércia natural do Rigidbody (drag/atritos)
             }
         }
         else
         {
-            // travar quando não pode mover
             rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
         }
 
-        // Alinhamento ao terreno
         if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 3f, terrainLayer))
         {
             float targetY = hit.point.y + groundDist;
