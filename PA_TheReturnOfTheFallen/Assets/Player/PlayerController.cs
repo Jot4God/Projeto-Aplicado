@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     public float speed = 5f;
-    public float groundDist = 1f;
+    public float groundDist = 0.02f;   // distância mínima ao chão
     public LayerMask terrainLayer;
     public Rigidbody rb;
     public SpriteRenderer sr;
@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // movimento
         if (podeMover)
         {
             if (inputDir.sqrMagnitude > 0f)
@@ -120,11 +121,16 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
         }
 
-        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 3f, terrainLayer))
+        // 🔥 COLAR AO CHÃO SEMPRE
+        // origem bem acima do player para não bater em paredes/objetos à frente
+        Vector3 rayOrigin = transform.position + Vector3.up * 5f;
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 20f, terrainLayer))
         {
+            // posição exata no chão + offset pequeno
             float targetY = hit.point.y + groundDist;
+
             Vector3 pos = rb.position;
-            pos.y = Mathf.Lerp(pos.y, targetY, 0.2f);
+            pos.y = targetY;              // sem Lerp -> cola mesmo
             rb.MovePosition(pos);
         }
     }

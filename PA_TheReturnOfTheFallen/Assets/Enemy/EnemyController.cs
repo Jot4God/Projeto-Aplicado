@@ -15,11 +15,21 @@ public class EnemyController : MonoBehaviour
     public int maxHealth = 50;
     private int currentHealth;
 
-    [Header("Recompensas")]
-    public int xpReward = 20;                // XP ganho pelo jogador ao matar
-    public GameObject healthPickupPrefab;    // Chance de dropar vida
-    public GameObject moneyPickupPrefab;     // Prefab de moedas
-    public int moneyDropAmount = 1;          // Quantas moedas dropar
+    [Header("Ataque")]
+    public int damage = 30;            // 🔹 Dano que este inimigo causa
+    public float attackCooldown = 1f;  // Tempo entre ataques
+
+    [Header("Extras")]
+    public int xpReward = 20;
+    public GameObject healthPickupPrefab;
+    public GameObject moneyPickupPrefab;
+    public int moneyDropAmount = 1;
+
+    // 🔴 Feedback de dano
+    private SpriteRenderer spriteRenderer;
+    public Color damageColor = Color.red;
+    public float flashDuration = 0.1f;
+    private Color originalColor;
 
     private int currentPatrol = 0;
     private float waitTimer = 0f;
@@ -29,7 +39,6 @@ public class EnemyController : MonoBehaviour
     private enum State { Patrolling, Chasing, Attacking }
     private State state = State.Patrolling;
 
-    private float attackCooldown = 1f;
     private float lastAttackTime = 0f;
 
     void Awake()
@@ -46,6 +55,11 @@ public class EnemyController : MonoBehaviour
             GameObject p = GameObject.FindGameObjectWithTag("Player");
             if (p) player = p.transform;
         }
+
+        // 🔴 apanhar o SpriteRenderer e guardar a cor original
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            originalColor = spriteRenderer.color;
     }
 
     void Update()
@@ -65,7 +79,6 @@ public class EnemyController : MonoBehaviour
             case State.Attacking: Attack(); break;
         }
 
-        // Teste manual de dano (pressiona K para simular ataque)
         if (Input.GetKeyDown(KeyCode.K))
             TakeDamage(10);
     }
@@ -116,7 +129,7 @@ public class EnemyController : MonoBehaviour
             PlayerHP ph = player.GetComponent<PlayerHP>();
             if (ph != null)
             {
-                ph.TakeDamage(30);
+                ph.TakeDamage(damage); // 🔹 Usa o valor configurável
                 lastAttackTime = Time.time;
             }
         }
@@ -128,15 +141,25 @@ public class EnemyController : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth, 0);
         Debug.Log(name + " recebeu " + damage + " de dano! Vida atual: " + currentHealth);
 
+        // 🔴 faz o flash vermelho
+        if (spriteRenderer != null)
+            StartCoroutine(FlashRed());
+
         if (currentHealth <= 0)
             Die();
+    }
+
+    System.Collections.IEnumerator FlashRed()
+    {
+        spriteRenderer.color = damageColor;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
     }
 
     void Die()
     {
         Debug.Log(name + " morreu!");
 
-        // 🔹 Dá XP ao jogador
         if (player != null)
         {
             PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
@@ -147,14 +170,12 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        // 🔹 Chance de dropar vida (50%)
         if (healthPickupPrefab != null && Random.value < 0.5f)
         {
             Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
             Instantiate(healthPickupPrefab, spawnPos, Quaternion.identity);
         }
 
-        // 🔹 Chance de dropar moedas (70%)
         if (moneyPickupPrefab != null && Random.value < 0.7f)
         {
             for (int i = 0; i < moneyDropAmount; i++)
