@@ -72,7 +72,13 @@ public class PlayerHP : MonoBehaviour
 
     void Die()
     {
+        PlayerMana mp = GetComponent<PlayerMana>();
+        mp.tempManaCount = 0;
+        PlayerMoney mn = GetComponent<PlayerMoney>();
+        mn.currentMoney = 0;
+
         Debug.Log("Player morreu!");
         SceneManager.LoadScene("GameOver");
+
     }
 }

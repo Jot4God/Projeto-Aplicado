@@ -3,9 +3,11 @@ using UnityEngine.UI;
 
 public class PlayerMana : MonoBehaviour
 {
+    
     [Header("Mana Settings")]
     public int maxMana = 100;
     public int currentMana;
+    public int tempManaCount = 0;
 
     [Header("Regen Settings")]
     public float regenRate = 10f;
