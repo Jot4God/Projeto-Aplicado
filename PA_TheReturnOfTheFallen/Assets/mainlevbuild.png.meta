@@ -127,7 +127,7 @@ TextureImporter:
         width: 89
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -136,6 +136,50 @@ TextureImporter:
       bones: []
       spriteID: 79a6a4923ff49724ba5c0070fe8a3d84
       internalID: -1442162600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_2
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 185
+        width: 72
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 065d34ed2f7c14a4caab5ecf11d233d7
+      internalID: -250961249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_3
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 145
+        width: 208
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55cfdc28b67d6d249988ea682818480a
+      internalID: 359005677
       vertices: []
       indices: 
       edges: []
@@ -156,6 +200,8 @@ TextureImporter:
     nameFileIdTable:
       mainlevbuild_0: -1067623167
       mainlevbuild_1: -1442162600
+      mainlevbuild_2: -250961249
+      mainlevbuild_3: 359005677
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
