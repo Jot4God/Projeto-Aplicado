@@ -71,6 +71,9 @@ public class PlayerAttack : MonoBehaviour
             KnightAI knight = enemy.GetComponent<KnightAI>();
             if (knight != null)
                 bandit.TakeDamage(attackDamage);
+            WolfAI wolf = enemy.GetComponent<WolfAI>();
+            if (wolf != null)
+                bandit.TakeDamage(attackDamage);
         }
 
         // Mostrar sprite do ataque
