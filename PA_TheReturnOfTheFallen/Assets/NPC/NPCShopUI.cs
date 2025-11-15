@@ -10,8 +10,8 @@ public class NPCShopUI : MonoBehaviour
     public TMP_Text playerMoneyText;
 
     [Header("Referências do jogador")]
-    public PlayerMoney playerMoney;   // Já ligado no Inspector
-    public PlayerArmor playerArmor;   // Arrasta o Player com PlayerArmor aqui
+    public PlayerMoney playerMoney;
+    public PlayerArmor playerArmor;
 
     void Start()
     {
@@ -20,9 +20,11 @@ public class NPCShopUI : MonoBehaviour
 
     void LoadItems()
     {
+        // Limpa o painel antes de gerar os itens
         foreach (Transform child in itemContainer)
             Destroy(child.gameObject);
 
+        // Cria os cards de cada item
         foreach (ShopItem item in itemsForSale)
         {
             GameObject newItem = Instantiate(itemUIPrefab, itemContainer);
@@ -45,28 +47,40 @@ public class NPCShopUI : MonoBehaviour
 
     void BuyItem(ShopItem item)
     {
-        if (playerMoney.currentMoney >= item.price)
-        {
-            playerMoney.SpendMoney(item.price);
-            UpdateMoneyUI();
-
-            // Verifica se é um item de armadura
-            if (item.itemName.Contains("Armor"))
-            {
-                if (playerArmor != null)
-                {
-                    playerArmor.AddArmor(20); // aumenta 20 de armadura
-                    Debug.Log("Compraste: " + item.itemName + " (+20 Armor)");
-                }
-            }
-            else
-            {
-                Debug.Log("Compraste: " + item.itemName);
-            }
-        }
-        else
+        if (playerMoney.currentMoney < item.price)
         {
             Debug.Log("Dinheiro insuficiente!");
+            return;
         }
+
+        // Subtrai dinheiro
+        playerMoney.SpendMoney(item.price);
+        UpdateMoneyUI();
+
+        // Aplica ARMOR e mostra o ícone na UI
+        if (item.addedArmor > 0 && playerArmor != null)
+        {
+            playerArmor.EquipArmor(item.addedArmor, item.icon);
+            Debug.Log($"Compraste {item.itemName} (+{item.addedArmor} armor)");
+        }
+
+        // Aplica VIDA EXTRA
+        if (item.addedHealth > 0)
+        {
+            PlayerHP hp = playerArmor.GetComponent<PlayerHP>();
+            if (hp != null)
+            {
+                hp.maxHealth += item.addedHealth;
+                hp.Heal(item.addedHealth);
+            }
+        }
+
+        // Aplica SPEED EXTRA (se tiver)
+        if (item.addedSpeed > 0)
+        {
+            Debug.Log($"Speed aumentada em {item.addedSpeed}");
+        }
+
+        Debug.Log("Compraste: " + item.itemName);
     }
 }

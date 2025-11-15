@@ -9,13 +9,16 @@ public class PlayerHP : MonoBehaviour
 
     [Header("UI")]
     public Slider healthBar;
-    public Text healthText;  // Texto que mostra "vida atual / vida máxima"
+    public Text healthText;
+
+    [Header("Armadura")]
+    public PlayerArmor playerArmor; // <-- NOVO
 
     void Awake()
     {
         currentHealth = maxHealth;
 
-        // Tenta encontrar a barra automaticamente
+        // Procurar barra se não estiver atribuída
         if (healthBar == null)
         {
             GameObject hb = GameObject.FindGameObjectWithTag("HealthBar");
@@ -28,11 +31,13 @@ public class PlayerHP : MonoBehaviour
             healthBar.value = currentHealth;
         }
 
+        // Procurar automaticamente o PlayerArmor se faltar
+        if (playerArmor == null)
+            playerArmor = GetComponent<PlayerArmor>();
+
         UpdateHealthText();
     }
 
-    // <<< ADIÇÃO MINÍMA >>> 
-    // Garante que a UI reflete mudanças feitas por outros scripts (ex.: adapters)
     void Update()
     {
         if (healthBar != null)
@@ -40,6 +45,7 @@ public class PlayerHP : MonoBehaviour
             if (healthBar.maxValue != maxHealth) healthBar.maxValue = maxHealth;
             if (healthBar.value != currentHealth) healthBar.value = currentHealth;
         }
+
         UpdateHealthText();
     }
 
@@ -51,18 +57,26 @@ public class PlayerHP : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        int armor = (playerArmor != null ? playerArmor.currentArmor : 0);
+
+        int finalDamage = Mathf.Max(damage - armor, 0);
+
+        currentHealth -= finalDamage;
         currentHealth = Mathf.Max(currentHealth, 0);
 
-        if (healthBar != null) healthBar.value = currentHealth;
+        Debug.Log($"Dano recebido: {damage} | Armor: {armor} | Final: {finalDamage}");
+
+        if (healthBar != null)
+            healthBar.value = currentHealth;
+
         UpdateHealthText();
 
-        if (currentHealth <= 0) Die();
+        if (currentHealth <= 0)
+            Die();
     }
 
     public void Heal(int amount)
     {
-        int oldHealth = currentHealth;
         currentHealth += amount;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
 
@@ -72,13 +86,10 @@ public class PlayerHP : MonoBehaviour
 
     void Die()
     {
-        PlayerMana mp = GetComponent<PlayerMana>();
-        mp.tempManaCount = 0;
-        PlayerMoney mn = GetComponent<PlayerMoney>();
-        mn.currentMoney = 0;
+        GetComponent<PlayerMana>().tempManaCount = 0;
+        GetComponent<PlayerMoney>().currentMoney = 0;
 
         Debug.Log("Player morreu!");
         SceneManager.LoadScene("GameOver");
-
     }
 }
