@@ -6,8 +6,8 @@ public class WolfAI : MonoBehaviour
     [Header("Movimento")]
     public Transform player;
     public float speed = 4f;
-    public float chaseDistance = 8f; // Distância de detecção para perseguir o jogador
-    public float attackRange = 1.5f; // Range onde o inimigo aplica o dano
+    public float chaseDistance = 8f; 
+    public float attackRange = 1.5f;
     public Transform[] patrolPoints;
     public float patrolWait = 2f;
 
@@ -16,9 +16,9 @@ public class WolfAI : MonoBehaviour
     private int currentHealth;
 
     [Header("Ataque")]
-    public int damage = 30;            // 🔹 Dano que este inimigo causa
-    public float attackCooldown = 1f;  // Tempo entre ataques corpo-a-corpo
-    private float lastAttackTime = 0f; // Controle do tempo de cooldown
+    public int damage = 30;            
+    public float attackCooldown = 1f;  
+    private float lastAttackTime = 0f; 
 
     [Header("Recompensas")]
     public int xpReward = 20;
@@ -27,23 +27,23 @@ public class WolfAI : MonoBehaviour
     public int moneyDropAmount = 1;
 
     [Header("Animation")]
-    public Animator animator;                 // <-- para controlar Idle/Run/Attack
-    public string runningBool = "isRunning";  // <-- nome do bool no Animator
-    public string attackTrigger = "Attack";   // <-- trigger para animação de ataque melee
+    public Animator animator;                 
+    public string runningBool = "isRunning";  
+    public string attackTrigger = "Attack";   
 
     [Header("Projéteis de Fogo")]
-    public GameObject fireballPrefab;        // Prefab do projétil de fogo
-    public float fireballSpeed = 10f;        // Velocidade do projétil
-    public float fireballCooldown = 5f;      // Tempo de cooldown entre os disparos de projétil
-    private float lastFireballTime = 0f;     // Controle de tempo do cooldown de projéteis
+    public GameObject fireballPrefab;
+    public float fireballSpeed = 10f;
+    public float fireballCooldown = 5f;
+    private float lastFireballTime = 0f;
 
     private int currentPatrol = 0;
     private float waitTimer = 0f;
     private Rigidbody rb;
     private Vector3 currentDirection = Vector3.zero;
 
-    private SpriteRenderer spriteRenderer;   // Para alterar a cor do inimigo
-    private Color originalColor;             // Cor original do inimigo
+    private SpriteRenderer spriteRenderer;  
+    private Color originalColor;            
 
     private enum State { Patrolling, Chasing, Attacking }
     private State state = State.Patrolling;
@@ -63,22 +63,15 @@ public class WolfAI : MonoBehaviour
             if (p) player = p.transform;
         }
 
-        // Apanha o Animator automaticamente se não estiver ligado
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
 
-        // Inicializa o SpriteRenderer para alteração de cor
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
-        {
-            originalColor = spriteRenderer.color; // Guarda a cor original
-        }
+            originalColor = spriteRenderer.color;
 
-        // Inicia com o flip para a direita (de frente)
         if (spriteRenderer != null)
-        {
-            spriteRenderer.flipX = false; // Começa virado para a direita (sem flip)
-        }
+            spriteRenderer.flipX = false;
     }
 
     void Update()
@@ -87,12 +80,10 @@ public class WolfAI : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, player.position);
 
-        // Verifica se o jogador está dentro do range de detecção para perseguir ou atacar
-        if (dist <= attackRange) state = State.Attacking;          // Range de melee
-        else if (dist <= chaseDistance) state = State.Chasing;     // Só persegue
-        else state = State.Patrolling;                             // Patrulha
+        if (dist <= attackRange) state = State.Attacking;       
+        else if (dist <= chaseDistance) state = State.Chasing;  
+        else state = State.Patrolling;                          
 
-        // Realiza ações de acordo com o estado
         switch (state)
         {
             case State.Patrolling: Patrol(); break;
@@ -100,21 +91,16 @@ public class WolfAI : MonoBehaviour
             case State.Attacking: Attack(); break;
         }
 
-        // ===== animação =====
         if (animator != null)
         {
             bool shouldRun = (state == State.Chasing);
             animator.SetBool(runningBool, shouldRun);
         }
 
-        // ===== Projéteis de Fogo =====
-        // Dispara projéteis de fogo se o cooldown for cumprido **durante a perseguição**
+        // FIREBALL UPDATE CORRIGIDO
         if (Time.time >= lastFireballTime + fireballCooldown && state == State.Chasing)
-        {
             ShootFireball();
-        }
 
-        // Debug para aplicar dano manualmente
         if (Input.GetKeyDown(KeyCode.K))
             TakeDamage(10);
     }
@@ -126,17 +112,10 @@ public class WolfAI : MonoBehaviour
             Vector3 newPos = transform.position + currentDirection * speed * Time.fixedDeltaTime;
             rb.MovePosition(newPos);
 
-            // Flip horizontal depende da direção do movimento
             if (spriteRenderer != null)
             {
-                if (currentDirection.x < 0)
-                {
-                    spriteRenderer.flipX = false; // Virado para a esquerda (ou costas, conforme arte)
-                }
-                else if (currentDirection.x > 0)
-                {
-                    spriteRenderer.flipX = true;  // Virado para a direita (ou frente)
-                }
+                if (currentDirection.x < 0) spriteRenderer.flipX = false;
+                else if (currentDirection.x > 0) spriteRenderer.flipX = true;
             }
         }
     }
@@ -171,42 +150,44 @@ public class WolfAI : MonoBehaviour
 
     void Attack()
     {
-        // Só realiza o ataque melee se o cooldown for cumprido
         if (Time.time >= lastAttackTime + attackCooldown)
         {
-            // Chama a animação de ataque
             if (animator != null)
                 animator.SetTrigger(attackTrigger);
 
-            // Aplica o dano se o jogador está dentro do range de ataque
             if (Vector3.Distance(transform.position, player.position) <= attackRange)
             {
                 PlayerHP ph = player.GetComponent<PlayerHP>();
                 if (ph != null)
                 {
-                    ph.TakeDamage(damage); // Aplica o dano ao jogador
-                    lastAttackTime = Time.time; // Atualiza o tempo de cooldown
+                    ph.TakeDamage(damage); 
+                    lastAttackTime = Time.time;
                 }
             }
         }
     }
 
+    // ===== FIREBALL 2D CORRIGIDO =====
     void ShootFireball()
     {
         if (fireballPrefab != null && player != null)
         {
-            Vector3 fireballDirection = (player.position - transform.position).normalized;
-            GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-            Rigidbody fireballRb = fireball.GetComponent<Rigidbody>();
+            Vector3 dir = (player.position - transform.position).normalized;
 
-            if (fireballRb != null)
+            GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+
+            // Aqui está a correção: a fireball usa Rigidbody2D
+            Rigidbody2D rb2d = fireball.GetComponent<Rigidbody2D>();
+
+            if (rb2d != null)
             {
-                fireballRb.linearVelocity = fireballDirection * fireballSpeed;
+                rb2d.linearVelocity = dir * fireballSpeed;
             }
 
-            lastFireballTime = Time.time; // Reseta o tempo do cooldown
+            lastFireballTime = Time.time;
         }
     }
+    // ===== FIM DA CORREÇÃO =====
 
     public void TakeDamage(int damage)
     {
@@ -214,11 +195,9 @@ public class WolfAI : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth, 0);
         Debug.Log(name + " recebeu " + damage + " de dano! Vida atual: " + currentHealth);
 
-        // Muda a cor para vermelho ao levar dano
         if (spriteRenderer != null)
         {
             spriteRenderer.color = Color.red;
-            // Restaura a cor original após um curto tempo
             Invoke("RestoreColor", 0.1f);
         }
 
@@ -229,9 +208,7 @@ public class WolfAI : MonoBehaviour
     void RestoreColor()
     {
         if (spriteRenderer != null)
-        {
             spriteRenderer.color = originalColor;
-        }
     }
 
     void Die()
@@ -268,10 +245,9 @@ public class WolfAI : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Gizmos de Debug para o range de detecção e o range de ataque
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, chaseDistance); // Range de perseguição
+        Gizmos.DrawWireSphere(transform.position, chaseDistance);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);  // Range de ataque
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
