@@ -8,4 +8,9 @@ public class ShopItem : ScriptableObject
     public int price;
     [TextArea]
     public string description;
+
+    // Estatísticas opcionais que o item altera
+    public int addedArmor = 0;
+    public int addedHealth = 0;
+    public float addedSpeed = 0f;
 }

@@ -28,7 +28,6 @@ public class PlayerSpawnFade : MonoBehaviour
             yield return null;
         }
 
-
         c.a = 1f;
         rend.material.color = c;
     }

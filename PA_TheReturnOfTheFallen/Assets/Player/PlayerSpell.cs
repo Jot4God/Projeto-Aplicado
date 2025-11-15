@@ -34,7 +34,7 @@ public class PlayerSpell : MonoBehaviour
 
             Vector3 spawnPos = playerAttack.attackPoint.position;
 
-            // Direção para o mouse
+            // Direção para o clique do mouse
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
             Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
             if (groundPlane.Raycast(ray, out float enter))
@@ -47,9 +47,9 @@ public class PlayerSpell : MonoBehaviour
 
                 SpellMovement sm = spell.GetComponent<SpellMovement>();
                 if (sm != null)
-                    sm.direction = direction;
+                    sm.SetDirection(direction);
 
-                Destroy(spell, 3f);
+                Destroy(spell, 3f); // destrói após 3s
             }
 
             Invoke(nameof(ResetCast), spellCooldown);
