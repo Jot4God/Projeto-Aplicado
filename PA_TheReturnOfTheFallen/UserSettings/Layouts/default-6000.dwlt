@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 100
+  controlID: 39
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -421,10 +421,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 3150}
-      m_SelectedIDs: a0dafcff
-      m_LastClickedID: -206176
-      m_ExpandedIDs: 16bcfcffac57feff465dfefffe250100c0500100ae760100
+      scrollPos: {x: 0, y: 2928}
+      m_SelectedIDs: 3ad9f9ff
+      m_LastClickedID: 0
+      m_ExpandedIDs: 74e1f9ff4807faff6620faff5028faff3432faff60acfaff6ad2faffd4e1faff1efefaff0c07fbff3c18fbff6c25fbffa444fbff6654fbffd260fbff2a70fbff1296fbff7eb5fbffb4e2fbffaaf0fbff8cfcfbffeefdfcffa4fffcff960ffdff9010fdff8e22fdff0628fdff0258feff3c5dfeff0a3b0100e4500100d4560100ea760100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1056,9 +1056,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 2493.6338, y: 188.56725, z: -6434.4287}
+    m_Target: {x: 2786.1025, y: 316.905, z: -6158.4233}
     speed: 2
-    m_Value: {x: 2493.6338, y: 188.56725, z: -6434.4287}
+    m_Value: {x: 2786.1025, y: 316.905, z: -6158.4233}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1104,13 +1104,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.2532293, y: -0.7360638, z: 0.50975436, w: 0.36684707}
+    m_Target: {x: 0.33807117, y: -0.60043144, z: 0.31205085, w: 0.6546036}
     speed: 2
-    m_Value: {x: 0.2537357, y: -0.7351728, z: 0.5107709, w: 0.36640453}
+    m_Value: {x: 0.336973, y: -0.60069156, z: 0.31104165, w: 0.65488327}
   m_Size:
-    m_Target: 776.2951
+    m_Target: 269.478
     speed: 2
-    m_Value: 812.87445
+    m_Value: 269.478
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1488,7 +1488,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Church 3D/Textures/Wall/Materials
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1498,16 +1498,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 68
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Church 3D/Textures/Wall/Materials
   m_LastFoldersGridSize: 68
   m_LastProjectPath: C:\Users\Irina\Documents\GitHub\Projeto-Aplicado\PA_TheReturnOfTheFallen
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b21f0100
-    m_LastClickedID: 73650
-    m_ExpandedIDs: 000000004a1f010000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 66}
+    m_SelectedIDs: c0960100
+    m_LastClickedID: 104128
+    m_ExpandedIDs: 000000004e1f0100881f010058920100ac920100ae920100b0920100b2920100c4920100a6960100a8960100ae960100b096010000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1565,7 +1565,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000b0b30000caa6000036da0000f8e20000c4ad000050dd000094de000084a800003ec2000034aa0000c8320100b4dd000060f00100a6bb0000aabb000082bb000046de000040de000056de0000a0c40000aa2802000afa0000d2bf020012e00000b44a0100b8be000042f3000016f300008c01010050bf0000c2010100a0010100300201004a680100d4270100522f0100ea020100f6020100f202010092c000001a030100c272010096c000005ae701001e030100a2ed0100b6ec01006ceb0100da0b01008ae60200f4390100383b0600343b060040950200941a01009e4e0100ec5a0100a24e01008047010052430100c43f01006c1a0100964701002c4001000a1b01008e420100d8bf2a0060b100005265020056650200a865020004920100ae1b0100dc6904009e1e0100a4400100b4400100a240010000000000b6400100fe450100
+    m_ExpandedInstanceIDs: c6230000b0b30000caa6000036da0000f8e20000c4ad000050dd000094de000084a800003ec2000034aa0000c8320100b4dd000060f00100a6bb0000aabb000082bb000046de000040de000056de0000a0c40000aa2802000afa0000d2bf020012e00000b44a0100b8be000042f3000016f300008c01010050bf0000c2010100a0010100300201004a680100d4270100522f0100ea020100f6020100f202010092c000001a030100c272010096c000005ae701001e030100a2ed0100b6ec01006ceb0100da0b01008ae60200f4390100383b0600343b060040950200941a01009e4e0100ec5a0100a24e01008047010052430100c43f01006c1a0100964701002c4001000a1b01008e420100d8bf2a0060b100005265020056650200a865020004920100ae1b0100dc6904009e1e0100a4400100b4400100a240010000000000b6400100fe450100b6920100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
