@@ -52,8 +52,7 @@ public class CerberusAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
-        rb.useGravity = true;
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.useGravity = false;
 
         currentHealth = maxHealth;
 
@@ -114,8 +113,8 @@ public class CerberusAI : MonoBehaviour
 
             if (spriteRenderer != null)
             {
-                if (currentDirection.x < 0) spriteRenderer.flipX = false;
-                else if (currentDirection.x > 0) spriteRenderer.flipX = true;
+                if (currentDirection.x < 0) spriteRenderer.flipX = true;
+                else if (currentDirection.x > 0) spriteRenderer.flipX = false;
             }
         }
     }
@@ -172,6 +171,8 @@ public class CerberusAI : MonoBehaviour
     {
         if (fireballPrefab != null && player != null)
         {
+            if (animator != null)
+                animator.SetTrigger(attackTrigger);
             Vector3 dir = (player.position - transform.position).normalized;
 
             GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);

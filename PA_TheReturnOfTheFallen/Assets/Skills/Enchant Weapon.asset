@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enchant Weapon
   m_EditorClassIdentifier: 
   <Id>k__BackingField: enchant_weapon
-  <DisplayName>k__BackingField: Enchant Weapon
+  <DisplayName>k__BackingField: Enchant Sword
   <Type>k__BackingField: 1
   <MaxRank>k__BackingField: 5
   <PointCostPerRank>k__BackingField: 1

@@ -9,11 +9,32 @@ public class SpellHit : MonoBehaviour
     {
         if (((1 << other.gameObject.layer) & enemyLayers) != 0)
         {
+            // Inimigo genérico
             EnemyController ec = other.GetComponent<EnemyController>();
             if (ec != null)
                 ec.TakeDamage(damage);
-            
-            Destroy(gameObject); 
+
+            // Bandit
+            BanditAI bandit = other.GetComponent<BanditAI>();
+            if (bandit != null)
+                bandit.TakeDamage(damage);
+
+            // Knight
+            KnightAI knight = other.GetComponent<KnightAI>();
+            if (knight != null)
+                knight.TakeDamage(damage);
+
+            // Wolf
+            WolfAI wolf = other.GetComponent<WolfAI>();
+            if (wolf != null)
+                wolf.TakeDamage(damage);
+
+            // Cerberus
+            CerberusAI cerberus = other.GetComponent<CerberusAI>();
+            if (cerberus != null)
+                cerberus.TakeDamage(damage);
+
+            Destroy(gameObject);
         }
     }
 }

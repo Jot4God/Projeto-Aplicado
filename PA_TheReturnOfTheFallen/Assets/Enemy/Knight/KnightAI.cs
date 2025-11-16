@@ -120,7 +120,7 @@ public class KnightAI : MonoBehaviour
                 // Se o inimigo se move para a esquerda, faz o flip
                 if (spriteRenderer != null)
                 {
-                    spriteRenderer.flipX = false; // Fica de costas (flip)
+                    spriteRenderer.flipX = true; // Fica de costas (flip)
                 }
             }
             else if (currentDirection.x > 0)
@@ -128,7 +128,7 @@ public class KnightAI : MonoBehaviour
                 // Se o inimigo se move para a direita, desfaz o flip
                 if (spriteRenderer != null)
                 {
-                    spriteRenderer.flipX = true; // Fica de frente (sem flip)
+                    spriteRenderer.flipX = false; // Fica de frente (sem flip)
                 }
             }
         }

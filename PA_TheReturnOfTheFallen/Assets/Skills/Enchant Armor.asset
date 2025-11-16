@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enchant Armor
   m_EditorClassIdentifier: 
   <Id>k__BackingField: enchant_armor
-  <DisplayName>k__BackingField: Enchant Armor
+  <DisplayName>k__BackingField: Enchant Health
   <Type>k__BackingField: 0
   <MaxRank>k__BackingField: 5
   <PointCostPerRank>k__BackingField: 1

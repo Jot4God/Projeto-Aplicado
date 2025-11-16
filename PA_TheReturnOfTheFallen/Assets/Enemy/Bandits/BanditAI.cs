@@ -71,7 +71,7 @@ public class BanditAI : MonoBehaviour
         // Inicia com o flip para a direita (de frente)
         if (spriteRenderer != null)
         {
-            spriteRenderer.flipX = false; // Começa virado para a direita (sem flip)
+            spriteRenderer.flipX = true; // Começa virado para a direita (sem flip)
         }
     }
 

@@ -3,12 +3,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapons/WeaponData")]
 public class WeaponData : ScriptableObject
 {
-    public string weaponName;
-    public WeaponType type;
-    public int damage;
-    public float attackSpeed;
-    public GameObject weaponPrefab;
-    public Sprite icon; // para UI
-}
+    [Header("Stats")]
+    public string weaponName = "New Weapon";
+    public int attackDamage = 20;
+    public float attackCooldown = 0.3f;
+    public float attackRange = 1.5f;
 
-public enum WeaponType { Melee, Ranged, Magic }
+    // Offset relativo ao player para o ponto de ataque
+    public Vector3 attackPointLocalOffset = new Vector3(1f, 0f, 0f);
+
+    [Header("Visual")]
+    public Sprite weaponSprite;                          // sprite da arma
+    public RuntimeAnimatorController weaponAnimator;     // animator controller da arma
+
+    [Header("Animação da Arma")]
+    public string weaponAttackTrigger = "WeaponAttack";  // trigger no Animator da arma
+}
