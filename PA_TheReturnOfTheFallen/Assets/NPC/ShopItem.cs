@@ -13,4 +13,8 @@ public class ShopItem : ScriptableObject
     public int addedArmor = 0;
     public int addedHealth = 0;
     public float addedSpeed = 0f;
+
+    // Não serializado, usado apenas em runtime
+    [HideInInspector]
+    public bool isSold = false;
 }

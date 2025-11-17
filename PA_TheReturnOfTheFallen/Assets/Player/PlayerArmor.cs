@@ -1,55 +1,29 @@
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class PlayerArmor : MonoBehaviour
 {
-    public int currentArmor = 0;       // Armadura atual
-    public TMP_Text armorText;         // Texto da UI (ex: "20")
-    public Image armorIconUI;          // Ícone da armadura no HUD
+    public int currentArmor = 0;
 
-    private Sprite equippedArmorIcon;  // Guarda o ícone atual
+    // Evento que notifica a UI quando muda a armadura
+    public delegate void ArmorChanged(int newArmor);
+    public event ArmorChanged OnArmorChanged;
 
-    void Start()
-    {
-        if (armorIconUI != null)
-            armorIconUI.gameObject.SetActive(false); // começa escondido
-        UpdateArmorUI();
-    }
-
-    public void EquipArmor(int amount, Sprite icon)
+    public void EquipArmor(int amount)
     {
         currentArmor = Mathf.Max(0, currentArmor + amount);
-        equippedArmorIcon = icon;
-
-        UpdateArmorUI();
-        UpdateArmorIcon();
+        OnArmorChanged?.Invoke(currentArmor);
+        Debug.Log("Armor equipada: " + currentArmor);
     }
 
     public void AddArmor(int amount)
     {
         currentArmor = Mathf.Max(0, currentArmor + amount);
-        UpdateArmorUI();
+        OnArmorChanged?.Invoke(currentArmor);
     }
 
     public void SetArmor(int amount)
     {
         currentArmor = amount;
-        UpdateArmorUI();
-    }
-
-    void UpdateArmorUI()
-    {
-        if (armorText != null)
-            armorText.text = currentArmor.ToString();
-    }
-
-    void UpdateArmorIcon()
-    {
-        if (armorIconUI != null && equippedArmorIcon != null)
-        {
-            armorIconUI.sprite = equippedArmorIcon;
-            armorIconUI.gameObject.SetActive(true); // garante que fica visível
-        }
+        OnArmorChanged?.Invoke(currentArmor);
     }
 }
