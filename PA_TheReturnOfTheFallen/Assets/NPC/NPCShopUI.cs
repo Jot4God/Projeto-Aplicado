@@ -4,30 +4,32 @@ using TMPro;
 
 public class NPCShopUI : MonoBehaviour
 {
+    [Header("Items do Shop")]
     public ShopItem[] itemsForSale;
+
+    [Header("UI")]
     public Transform itemContainer;
     public GameObject itemUIPrefab;
     public TMP_Text playerMoneyText;
+    public TMP_SpriteAsset coinSpriteAsset; // Adiciona o sprite da moeda aqui
 
-    [Header("Referências do jogador")]
+    [Header("Referências do Jogador")]
     public PlayerMoney playerMoney;
     public PlayerArmor playerArmor;
     public PlayerEquipmentUI equipmentUI;
     public PlayerHP playerHP;
     public PlayerController playerController;
+    public PlayerMana playerMana; // <- já deixei isto preparado para Mana Potion
 
     void Start()
-{
-    // Reseta todos os ShopItems para não vendidos
-    foreach (ShopItem item in itemsForSale)
     {
-        item.isSold = false;
+        // Reset aos items no início
+        foreach (ShopItem item in itemsForSale)
+            item.isSold = false;
+
+        LoadItems();
+        UpdateMoneyUI();
     }
-
-    LoadItems();
-    UpdateMoneyUI();
-}
-
 
     void LoadItems()
     {
@@ -37,17 +39,22 @@ public class NPCShopUI : MonoBehaviour
         foreach (ShopItem item in itemsForSale)
         {
             GameObject newItem = Instantiate(itemUIPrefab, itemContainer);
+
             newItem.transform.Find("ItemName").GetComponent<TMP_Text>().text = item.itemName;
-            newItem.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = item.price + " G";
+
+            TMP_Text priceText = newItem.transform.Find("ItemPrice").GetComponent<TMP_Text>();
+            priceText.spriteAsset = coinSpriteAsset; // usa o sprite asset da moeda
+            priceText.text = item.price + " <sprite=0>"; // ou usa o nome <sprite name=coin>
+
             newItem.transform.Find("ItemIcon").GetComponent<Image>().sprite = item.icon;
 
             Button buyButton = newItem.transform.Find("BuyButton").GetComponent<Button>();
-            
-            // Checa se o item já foi vendido
+
+            // SE JÁ FOI VENDIDO
             if (item.isSold)
             {
                 buyButton.interactable = false;
-                newItem.transform.Find("SoldText")?.gameObject.SetActive(true); // se tiver um Text ou imagem "X"
+                newItem.transform.Find("SoldText")?.gameObject.SetActive(true);
             }
             else
             {
@@ -56,11 +63,13 @@ public class NPCShopUI : MonoBehaviour
         }
     }
 
-    void UpdateMoneyUI()
-    {
-        if (playerMoneyText != null)
-            playerMoneyText.text = "Moedas: " + playerMoney.currentMoney;
-    }
+   void UpdateMoneyUI()
+{
+    if (playerMoneyText != null)
+        playerMoneyText.text = playerMoney.currentMoney.ToString(); // só o número
+}
+
+
 
     void BuyItem(ShopItem item, Button buyButton, GameObject itemUI)
     {
@@ -70,37 +79,53 @@ public class NPCShopUI : MonoBehaviour
             return;
         }
 
-        // Subtrai dinheiro
+        // Desconta dinheiro
         playerMoney.SpendMoney(item.price);
         UpdateMoneyUI();
 
         // Marca como vendido
         item.isSold = true;
         buyButton.interactable = false;
-
-        // Mostra X ou Sold
         itemUI.transform.Find("SoldText")?.gameObject.SetActive(true);
 
-        // ===== ARMOR =====
+        // ARMOR
         if (item.addedArmor > 0 && playerArmor != null)
         {
             playerArmor.EquipArmor(item.addedArmor);
             equipmentUI?.EquipArmorIcon(item.icon, playerArmor.currentArmor);
         }
 
-        // ===== HEALTH =====
+        // HEALTH
         if (item.addedHealth > 0 && playerHP != null)
         {
-            // Não aumentamos maxHealth, só curamos
-            playerHP.Heal(item.addedHealth);        
+            playerHP.Heal(item.addedHealth);
             equipmentUI?.UpdateHealth(playerHP.currentHealth);
         }
 
-        // ===== SPEED =====
+        // SPEED
         if (item.addedSpeed > 0 && playerController != null)
         {
             playerController.speed += item.addedSpeed;
             equipmentUI?.EquipSpeed(playerController.speed, item.icon);
+        }
+
+        // DASH
+        if (item.addedDashDistance > 0 && playerController != null)
+        {
+            PlayerDash playerDash = playerController.GetComponent<PlayerDash>();
+            if (playerDash != null)
+            {
+                playerDash.dashDistance += item.addedDashDistance;
+                equipmentUI?.EquipDash(playerDash.dashDistance, item.icon);
+            }
+        }
+
+
+
+        // MANA POTION
+        if (item.addedMana > 0 && playerMana != null)
+        {
+            playerMana.RestoreMana(item.addedMana);
         }
 
         Debug.Log("Compraste: " + item.itemName);

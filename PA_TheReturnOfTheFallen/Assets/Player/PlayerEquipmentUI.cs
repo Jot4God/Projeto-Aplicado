@@ -13,11 +13,16 @@ public class PlayerEquipmentUI : MonoBehaviour
 
     public TMP_Text healthText;
 
+    public TMP_Text dashText;
+    public Image dashIcon;
+
+
     void Start()
     {
         // Nenhum ícone aparece no início
         if (armorIcon != null) armorIcon.gameObject.SetActive(false);
         if (speedIcon != null) speedIcon.gameObject.SetActive(false);
+        if (dashIcon != null) dashIcon.gameObject.SetActive(false);
     }
 
     // ===== ARMOR =====
@@ -45,6 +50,19 @@ public class PlayerEquipmentUI : MonoBehaviour
             speedIcon.gameObject.SetActive(true);
         }
     }
+
+    public void EquipDash(float dashAmount, Sprite icon)
+    {
+    if (dashText != null)
+        dashText.text = Mathf.RoundToInt(dashAmount).ToString();
+
+    if (dashIcon != null && icon != null)
+    {
+        dashIcon.sprite = icon;
+        dashIcon.gameObject.SetActive(true);
+    }
+    }
+
 
     // ===== HEALTH =====
     public void UpdateHealth(int healthAmount)

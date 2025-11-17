@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c527ca60574a1488c902abb67fff0d, type: 3}
   m_Name: "Po\xE7\xE3o de Vida"
   m_EditorClassIdentifier: 
-  itemName: 
-  icon: {fileID: 21300000, guid: 47c10e14a21fdc74bbd78803c31be7db, type: 3}
+  itemName: Ring Dash
+  icon: {fileID: 21300000, guid: 70736cea30baf0c47ad3b2226b8f342a, type: 3}
   price: 50
   description: 
+  addedArmor: 0
+  addedHealth: 0
+  addedSpeed: 0
+  addedDashDistance: 50
+  addedMana: 0
+  isSold: 0
