@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [Header("Animation")]
     public Animator animator;           // podes deixar vazio no Inspector
     public string runSideBool = "isRunningSide";
+    public string runBackBool = "isRunningBack";   // W
+    public string runFrontBool = "isRunningFront"; // S
 
     [HideInInspector] public bool podeMover = true;
 
@@ -52,21 +54,30 @@ public class PlayerController : MonoBehaviour
             inputDir = Vector3.zero;
 
             if (animator != null)
+            {
                 animator.SetBool(runSideBool, false);
+                animator.SetBool(runBackBool, false);
+                animator.SetBool(runFrontBool, false);
+            }
 
             return;
         }
 
         // input
-        float x = Input.GetAxisRaw("Horizontal"); // -1,0,1
-        float z = Input.GetAxisRaw("Vertical");   // -1,0,1
+        float x = Input.GetAxisRaw("Horizontal"); // -1,0,1  (A/D)
+        float z = Input.GetAxisRaw("Vertical");   // -1,0,1  (S/W por defeito: W=+1, S=-1)
         inputDir = new Vector3(x, 0f, z).normalized;
 
-        // animação de correr lado
+        // animações de correr
         if (animator != null)
         {
-            bool isRunningSide = Mathf.Abs(x) > 0.0001f;  // só A/D
-            animator.SetBool(runSideBool, isRunningSide);
+            bool isRunningSide  = Mathf.Abs(x) > 0.0001f;   // só A/D
+            bool isRunningBack  = z > 0.0001f;              // W (para trás nas tuas animações)
+            bool isRunningFront = z < -0.0001f;             // S (para a frente)
+
+            animator.SetBool(runSideBool,  isRunningSide);
+            animator.SetBool(runBackBool,  isRunningBack);
+            animator.SetBool(runFrontBool, isRunningFront);
         }
 
         // FLIP do sprite do player (andar para a esquerda mostra virado à esquerda)

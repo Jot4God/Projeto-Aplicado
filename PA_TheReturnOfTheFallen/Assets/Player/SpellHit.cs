@@ -34,6 +34,10 @@ public class SpellHit : MonoBehaviour
             if (cerberus != null)
                 cerberus.TakeDamage(damage);
 
+            DemonSlimeAI demonslime = other.GetComponent<DemonSlimeAI>();
+            if (demonslime != null)
+                demonslime.TakeDamage(damage);
+
             Destroy(gameObject);
         }
     }

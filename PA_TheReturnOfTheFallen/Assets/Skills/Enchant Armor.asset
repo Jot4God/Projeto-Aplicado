@@ -17,8 +17,8 @@ MonoBehaviour:
   <Type>k__BackingField: 0
   <MaxRank>k__BackingField: 5
   <PointCostPerRank>k__BackingField: 1
-  hpFlatPerRank: 25
-  hpPercentPerRank: 0.05
+  hpFlatPerRank: 20
+  hpPercentPerRank: 0
   manaCostFactorPerRank: 0.95
   cooldownFactorPerRank: 0.95
   attackFlatPerRank: 5

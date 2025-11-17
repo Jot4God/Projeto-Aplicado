@@ -7,6 +7,7 @@ public class SkillTreeState : MonoBehaviour
     [SerializeField] private PlayerLevel playerLevel;           // arrasta o teu PlayerLevel
     [SerializeField] private PlayerHPAdapter hpAdapter;         // arrasta o PlayerHPAdapter
     [SerializeField] private PlayerSpellAdapter spellAdapter;   // arrasta o PlayerSpellAdapter
+    [SerializeField] private PlayerWeaponAdapter weaponAdapter; // NOVO: arrasta o PlayerWeaponAdapter
 
     [Header("Skills disponíveis (arrasta os 3 assets)")]
     [SerializeField] private List<SkillDefinition> allSkills = new();
@@ -36,7 +37,6 @@ public class SkillTreeState : MonoBehaviour
     public bool TryRefund(SkillDefinition s)
     {
         if (s == null || playerLevel == null) return false;
-
         int r = GetRank(s);
         if (r <= 0) return false;
 
@@ -54,12 +54,12 @@ public class SkillTreeState : MonoBehaviour
         float totalHPPercent = 0f;
 
         // Strengthen Spells
-        float manaCostFactorTotal = 1f;   // multiplicativo (ex.: 0.95^rank)
-        float cooldownFactorTotal = 1f;
+        float manaCostFactorTotal = 1f;        // multiplicativo (0.95^rank)
+        float spellCooldownFactorTotal = 1f;   // vamos deixar sempre 1 (não mexe no cooldown do spell)
 
-        // Enchant Weapon (deixa preparado — quando tiveres o adapter de dano, ligamos)
-        float attackFlatTotal = 0f;
-        float attackPercentTotal = 0f;
+        // Enchant Weapon
+        float weaponDamageFlatTotal = 0f;
+        float weaponCooldownFactorTotal = 1f;  // multiplicativo (0.95^rank)
 
         foreach (var s in allSkills)
         {
@@ -70,28 +70,32 @@ public class SkillTreeState : MonoBehaviour
             switch (s.Type)
             {
                 case SkillType.EnchantArmor:
-                    totalHPFlat    += s.hpFlatPerRank * r;
+                    totalHPFlat += s.hpFlatPerRank * r;
                     totalHPPercent += s.hpPercentPerRank * r;
                     break;
 
                 case SkillType.StrengthenSpells:
                     manaCostFactorTotal *= Mathf.Pow(s.manaCostFactorPerRank, r);
-                    cooldownFactorTotal *= Mathf.Pow(s.cooldownFactorPerRank, r);
+                    // NÃO mexemos no spellCooldownFactorTotal (fica 1)
                     break;
 
                 case SkillType.EnchantWeapon:
-                    attackFlatTotal    += s.attackFlatPerRank * r;
-                    attackPercentTotal += s.attackPercentPerRank * r;
+                    weaponDamageFlatTotal += s.weaponDamageFlatPerRank * r;
+                    weaponCooldownFactorTotal *= Mathf.Pow(s.weaponCooldownFactorPerRank, r);
                     break;
             }
         }
 
         // aplica nos adapters existentes
-        if (hpAdapter)    hpAdapter.SetSkilltreeHPBonuses(totalHPFlat, totalHPPercent);
-        if (spellAdapter) spellAdapter.SetSkilltreeSpellFactors(manaCostFactorTotal, cooldownFactorTotal);
+        if (hpAdapter)
+            hpAdapter.SetSkilltreeHPBonuses(totalHPFlat, totalHPPercent);
 
-        // quando tiveres um WeaponAdapter:
-        // if (weaponAdapter) weaponAdapter.SetSkilltreeAttackBonuses(attackFlatTotal, attackPercentTotal);
+        if (spellAdapter)
+            // cooldownFactorTotal = 1f -> não alteras cooldown dos spells
+            spellAdapter.SetSkilltreeSpellFactors(manaCostFactorTotal, spellCooldownFactorTotal);
+
+        if (weaponAdapter)
+            weaponAdapter.SetSkilltreeWeaponBonuses(weaponDamageFlatTotal, weaponCooldownFactorTotal);
     }
 
     // ==== (Opcional) Inicialização rápida ====
@@ -101,5 +105,6 @@ public class SkillTreeState : MonoBehaviour
         if (!playerLevel) Debug.LogWarning("[SkillTreeState] PlayerLevel não ligado.");
         if (!hpAdapter) Debug.LogWarning("[SkillTreeState] HPAdapter não ligado.");
         if (!spellAdapter) Debug.LogWarning("[SkillTreeState] SpellAdapter não ligado.");
+        if (!weaponAdapter) Debug.LogWarning("[SkillTreeState] WeaponAdapter não ligado.");
     }
 }

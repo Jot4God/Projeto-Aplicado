@@ -3,7 +3,7 @@ using UnityEngine;
 public class ManaPoolZone3D : MonoBehaviour
 {
     public int maxUses = 5;
-    public int manaAmount = 10;
+    public int manaAmount = 10;      // ignora isto se quiseres (a pool agora aumenta max mana)
     public float cooldown = 1f;
 
     private int currentUses;
@@ -22,7 +22,17 @@ public class ManaPoolZone3D : MonoBehaviour
         PlayerMana playerMana = other.GetComponent<PlayerMana>();
         if (playerMana != null)
         {
-            playerMana.RestoreMana(manaAmount);
+            // --- AUMENTA O MÁXIMO DE MANA EM 10 ---
+            playerMana.maxMana += 10;
+
+            // Atualiza UI imediatamente
+            if (playerMana.manaBar != null)
+                playerMana.manaBar.maxValue = playerMana.maxMana;
+
+            // Enche a mana para o novo máximo
+            playerMana.RestoreMana(playerMana.maxMana);
+
+            // Contabiliza uso da pool
             currentUses--;
             lastHealTime = Time.time;
 
@@ -34,12 +44,11 @@ public class ManaPoolZone3D : MonoBehaviour
     void DisablePool()
     {
         Debug.Log("Mana Pool esgotada!");
-        // opcional: muda a cor para cinza
+
         Renderer rend = GetComponent<Renderer>();
         if (rend != null)
             rend.material.color = Color.gray;
 
-        // desativa o trigger
         GetComponent<Collider>().enabled = false;
     }
 }

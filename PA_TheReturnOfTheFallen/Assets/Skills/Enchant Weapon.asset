@@ -21,5 +21,5 @@ MonoBehaviour:
   hpPercentPerRank: 0.05
   manaCostFactorPerRank: 0.95
   cooldownFactorPerRank: 0.95
-  attackFlatPerRank: 5
-  attackPercentPerRank: 0.05
+  weaponDamageFlatPerRank: 2
+  weaponCooldownFactorPerRank: 0.95

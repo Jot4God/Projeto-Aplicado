@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;   // <-- para Dictionary
 
 [RequireComponent(typeof(Collider))]
 public class Portal3D : MonoBehaviour
@@ -14,11 +15,18 @@ public class Portal3D : MonoBehaviour
     public bool preserveVelocity = true;     // manter velocidade (reorientada)
     public float exitForwardBoost = 0f;      // boost extra na direção do ExitPoint
 
+    [Header("Entradas Necessárias")]
+    [Tooltip("Número de vezes que o objeto tem de entrar no portal até o teleporte ativar. 1 = teleporta logo à primeira.")]
+    public int requiredPasses = 1;
+
     [Header("Câmara (salto instantâneo)")]
     public bool snapMainCamera = true;       // faz a câmara “saltar” sem mostrar a viagem
     public bool alignCameraWithExit = false; // opcional: alinhar também a rotação da câmara com o Exit
 
     private Collider trigger;
+
+    // Guarda quantas vezes cada Traveler já passou neste portal
+    private Dictionary<PortalTraveler, int> passCounts = new Dictionary<PortalTraveler, int>();
 
     void Reset()
     {
@@ -30,6 +38,9 @@ public class Portal3D : MonoBehaviour
     {
         trigger = GetComponent<Collider>();
         if (trigger && !trigger.isTrigger) trigger.isTrigger = true;
+
+        if (requiredPasses < 1)
+            requiredPasses = 1;
     }
 
     void OnTriggerEnter(Collider other)
@@ -44,8 +55,33 @@ public class Portal3D : MonoBehaviour
             return;
 
         var traveler = other.GetComponent<PortalTraveler>();
+
+        // Se tiver cooldown ainda a contar, não entra
         if (traveler && traveler.lockedUntil > Time.time)
             return;
+
+        // ---- LÓGICA DAS N VEZES QUE PASSA ----
+        if (requiredPasses > 1 && traveler != null)
+        {
+            int count = 0;
+            passCounts.TryGetValue(traveler, out count);
+            count++;
+            passCounts[traveler] = count;
+
+            // Ainda não atingiu o nº de entradas necessárias → não teleporta
+            if (count < requiredPasses)
+            {
+                Debug.Log($"[Portal3D] {name}: {other.name} passou {count}x, precisa de {requiredPasses}x para ativar.");
+                return;
+            }
+
+            // Se quiseres que, depois de ativar uma vez, não volte a exigir as N entradas,
+            // podes 'fixar' o valor:
+            passCounts[traveler] = requiredPasses;
+        }
+        // Se não houver PortalTraveler mas mesmo assim queres controlar por tag Player,
+        // então este objeto vai simplesmente teleportar sempre que entrar.
+        // (requiredPasses só funciona por Traveler.)
 
         Teleport(other.gameObject, traveler);
     }
@@ -96,7 +132,6 @@ public class Portal3D : MonoBehaviour
         }
 
         // 5) “Snapping” da câmara para evitar mostrar a viagem
-        //    Estratégia: deslocar imediatamente a câmara pelo mesmo delta do Player.
         if (snapMainCamera && Camera.main != null)
         {
             Transform cam = Camera.main.transform;
@@ -107,22 +142,14 @@ public class Portal3D : MonoBehaviour
             // Reposicionar a câmara instantaneamente mantendo o offset relativo
             cam.position += delta;
 
-            // Opcional: alinhar rotação da câmara ao Exit (normalmente não necessário)
             if (alignCameraWithExit)
                 cam.rotation = matchExitRotation ? dest.rotation : cam.rotation;
-
-            // Nota:
-            // - Isto funciona com câmaras "simples" (follow manual).
-            // - Se estiveres a usar Cinemachine, este ajuste já evita o "passeio" no frame do teleporte.
-            //   Para um corte 100% “a direito” com damping zero nesse mesmo frame, garante que o virtual camera
-            //   não está a aplicar blends lentos (ou usa um blend do tipo Cut).
         }
 
         // 6) Cooldown para evitar ping-pong
         if (traveler != null)
             traveler.lockedUntil = Time.time + target.reentryCooldown;
 
-        // Debug útil
         Debug.Log($"[Portal3D] {name} -> {target.name} | {obj.name} @ {dest.position}");
     }
 
@@ -136,4 +163,3 @@ public class Portal3D : MonoBehaviour
         }
     }
 }
-
