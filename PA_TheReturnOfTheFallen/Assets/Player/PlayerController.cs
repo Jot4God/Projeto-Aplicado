@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         // opção: persistência
         PlayerController[] players = Object.FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
         if (players.Length > 1) { Destroy(gameObject); return; }
-        DontDestroyOnLoad(gameObject);
+        
     }
 
     void Update()

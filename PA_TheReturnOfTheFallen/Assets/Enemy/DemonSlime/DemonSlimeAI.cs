@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class DemonSlimeAI : MonoBehaviour
@@ -251,37 +252,40 @@ public class DemonSlimeAI : MonoBehaviour
             spriteRenderer.color = originalColor;
     }
 
-    void Die()
+void Die()
+{
+    Debug.Log(name + " morreu!");
+
+    if (player != null)
     {
-        Debug.Log(name + " morreu!");
-
-        if (player != null)
+        PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
+        if (playerLevel != null)
         {
-            PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
-            if (playerLevel != null)
-            {
-                playerLevel.AddXP(xpReward);
-                Debug.Log("Jogador ganhou " + xpReward + " XP!");
-            }
+            playerLevel.AddXP(xpReward);
+            Debug.Log("Jogador ganhou " + xpReward + " XP!");
         }
+    }
 
-        if (healthPickupPrefab != null && Random.value < 0.5f)
+    if (healthPickupPrefab != null && Random.value < 0.5f)
+    {
+        Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
+        Instantiate(healthPickupPrefab, spawnPos, Quaternion.identity);
+    }
+
+    if (moneyPickupPrefab != null && Random.value < 0.7f)
+    {
+        for (int i = 0; i < moneyDropAmount; i++)
         {
             Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
-            Instantiate(healthPickupPrefab, spawnPos, Quaternion.identity);
+            Instantiate(moneyPickupPrefab, spawnPos, Quaternion.identity);
         }
-
-        if (moneyPickupPrefab != null && Random.value < 0.7f)
-        {
-            for (int i = 0; i < moneyDropAmount; i++)
-            {
-                Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
-                Instantiate(moneyPickupPrefab, spawnPos, Quaternion.identity);
-            }
-        }
-
-        Destroy(gameObject);
     }
+
+    // 🔵 CARREGAR A CENA DE VITÓRIA
+    SceneManager.LoadScene("GameVictory");
+
+    Destroy(gameObject);
+}
 
     void OnDrawGizmosSelected()
     {

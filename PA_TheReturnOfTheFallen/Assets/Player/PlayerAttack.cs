@@ -38,7 +38,10 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Skilltree / Arma")]
     public PlayerWeaponAdapter weaponAdapter; // NOVO: adapter que aplica bónus do skilltree na arma
-    // ============================
+
+    // Nova variável para controlar a duração do sprite visível
+    public float attackPointVisibleDuration = 0.2f;  // tempo que o sprite ficará visível
+    private float attackPointTimer = 0f;  // temporizador para controlar a duração do sprite
 
     void Start()
     {
@@ -92,6 +95,16 @@ public class PlayerAttack : MonoBehaviour
                 Debug.Log("❌ Sem mana suficiente para atacar!");
             }
         }
+
+        // Atualiza o temporizador do sprite do attackPoint
+        if (attackPointTimer > 0)
+        {
+            attackPointTimer -= Time.deltaTime;
+        }
+        else
+        {
+            ShowAttackPointSprite(false);  // Esconde o sprite quando o tempo expirar
+        }
     }
 
     IEnumerator Attack()
@@ -102,7 +115,10 @@ public class PlayerAttack : MonoBehaviour
         if (animator != null && !string.IsNullOrEmpty(attackTrigger))
             animator.SetTrigger(attackTrigger);
 
-        // ativa visual da arma atual + animação da arma
+        // Ativar o ataque visual (attackPoint com sprite)
+        ShowAttackPointSprite(true);
+
+        // Ativa visual da arma atual + animação da arma
         ShowCurrentWeapon();
         PlayCurrentWeaponAttackAnimation();
 
@@ -136,9 +152,28 @@ public class PlayerAttack : MonoBehaviour
         // espera o cooldown da arma
         yield return new WaitForSeconds(attackCooldown);
 
-        // ao acabar o ataque, esconder armas
+        // ao acabar o ataque, esconder as armas e o sprite de ataque
         HideAllWeapons();
         isAttacking = false;
+    }
+
+    // Função para mostrar ou esconder o sprite do AttackPoint durante o ataque
+    void ShowAttackPointSprite(bool show)
+    {
+        if (attackPoint != null)
+        {
+            SpriteRenderer attackSpriteRenderer = attackPoint.GetComponent<SpriteRenderer>();
+            if (attackSpriteRenderer != null)
+            {
+                attackSpriteRenderer.enabled = show;
+            }
+
+            // Se o sprite estiver sendo mostrado, reinicia o temporizador
+            if (show)
+            {
+                attackPointTimer = attackPointVisibleDuration;
+            }
+        }
     }
 
     // =========================

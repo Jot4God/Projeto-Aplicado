@@ -5,16 +5,28 @@ using System.Collections;
 public class DialogueTriggerUI : MonoBehaviour
 {
     [Header("UI")]
-    public GameObject dialoguePanel;        // painel geral (pai)
-    public GameObject dialogueToShow;       // texto específico a mostrar (um dos filhos)
-    public TextMeshProUGUI dialogueText;    // opcional, só se quiseres mudar o texto
+    public GameObject dialoguePanel;
+
+    [Tooltip("Se usar sequência, preenche esta lista com os filhos na ordem desejada.")]
+    public GameObject[] dialoguesToShow;
+
+    [Tooltip("Para modo antigo (apenas 1 diálogo). Se a lista de cima estiver vazia, usa isto.")]
+    public GameObject dialogueToShow;
+
+    public TextMeshProUGUI dialogueText;
+
+    [Header("Textos (opcional)")]
+    [TextArea(2, 4)]
+    public string overrideText = "";
+
+    [TextArea(2, 4)]
+    public string[] overrideTexts;
 
     [Header("Opções")]
-    [TextArea(2, 4)]
-    public string overrideText = "";        // se deixares vazio, usa o texto já no TMP
     public float showTime = 5f;
 
     private bool isShowing = false;
+    private int currentIndex = 0;
 
     // 3D
     private void OnTriggerEnter(Collider other)
@@ -44,26 +56,107 @@ public class DialogueTriggerUI : MonoBehaviour
     private IEnumerator ShowDialogueRoutine()
     {
         isShowing = true;
-
-        // ativa o painel principal
         dialoguePanel.SetActive(true);
 
-        // desativa todos os filhos primeiro (garante que só um fica ativo)
+        // desativa todos os filhos do painel
         foreach (Transform child in dialoguePanel.transform)
             child.gameObject.SetActive(false);
 
-        // ativa apenas o diálogo escolhido
+        // reinicia índice
+        currentIndex = 0;
+
+        // ======== MODO NOVO: vários diálogos =========
+        if (dialoguesToShow != null && dialoguesToShow.Length > 0)
+        {
+            while (currentIndex < dialoguesToShow.Length)
+            {
+                ShowStep(currentIndex);
+
+                // Espera tempo ou tecla E (robusto)
+                yield return StartCoroutine(WaitForAdvance());
+
+                // avança para o próximo elemento da sequência
+                currentIndex++;
+            }
+        }
+        // ======== MODO ANTIGO: apenas 1 diálogo =========
+        else
+        {
+            ShowSingleDialogue();
+
+            // espera tempo ou tecla E
+            yield return StartCoroutine(WaitForAdvance());
+        }
+
+        // FECHAR PAINEL quando acabar todos
+        dialoguePanel.SetActive(false);
+        isShowing = false;
+    }
+
+    /// Mostra um diálogo específico da sequência (index em ordem)
+    private void ShowStep(int index)
+    {
+        // desativa todos os filhos do painel (garantia)
+        foreach (Transform child in dialoguePanel.transform)
+            child.gameObject.SetActive(false);
+
+        if (dialoguesToShow[index] != null)
+            dialoguesToShow[index].SetActive(true);
+
+        if (dialogueText != null)
+        {
+            string textToUse = null;
+
+            if (overrideTexts != null &&
+                index < overrideTexts.Length &&
+                !string.IsNullOrWhiteSpace(overrideTexts[index]))
+            {
+                textToUse = overrideTexts[index];
+            }
+            else if (!string.IsNullOrWhiteSpace(overrideText))
+            {
+                textToUse = overrideText;
+            }
+
+            if (!string.IsNullOrEmpty(textToUse))
+                dialogueText.text = textToUse;
+        }
+    }
+
+    /// Mostra o diálogo único (modo antigo)
+    private void ShowSingleDialogue()
+    {
+        foreach (Transform child in dialoguePanel.transform)
+            child.gameObject.SetActive(false);
+
         if (dialogueToShow != null)
             dialogueToShow.SetActive(true);
 
-        // se quiseste substituir o texto
         if (!string.IsNullOrWhiteSpace(overrideText) && dialogueText != null)
             dialogueText.text = overrideText;
+    }
 
-        yield return new WaitForSeconds(showTime);
+    /// Espera até o jogador carregar E OU até o tempo showTime expirar.
+    /// Faz um frame de tolerância para ignorar qualquer input que tenha acontecido
+    /// na mesma frame em que o diálogo foi ativado.
+    private IEnumerator WaitForAdvance()
+    {
+        // ignora input da mesma frame em que a coroutine começou
+        yield return null;
 
-        // desliga tudo
-        dialoguePanel.SetActive(false);
-        isShowing = false;
+        float timer = 0f;
+
+        while (timer < showTime)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                yield break; // avança já
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // tempo esgotado -> apenas retorna e permite avançar
     }
 }

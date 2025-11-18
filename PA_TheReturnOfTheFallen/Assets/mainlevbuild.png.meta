@@ -259,7 +259,7 @@ TextureImporter:
         width: 89
         height: 61
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -268,6 +268,72 @@ TextureImporter:
       bones: []
       spriteID: a9754c3582c938447b3d840ce021af14
       internalID: 530112719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_8
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 356
+        width: 97
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 759db24c7eb223b4d85bb4e2f2a8ef3e
+      internalID: -1782284430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_9
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 316
+        width: 45
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74936c9d09c025446aeb500a2be5e939
+      internalID: 230694183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_10
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 306
+        width: 33
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a93872d232761a840b4e30acbe468cb3
+      internalID: 1276303298
       vertices: []
       indices: 
       edges: []
@@ -288,12 +354,15 @@ TextureImporter:
     nameFileIdTable:
       mainlevbuild_0: -1067623167
       mainlevbuild_1: -1442162600
+      mainlevbuild_10: 1276303298
       mainlevbuild_2: -250961249
       mainlevbuild_3: 359005677
       mainlevbuild_4: -841182661
       mainlevbuild_5: -184218916
       mainlevbuild_6: -210382928
       mainlevbuild_7: 530112719
+      mainlevbuild_8: -1782284430
+      mainlevbuild_9: 230694183
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
