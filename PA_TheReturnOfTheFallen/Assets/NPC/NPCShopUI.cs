@@ -11,7 +11,7 @@ public class NPCShopUI : MonoBehaviour
     public Transform itemContainer;
     public GameObject itemUIPrefab;
     public TMP_Text playerMoneyText;
-    public TMP_SpriteAsset coinSpriteAsset; // Adiciona o sprite da moeda aqui
+    public TMP_SpriteAsset coinSpriteAsset; // Sprite da moeda
 
     [Header("Referências do Jogador")]
     public PlayerMoney playerMoney;
@@ -19,7 +19,8 @@ public class NPCShopUI : MonoBehaviour
     public PlayerEquipmentUI equipmentUI;
     public PlayerHP playerHP;
     public PlayerController playerController;
-    public PlayerMana playerMana; // <- já deixei isto preparado para Mana Potion
+    public PlayerMana playerMana;
+    public PlayerConsumables playerConsumables; // NOVO: referência ao inventário de consumíveis
 
     void Start()
     {
@@ -43,14 +44,13 @@ public class NPCShopUI : MonoBehaviour
             newItem.transform.Find("ItemName").GetComponent<TMP_Text>().text = item.itemName;
 
             TMP_Text priceText = newItem.transform.Find("ItemPrice").GetComponent<TMP_Text>();
-            priceText.spriteAsset = coinSpriteAsset; // usa o sprite asset da moeda
-            priceText.text = item.price + " <sprite=0>"; // ou usa o nome <sprite name=coin>
+            priceText.spriteAsset = coinSpriteAsset;
+            priceText.text = item.price + " <sprite=0>";
 
             newItem.transform.Find("ItemIcon").GetComponent<Image>().sprite = item.icon;
 
             Button buyButton = newItem.transform.Find("BuyButton").GetComponent<Button>();
 
-            // SE JÁ FOI VENDIDO
             if (item.isSold)
             {
                 buyButton.interactable = false;
@@ -63,13 +63,11 @@ public class NPCShopUI : MonoBehaviour
         }
     }
 
-   void UpdateMoneyUI()
-{
-    if (playerMoneyText != null)
-        playerMoneyText.text = playerMoney.currentMoney.ToString(); // só o número
-}
-
-
+    void UpdateMoneyUI()
+    {
+        if (playerMoneyText != null)
+            playerMoneyText.text = playerMoney.currentMoney.ToString();
+    }
 
     void BuyItem(ShopItem item, Button buyButton, GameObject itemUI)
     {
@@ -95,13 +93,6 @@ public class NPCShopUI : MonoBehaviour
             equipmentUI?.EquipArmorIcon(item.icon, playerArmor.currentArmor);
         }
 
-        // HEALTH
-        if (item.addedHealth > 0 && playerHP != null)
-        {
-            playerHP.Heal(item.addedHealth);
-            equipmentUI?.UpdateHealth(playerHP.currentHealth);
-        }
-
         // SPEED
         if (item.addedSpeed > 0 && playerController != null)
         {
@@ -114,18 +105,20 @@ public class NPCShopUI : MonoBehaviour
         {
             PlayerDash playerDash = playerController.GetComponent<PlayerDash>();
             if (playerDash != null)
-            {
                 playerDash.dashDistance += item.addedDashDistance;
-                equipmentUI?.EquipDash(playerDash.dashDistance, item.icon);
-            }
+            equipmentUI?.EquipDash(playerDash.dashDistance, item.icon);
         }
 
-
-
-        // MANA POTION
-        if (item.addedMana > 0 && playerMana != null)
+        // HEALTH POTION -> adiciona ao inventário de consumíveis
+        if (item.addedHealth > 0 && playerConsumables != null)
         {
-            playerMana.RestoreMana(item.addedMana);
+            playerConsumables.AddHealthPotion(1); // quantidade de poções
+        }
+
+        // MANA POTION -> adiciona ao inventário de consumíveis
+        if (item.addedMana > 0 && playerConsumables != null)
+        {
+            playerConsumables.AddManaPotion(1);
         }
 
         Debug.Log("Compraste: " + item.itemName);
