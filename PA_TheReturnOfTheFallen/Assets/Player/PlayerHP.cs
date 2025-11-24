@@ -12,13 +12,14 @@ public class PlayerHP : MonoBehaviour
     public Text healthText;
 
     [Header("Armadura")]
-    public PlayerArmor playerArmor; // <-- NOVO
+    public PlayerArmor playerArmor;
+
+    private PlayerRespawn respawn;
 
     void Awake()
     {
         currentHealth = maxHealth;
 
-        // Procurar barra se não estiver atribuída
         if (healthBar == null)
         {
             GameObject hb = GameObject.FindGameObjectWithTag("HealthBar");
@@ -31,9 +32,10 @@ public class PlayerHP : MonoBehaviour
             healthBar.value = currentHealth;
         }
 
-        // Procurar automaticamente o PlayerArmor se faltar
         if (playerArmor == null)
             playerArmor = GetComponent<PlayerArmor>();
+
+        respawn = GetComponent<PlayerRespawn>();
 
         UpdateHealthText();
     }
@@ -53,6 +55,13 @@ public class PlayerHP : MonoBehaviour
     {
         if (healthText != null)
             healthText.text = currentHealth + " / " + maxHealth;
+    }
+
+    public void UpdateUIInstant()
+    {
+        if (healthBar != null)
+            healthBar.value = currentHealth;
+        UpdateHealthText();
     }
 
     public void TakeDamage(int damage)
@@ -90,6 +99,18 @@ public class PlayerHP : MonoBehaviour
         GetComponent<PlayerMoney>().currentMoney = 0;
 
         Debug.Log("Player morreu!");
+
+        if (respawn != null)
+        {
+            respawn.HandleDeath();
+            return;
+        }
+
+        ForceGameOver();
+    }
+
+    public void ForceGameOver()
+    {
         SceneManager.LoadScene("GameOver");
     }
 }

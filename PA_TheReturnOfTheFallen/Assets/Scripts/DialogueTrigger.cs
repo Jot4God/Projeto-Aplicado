@@ -25,8 +25,19 @@ public class DialogueTriggerUI : MonoBehaviour
     [Header("Opções")]
     public float showTime = 5f;
 
+    // ============================
+    // NOVO — Freeze do Player
+    // ============================
+    [Header("Diálogo – Restrição de Movimento Automática")]
+    public bool freezePlayer = false;   // congela apenas enquanto o diálogo decorre
+    // ============================
+
     private bool isShowing = false;
     private int currentIndex = 0;
+
+    // Para só acontecer uma vez
+    private bool hasTriggeredOnce = false;
+
 
     // 3D
     private void OnTriggerEnter(Collider other)
@@ -43,60 +54,64 @@ public class DialogueTriggerUI : MonoBehaviour
     private void TryStartDialogue(GameObject other)
     {
         if (!other.CompareTag("Player")) return;
+
+        if (hasTriggeredOnce) return;
         if (isShowing) return;
+
         if (dialoguePanel == null)
         {
             Debug.LogError("[DialogueTriggerUI] dialoguePanel NÃO está ligado!");
             return;
         }
 
-        StartCoroutine(ShowDialogueRoutine());
+        StartCoroutine(ShowDialogueRoutine(other));
     }
 
-    private IEnumerator ShowDialogueRoutine()
+    private IEnumerator ShowDialogueRoutine(GameObject player)
     {
         isShowing = true;
+
+        // ===============================
+        // NOVO — Congelar o player
+        // (congela até ao fim do diálogo)
+        // ===============================
+        if (freezePlayer)
+            StartCoroutine(FreezePlayerDuringDialogue(player));
+        // ===============================
+
         dialoguePanel.SetActive(true);
 
-        // desativa todos os filhos do painel
         foreach (Transform child in dialoguePanel.transform)
             child.gameObject.SetActive(false);
 
-        // reinicia índice
         currentIndex = 0;
 
-        // ======== MODO NOVO: vários diálogos =========
+        // ===== MULTI DIÁLOGOS =====
         if (dialoguesToShow != null && dialoguesToShow.Length > 0)
         {
             while (currentIndex < dialoguesToShow.Length)
             {
                 ShowStep(currentIndex);
-
-                // Espera tempo ou tecla E (robusto)
                 yield return StartCoroutine(WaitForAdvance());
-
-                // avança para o próximo elemento da sequência
                 currentIndex++;
             }
         }
-        // ======== MODO ANTIGO: apenas 1 diálogo =========
         else
         {
+            // ===== DIÁLOGO ÚNICO =====
             ShowSingleDialogue();
-
-            // espera tempo ou tecla E
             yield return StartCoroutine(WaitForAdvance());
         }
 
-        // FECHAR PAINEL quando acabar todos
         dialoguePanel.SetActive(false);
         isShowing = false;
+
+        // NUNCA MAIS REPETE
+        hasTriggeredOnce = true;
     }
 
-    /// Mostra um diálogo específico da sequência (index em ordem)
     private void ShowStep(int index)
     {
-        // desativa todos os filhos do painel (garantia)
         foreach (Transform child in dialoguePanel.transform)
             child.gameObject.SetActive(false);
 
@@ -105,25 +120,24 @@ public class DialogueTriggerUI : MonoBehaviour
 
         if (dialogueText != null)
         {
-            string textToUse = null;
+            string txt = null;
 
             if (overrideTexts != null &&
                 index < overrideTexts.Length &&
                 !string.IsNullOrWhiteSpace(overrideTexts[index]))
             {
-                textToUse = overrideTexts[index];
+                txt = overrideTexts[index];
             }
             else if (!string.IsNullOrWhiteSpace(overrideText))
             {
-                textToUse = overrideText;
+                txt = overrideText;
             }
 
-            if (!string.IsNullOrEmpty(textToUse))
-                dialogueText.text = textToUse;
+            if (!string.IsNullOrEmpty(txt))
+                dialogueText.text = txt;
         }
     }
 
-    /// Mostra o diálogo único (modo antigo)
     private void ShowSingleDialogue()
     {
         foreach (Transform child in dialoguePanel.transform)
@@ -136,12 +150,8 @@ public class DialogueTriggerUI : MonoBehaviour
             dialogueText.text = overrideText;
     }
 
-    /// Espera até o jogador carregar E OU até o tempo showTime expirar.
-    /// Faz um frame de tolerância para ignorar qualquer input que tenha acontecido
-    /// na mesma frame em que o diálogo foi ativado.
     private IEnumerator WaitForAdvance()
     {
-        // ignora input da mesma frame em que a coroutine começou
         yield return null;
 
         float timer = 0f;
@@ -149,14 +159,40 @@ public class DialogueTriggerUI : MonoBehaviour
         while (timer < showTime)
         {
             if (Input.GetKeyDown(KeyCode.E))
-            {
-                yield break; // avança já
-            }
+                yield break;
 
             timer += Time.deltaTime;
             yield return null;
         }
+    }
 
-        // tempo esgotado -> apenas retorna e permite avançar
+
+    // ==========================================
+    // NOVO — Freeze automático enquanto dura diálogo
+    // ==========================================
+    private IEnumerator FreezePlayerDuringDialogue(GameObject player)
+    {
+        CharacterController cc = player.GetComponent<CharacterController>();
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        PlayerController pCtrl = player.GetComponent<PlayerController>(); // caso uses script próprio
+
+        // DESLIGAR MOVIMENTO
+        if (pCtrl != null) pCtrl.enabled = false;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
+
+        // Espera até que o diálogo termine (isShowing = false)
+        while (isShowing)
+            yield return null;
+
+        // REATIVAR MOVIMENTO
+        if (pCtrl != null) pCtrl.enabled = true;
+
+        if (rb != null)
+            rb.isKinematic = false;
     }
 }

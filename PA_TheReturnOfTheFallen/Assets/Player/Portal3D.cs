@@ -23,6 +23,22 @@ public class Portal3D : MonoBehaviour
     public bool snapMainCamera = true;       // faz a câmara “saltar” sem mostrar a viagem
     public bool alignCameraWithExit = false; // opcional: alinhar também a rotação da câmara com o Exit
 
+    // ---------------------------
+    // NOVO — FADE SCREEN
+    // ---------------------------
+    [Header("Fade")]
+    public GameObject fadeScreen;        // tela preta
+    public float fadeDuration = 1f;      // tempo que fica ativa
+    // ---------------------------
+
+    // ---------------------------
+    // NOVO — APENAS UMA VEZ
+    // ---------------------------
+    [Header("Uso Único")]
+    public bool singleUse = false;       // se true, portal só funciona 1x
+    private bool alreadyUsed = false;    // interno
+    // ---------------------------
+
     private Collider trigger;
 
     // Guarda quantas vezes cada Traveler já passou neste portal
@@ -41,10 +57,18 @@ public class Portal3D : MonoBehaviour
 
         if (requiredPasses < 1)
             requiredPasses = 1;
+
+        // Garante que a tela preta começa desativada
+        if (fadeScreen != null)
+            fadeScreen.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
     {
+        // Se já foi usado e está marcado como "single use", não faz mais nada
+        if (singleUse && alreadyUsed)
+            return;
+
         if (!target || !target.exitPoint)
         {
             Debug.LogWarning($"[Portal3D] {name}: Target/Target.exitPoint não definidos.");
@@ -56,7 +80,7 @@ public class Portal3D : MonoBehaviour
 
         var traveler = other.GetComponent<PortalTraveler>();
 
-        // Se tiver cooldown ainda a contar, não entra
+        // cooldown
         if (traveler && traveler.lockedUntil > Time.time)
             return;
 
@@ -68,43 +92,57 @@ public class Portal3D : MonoBehaviour
             count++;
             passCounts[traveler] = count;
 
-            // Ainda não atingiu o nº de entradas necessárias → não teleporta
             if (count < requiredPasses)
             {
                 Debug.Log($"[Portal3D] {name}: {other.name} passou {count}x, precisa de {requiredPasses}x para ativar.");
                 return;
             }
 
-            // Se quiseres que, depois de ativar uma vez, não volte a exigir as N entradas,
-            // podes 'fixar' o valor:
             passCounts[traveler] = requiredPasses;
         }
-        // Se não houver PortalTraveler mas mesmo assim queres controlar por tag Player,
-        // então este objeto vai simplesmente teleportar sempre que entrar.
-        // (requiredPasses só funciona por Traveler.)
+
+        // ------------------------------------
+        // ATIVAR FADE SCREEN (se existir)
+        // ------------------------------------
+        if (fadeScreen != null)
+            StartCoroutine(ShowFadeScreen());
 
         Teleport(other.gameObject, traveler);
+
+        // Marca como usado e desativa, se o portal for single-use
+        if (singleUse)
+        {
+            alreadyUsed = true;
+            this.enabled = false; // desativa TODO o script
+        }
     }
+
+    // --------------------------
+    // ROTINA DO FADE
+    // --------------------------
+    System.Collections.IEnumerator ShowFadeScreen()
+    {
+        fadeScreen.SetActive(true);
+        yield return new WaitForSeconds(fadeDuration);
+        fadeScreen.SetActive(false);
+    }
+    // --------------------------
 
     void Teleport(GameObject obj, PortalTraveler traveler)
     {
         Transform dest = target.exitPoint;
         var rb = obj.GetComponent<Rigidbody>();
-        var cc = obj.GetComponent<CharacterController>(); // se existir
+        var cc = obj.GetComponent<CharacterController>();
 
-        // --- 0) Guardar estado antes do teleporte ---
         Vector3 oldPos = obj.transform.position;
         Quaternion oldRot = obj.transform.rotation;
 
-        // 1) Capturar velocidade antes de mexer na pose
         Vector3 vWorld = Vector3.zero;
         if (rb && preserveVelocity)
             vWorld = rb.linearVelocity;
 
-        // 2) Calcular rotação final
         Quaternion finalRot = matchExitRotation ? dest.rotation : obj.transform.rotation;
 
-        // 3) Mover de forma segura
         if (cc)
         {
             cc.enabled = false;
@@ -116,12 +154,10 @@ public class Portal3D : MonoBehaviour
             obj.transform.SetPositionAndRotation(dest.position, finalRot);
         }
 
-        // 4) Reorientar velocidade
         if (rb)
         {
             if (preserveVelocity)
             {
-                // Converte a velocidade para o espaço local deste portal e re-projeta no espaço do ExitPoint do destino
                 Vector3 vLocalToEntrance = transform.InverseTransformDirection(vWorld);
                 Vector3 vToExit = dest.TransformDirection(vLocalToEntrance);
                 rb.linearVelocity = vToExit;
@@ -131,22 +167,16 @@ public class Portal3D : MonoBehaviour
                 rb.linearVelocity += dest.forward * exitForwardBoost;
         }
 
-        // 5) “Snapping” da câmara para evitar mostrar a viagem
         if (snapMainCamera && Camera.main != null)
         {
             Transform cam = Camera.main.transform;
-
-            // Delta do teleporte do objeto
             Vector3 delta = obj.transform.position - oldPos;
-
-            // Reposicionar a câmara instantaneamente mantendo o offset relativo
             cam.position += delta;
 
             if (alignCameraWithExit)
                 cam.rotation = matchExitRotation ? dest.rotation : cam.rotation;
         }
 
-        // 6) Cooldown para evitar ping-pong
         if (traveler != null)
             traveler.lockedUntil = Time.time + target.reentryCooldown;
 

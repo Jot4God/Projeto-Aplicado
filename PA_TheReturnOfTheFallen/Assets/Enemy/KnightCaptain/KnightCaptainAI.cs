@@ -6,8 +6,8 @@ public class KnightCaptainAI : MonoBehaviour
     [Header("Movimento")]
     public Transform player;
     public float speed = 4f;
-    public float chaseDistance = 8f; // Distância de detecção para perseguir o jogador
-    public float attackRange = 1.5f; // Distância para COMEÇAR a animação de ataque (dano é pela hitbox)
+    public float chaseDistance = 8f;
+    public float attackRange = 1.5f;
     public Transform[] patrolPoints;
     public float patrolWait = 2f;
 
@@ -16,17 +16,17 @@ public class KnightCaptainAI : MonoBehaviour
     private int currentHealth;
 
     [Header("Ataque")]
-    public int damage = 30;            // Dano que este inimigo causa
-    public float attackCooldown = 1f;  // Tempo entre ataques
-    private float lastAttackTime = 0f; // Controle do tempo de cooldown
+    public int damage = 30;
+    public float attackCooldown = 1f;
+    private float lastAttackTime = 0f;
 
     [Header("Hitbox de Ataque")]
-    public Transform attackPoint;      // Ponto à frente do boss onde a hitbox vai ser verificada
-    public float attackRadius = 0.8f;  // Raio da hitbox
-    public LayerMask playerLayer;      // Layer do Player
+    public Transform attackPoint;
+    public float attackRadius = 0.8f;
+    public LayerMask playerLayer;
 
-    private bool canApplyDamage = false;          // Se este ataque pode aplicar dano
-    private bool hasAppliedDamageThisSwing = false; // Para não dar dano múltiplas vezes no mesmo ataque
+    private bool canApplyDamage = false;
+    private bool hasAppliedDamageThisSwing = false;
 
     [Header("Recompensas")]
     public int xpReward = 20;
@@ -35,17 +35,17 @@ public class KnightCaptainAI : MonoBehaviour
     public int moneyDropAmount = 1;
 
     [Header("Animation")]
-    public Animator animator;                 // <-- para controlar Idle/Run
-    public string runningBool = "isRunning";  // <-- nome do bool no Animator
-    public string attackTrigger = "Attack";   // <-- trigger para animação de ataque
+    public Animator animator;
+    public string runningBool = "isRunning";
+    public string attackTrigger = "Attack";
 
     private int currentPatrol = 0;
     private float waitTimer = 0f;
     private Rigidbody rb;
     private Vector3 currentDirection = Vector3.zero;
 
-    private SpriteRenderer spriteRenderer;   // Para alterar a cor do inimigo
-    private Color originalColor;             // Cor original do inimigo
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
 
     private enum State { Patrolling, Chasing, Attacking }
     private State state = State.Patrolling;
@@ -55,7 +55,9 @@ public class KnightCaptainAI : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         rb.useGravity = true;
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        // ⛔ impede o inimigo de mexer no Y
+        rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
 
         currentHealth = maxHealth;
 
@@ -65,16 +67,14 @@ public class KnightCaptainAI : MonoBehaviour
             if (p) player = p.transform;
         }
 
-        // Apanha o Animator automaticamente se não estiver ligado
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
 
-        // Inicializa o SpriteRenderer (geralmente está no child)
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer != null)
         {
-            originalColor = spriteRenderer.color; // Guarda a cor original
-            spriteRenderer.flipX = false;        // Começa virado para a direita (sem flip)
+            originalColor = spriteRenderer.color;
+            spriteRenderer.flipX = false;
         }
     }
 
@@ -84,7 +84,6 @@ public class KnightCaptainAI : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, player.position);
 
-        // Decide estado apenas com base nas distâncias (sem aplicar dano aqui!)
         if (dist <= attackRange) state = State.Attacking;
         else if (dist <= chaseDistance) state = State.Chasing;
         else state = State.Patrolling;
@@ -102,14 +101,12 @@ public class KnightCaptainAI : MonoBehaviour
                 break;
         }
 
-        // Animação de corrida só quando está a perseguir
         if (animator != null)
         {
             bool shouldRun = (state == State.Chasing);
             animator.SetBool(runningBool, shouldRun);
         }
 
-        // Debug para aplicar dano manualmente
         if (Input.GetKeyDown(KeyCode.K))
             TakeDamage(10);
     }
@@ -121,19 +118,12 @@ public class KnightCaptainAI : MonoBehaviour
             Vector3 newPos = transform.position + currentDirection * speed * Time.fixedDeltaTime;
             rb.MovePosition(newPos);
 
-            // Flip horizontal depende da direção do movimento
             if (spriteRenderer != null)
             {
                 if (currentDirection.x < 0f)
-                {
-                    // Vai para a esquerda → flip
                     spriteRenderer.flipX = true;
-                }
                 else if (currentDirection.x > 0f)
-                {
-                    // Vai para a direita → sem flip
                     spriteRenderer.flipX = false;
-                }
             }
         }
     }
@@ -147,7 +137,12 @@ public class KnightCaptainAI : MonoBehaviour
         }
 
         Vector3 target = patrolPoints[currentPatrol].position;
-        currentDirection = (target - transform.position).normalized;
+        Vector3 dir = target - transform.position;
+
+        // ⛔ impede movimento vertical
+        dir.y = 0f;
+
+        currentDirection = dir.normalized;
 
         if (Vector3.Distance(transform.position, target) < 0.3f)
         {
@@ -163,12 +158,16 @@ public class KnightCaptainAI : MonoBehaviour
 
     void Chase()
     {
-        currentDirection = (player.position - transform.position).normalized;
+        Vector3 dir = player.position - transform.position;
+
+        // ⛔ impedir inimigo de subir/descer
+        dir.y = 0f;
+
+        currentDirection = dir.normalized;
     }
 
     void Attack()
     {
-        // Quando está a atacar, paramos o movimento
         currentDirection = Vector3.zero;
 
         if (Time.time >= lastAttackTime + attackCooldown)
@@ -176,7 +175,6 @@ public class KnightCaptainAI : MonoBehaviour
             if (animator != null)
                 animator.SetTrigger(attackTrigger);
 
-            // Marca que este ataque pode dar dano (quando o evento de animação disparar)
             canApplyDamage = true;
             hasAppliedDamageThisSwing = false;
 
@@ -184,9 +182,6 @@ public class KnightCaptainAI : MonoBehaviour
         }
     }
 
-    // ====== ESTES MÉTODOS SÃO CHAMADOS PELA ANIMAÇÃO ======
-
-    // Chama este método num Animation Event no frame em que a espada/arma devia “acertar”
     public void OnAttackHit()
     {
         if (!canApplyDamage || hasAppliedDamageThisSwing) return;
@@ -196,7 +191,6 @@ public class KnightCaptainAI : MonoBehaviour
             return;
         }
 
-        // Procura o Player dentro da hitbox
         Collider[] hits = Physics.OverlapSphere(attackPoint.position, attackRadius, playerLayer);
 
         foreach (Collider hit in hits)
@@ -205,19 +199,16 @@ public class KnightCaptainAI : MonoBehaviour
             if (ph != null)
             {
                 ph.TakeDamage(damage);
-                hasAppliedDamageThisSwing = true; // Garante que só bate uma vez por swing
+                hasAppliedDamageThisSwing = true;
                 break;
             }
         }
     }
 
-    // Chama este método num Animation Event no fim da animação de ataque
     public void OnAttackEnd()
     {
         canApplyDamage = false;
     }
-
-    // =======================================
 
     public void TakeDamage(int damage)
     {
@@ -225,7 +216,6 @@ public class KnightCaptainAI : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth, 0);
         Debug.Log(name + " recebeu " + damage + " de dano! Vida atual: " + currentHealth);
 
-        // Muda a cor para vermelho ao levar dano
         if (spriteRenderer != null)
         {
             spriteRenderer.color = Color.red;
@@ -239,9 +229,7 @@ public class KnightCaptainAI : MonoBehaviour
     void RestoreColor()
     {
         if (spriteRenderer != null)
-        {
             spriteRenderer.color = originalColor;
-        }
     }
 
     void Die()
@@ -278,14 +266,12 @@ public class KnightCaptainAI : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Gizmos de Debug para o range de detecção e o range de ataque
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, chaseDistance); // Range de perseguição
+        Gizmos.DrawWireSphere(transform.position, chaseDistance);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);  // Distância para começar ataque
+        Gizmos.DrawWireSphere(transform.position, attackRange);
 
-        // Gizmo da hitbox de ataque
         if (attackPoint != null)
         {
             Gizmos.color = Color.magenta;

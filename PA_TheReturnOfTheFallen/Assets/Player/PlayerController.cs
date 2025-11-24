@@ -11,40 +11,39 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer sr;
     public bool instantStop = true; // parar seco ao largar as teclas
 
+    [Header("Ground Force")]
+    public float groundForce = 40f;   // 🔥 força para puxar o player para baixo
+
     [Header("Attack")]
-    public Transform attackPoint;       // filho do Player
-    public SpriteRenderer swordSprite;  // sprite da espada (filho do attackPoint)
+    public Transform attackPoint;
+    public SpriteRenderer swordSprite;
 
     [Header("Animation")]
-    public Animator animator;           // podes deixar vazio no Inspector
+    public Animator animator;
     public string runSideBool = "isRunningSide";
-    public string runBackBool = "isRunningBack";   // W
-    public string runFrontBool = "isRunningFront"; // S
+    public string runBackBool = "isRunningBack";
+    public string runFrontBool = "isRunningFront";
 
     [HideInInspector] public bool podeMover = true;
 
-    // privados
     private Vector3 attackPointLocalStart;
-    private int facingDirection = 1; // 1 = direita, -1 = esquerda
-    private Vector3 inputDir;        // guardado em Update (−1/0/1)
+    private int facingDirection = 1;
+    private Vector3 inputDir;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        rb.interpolation = RigidbodyInterpolation.Interpolate; // suaviza visualmente
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
 
         if (attackPoint != null)
             attackPointLocalStart = attackPoint.localPosition;
 
-        // se não ligaste o Animator no inspector, tenta apanhar num filho
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
 
-        // opção: persistência
         PlayerController[] players = Object.FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
         if (players.Length > 1) { Destroy(gameObject); return; }
-        
     }
 
     void Update()
@@ -63,32 +62,28 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // input
-        float x = Input.GetAxisRaw("Horizontal"); // -1,0,1  (A/D)
-        float z = Input.GetAxisRaw("Vertical");   // -1,0,1  (S/W por defeito: W=+1, S=-1)
+        float x = Input.GetAxisRaw("Horizontal");
+        float z = Input.GetAxisRaw("Vertical");
         inputDir = new Vector3(x, 0f, z).normalized;
 
-        // animações de correr
         if (animator != null)
         {
-            bool isRunningSide  = Mathf.Abs(x) > 0.0001f;   // só A/D
-            bool isRunningBack  = z > 0.0001f;              // W (para trás nas tuas animações)
-            bool isRunningFront = z < -0.0001f;             // S (para a frente)
+            bool isRunningSide  = Mathf.Abs(x) > 0.0001f;
+            bool isRunningBack  = z > 0.0001f;
+            bool isRunningFront = z < -0.0001f;
 
             animator.SetBool(runSideBool,  isRunningSide);
             animator.SetBool(runBackBool,  isRunningBack);
             animator.SetBool(runFrontBool, isRunningFront);
         }
 
-        // FLIP do sprite do player (andar para a esquerda mostra virado à esquerda)
         if (Mathf.Abs(x) > 0.0001f)
         {
             int dir = x > 0 ? 1 : -1;
 
             if (sr != null)
-                sr.flipX = dir < 0;   // esquerda = flip
+                sr.flipX = dir < 0;
 
-            // Atualiza direção e gira o attackPoint
             if (attackPoint != null)
             {
                 facingDirection = dir;
@@ -132,17 +127,33 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
         }
 
-        // 🔥 COLAR AO CHÃO SEMPRE
-        // origem bem acima do player para não bater em paredes/objetos à frente
+        // 🔥 RAYCAST para saber onde está o chão
         Vector3 rayOrigin = transform.position + Vector3.up * 5f;
+
         if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 20f, terrainLayer))
         {
-            // posição exata no chão + offset pequeno
             float targetY = hit.point.y + groundDist;
+            float diff = rb.position.y - targetY;
 
-            Vector3 pos = rb.position;
-            pos.y = targetY;              // sem Lerp -> cola mesmo
-            rb.MovePosition(pos);
+            // 🔥 Se o player está acima do chão → puxa para baixo (GROUND FORCE)
+            if (diff > 0.02f)
+            {
+                Vector3 vel = rb.linearVelocity;
+                vel.y = -groundForce;  // força de "gravidade" rápida
+                rb.linearVelocity = vel;
+            }
+            else
+            {
+                // cola ao chão
+                Vector3 pos = rb.position;
+                pos.y = targetY;
+                rb.MovePosition(pos);
+
+                // zera velocidade vertical
+                Vector3 vel = rb.linearVelocity;
+                vel.y = 0f;
+                rb.linearVelocity = vel;
+            }
         }
     }
 }
