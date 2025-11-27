@@ -22,6 +22,8 @@ public class NPCShopUI : MonoBehaviour
     public PlayerMana playerMana;
     public PlayerConsumables playerConsumables; // NOVO: referência ao inventário de consumíveis
 
+    
+
     void Start()
     {
         // Reset aos items no início
@@ -108,6 +110,24 @@ public class NPCShopUI : MonoBehaviour
                 playerDash.dashDistance += item.addedDashDistance;
             equipmentUI?.EquipDash(playerDash.dashDistance, item.icon);
         }
+
+       // REVIVES
+if (item.addedRevives > 0)
+{
+    PlayerRespawn respawn = playerController.GetComponent<PlayerRespawn>();
+    if (respawn != null)
+    {
+        // Adiciona revives sem limitar
+        respawn.currentRevives += item.addedRevives;
+
+        // Atualiza UI
+        equipmentUI?.UpdateRevivesUI(respawn.currentRevives, item.icon);
+
+        Debug.Log("Revives agora: " + respawn.currentRevives);
+    }
+}
+
+
 
         // HEALTH POTION -> adiciona ao inventário de consumíveis
         if (item.addedHealth > 0 && playerConsumables != null)

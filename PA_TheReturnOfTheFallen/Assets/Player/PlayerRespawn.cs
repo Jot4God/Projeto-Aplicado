@@ -29,7 +29,10 @@ public class PlayerRespawn : MonoBehaviour
 
         currentRevives--;
 
-        RespawnPlayer();
+        // Atualiza UI de revives
+        Object.FindFirstObjectByType<PlayerEquipmentUI>()?.UpdateRevivesUI(currentRevives);
+
+RespawnPlayer();
     }
 
 private void RespawnPlayer()

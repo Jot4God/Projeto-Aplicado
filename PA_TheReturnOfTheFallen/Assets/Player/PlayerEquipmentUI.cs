@@ -16,6 +16,9 @@ public class PlayerEquipmentUI : MonoBehaviour
     public TMP_Text dashText;
     public Image dashIcon;
 
+    public TMP_Text reviveText;
+    public Image reviveIcon;
+
 
     void Start()
     {
@@ -23,6 +26,11 @@ public class PlayerEquipmentUI : MonoBehaviour
         if (armorIcon != null) armorIcon.gameObject.SetActive(false);
         if (speedIcon != null) speedIcon.gameObject.SetActive(false);
         if (dashIcon != null) dashIcon.gameObject.SetActive(false);
+
+         // Mostrar revives no início
+        PlayerRespawn respawn = Object.FindFirstObjectByType<PlayerRespawn>();
+        if (respawn != null)
+        UpdateRevivesUI(respawn.currentRevives);
     }
 
     // ===== ARMOR =====
@@ -60,6 +68,21 @@ public class PlayerEquipmentUI : MonoBehaviour
     {
         dashIcon.sprite = icon;
         dashIcon.gameObject.SetActive(true);
+    }
+    }
+
+    // ===== REVIVES =====
+    public void UpdateRevivesUI(int reviveCount, Sprite icon = null)
+    {
+    if (reviveText != null)
+        reviveText.text = reviveCount.ToString();
+
+    if (reviveIcon != null)
+    {
+        if (icon != null)
+            reviveIcon.sprite = icon;
+
+        reviveIcon.gameObject.SetActive(true);
     }
     }
 

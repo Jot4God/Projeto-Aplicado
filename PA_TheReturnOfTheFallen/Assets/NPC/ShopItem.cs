@@ -13,6 +13,7 @@ public class ShopItem : ScriptableObject
     public int addedArmor = 0;
     public int addedHealth = 0;
     public float addedSpeed = 0f;
+    public int addedRevives = 0;
     public float addedDashDistance = 0f;  // <-- novo para dash
 
     public int addedMana = 0; // <--- ADICIONAR ISTO
