@@ -15,11 +15,11 @@ MonoBehaviour:
   <Id>k__BackingField: enchant_weapon
   <DisplayName>k__BackingField: Enchant Sword
   <Type>k__BackingField: 1
-  <MaxRank>k__BackingField: 5
+  <MaxRank>k__BackingField: 10
   <PointCostPerRank>k__BackingField: 1
   hpFlatPerRank: 25
   hpPercentPerRank: 0.05
   manaCostFactorPerRank: 0.95
   cooldownFactorPerRank: 0.95
   weaponDamageFlatPerRank: 2
-  weaponCooldownFactorPerRank: 0.95
+  weaponCooldownFactorPerRank: 1

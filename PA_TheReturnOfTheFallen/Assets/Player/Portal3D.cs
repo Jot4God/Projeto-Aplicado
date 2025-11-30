@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;   // <-- para Dictionary
+using System.Collections;
 
 [RequireComponent(typeof(Collider))]
 public class Portal3D : MonoBehaviour
@@ -22,7 +23,12 @@ public class Portal3D : MonoBehaviour
     [Header("Câmara (salto instantâneo)")]
     public bool snapMainCamera = true;       // faz a câmara “saltar” sem mostrar a viagem
     public bool alignCameraWithExit = false; // opcional: alinhar também a rotação da câmara com o Exit
-
+        // ---------------------------
+    // FREEZE PLAYER
+    // ---------------------------
+    [Header("Freeze Player")]
+    [Tooltip("Tempo que o jogador fica congelado ao entrar no portal.")]
+    public float freezePlayerDuration = 2f;
     // ---------------------------
     // NOVO — FADE SCREEN
     // ---------------------------
@@ -116,7 +122,43 @@ public class Portal3D : MonoBehaviour
             this.enabled = false; // desativa TODO o script
         }
     }
+ IEnumerator FreezePlayer(GameObject obj)
+    {
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        CharacterController cc = obj.GetComponent<CharacterController>();
 
+        MonoBehaviour movementScript = obj.GetComponent<MonoBehaviour>(); 
+        // Se me disseres qual é o script de movimento, eu congelo direitinho.
+
+        float timer = freezePlayerDuration;
+
+        // Congelar Rigidbody
+        if (rb)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
+
+        // Congelar CharacterController
+        if (cc)
+            cc.enabled = false;
+
+        // Espera
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        // Soltar Rigidbody
+        if (rb)
+            rb.isKinematic = false;
+
+        // Soltar CC
+        if (cc)
+            cc.enabled = true;
+    }
     // --------------------------
     // ROTINA DO FADE
     // --------------------------
