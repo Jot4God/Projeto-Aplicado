@@ -38,6 +38,10 @@ public class SpellHit : MonoBehaviour
             if (demonslime != null)
                 demonslime.TakeDamage(damage);
 
+            GuardsAI guards = other.GetComponent<GuardsAI>();
+            if (guards != null)
+                guards.TakeDamage(damage);
+
             Destroy(gameObject);
         }
     }
