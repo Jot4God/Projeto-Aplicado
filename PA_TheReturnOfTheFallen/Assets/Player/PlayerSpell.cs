@@ -11,6 +11,7 @@ public class PlayerSpell : MonoBehaviour
     private PlayerAttack playerAttack;
     private Camera mainCam;
 
+ 
     void Start()
     {
         playerMana = GetComponent<PlayerMana>();
@@ -24,9 +25,47 @@ public class PlayerSpell : MonoBehaviour
         {
             CastSpell();
         }
+        if (Input.GetMouseButtonDown(2) && canCast)
+        {
+            CastSpell1();
+        }
     }
 
     void CastSpell()
+    {
+        if (playerMana != null && playerMana.UseMana(manaCost))
+        {
+            canCast = false;
+
+            Vector3 spawnPos = playerAttack.attackPoint.position;
+
+            // Direção para o clique do mouse
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+            if (groundPlane.Raycast(ray, out float enter))
+            {
+                Vector3 hitPoint = ray.GetPoint(enter);
+                Vector3 direction = (hitPoint - spawnPos).normalized;
+                direction.y = 0;
+
+                GameObject spell = Instantiate(spellPrefab, spawnPos, Quaternion.identity);
+
+                SpellMovement sm = spell.GetComponent<SpellMovement>();
+                if (sm != null)
+                    sm.SetDirection(direction);
+
+                Destroy(spell, 3f); // destrói após 3s
+            }
+
+            Invoke(nameof(ResetCast), spellCooldown);
+        }
+        else
+        {
+            Debug.Log("❌ Sem mana suficiente!");
+        }
+    }
+
+    void CastSpell1()//Dark Gust
     {
         if (playerMana != null && playerMana.UseMana(manaCost))
         {
