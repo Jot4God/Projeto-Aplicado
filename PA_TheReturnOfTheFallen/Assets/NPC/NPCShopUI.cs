@@ -11,7 +11,8 @@ public class NPCShopUI : MonoBehaviour
     public Transform itemContainer;
     public GameObject itemUIPrefab;
     public TMP_Text playerMoneyText;
-    public TMP_SpriteAsset coinSpriteAsset; // Sprite da moeda
+    public TMP_SpriteAsset coinSpriteAsset;
+    public HotbarController hotbar;
 
     [Header("Referências do Jogador")]
     public PlayerMoney playerMoney;
@@ -20,13 +21,9 @@ public class NPCShopUI : MonoBehaviour
     public PlayerHP playerHP;
     public PlayerController playerController;
     public PlayerMana playerMana;
-    public PlayerConsumables playerConsumables; // NOVO: referência ao inventário de consumíveis
-
-    
 
     void Start()
     {
-        // Reset aos items no início
         foreach (ShopItem item in itemsForSale)
             item.isSold = false;
 
@@ -88,6 +85,8 @@ public class NPCShopUI : MonoBehaviour
         buyButton.interactable = false;
         itemUI.transform.Find("SoldText")?.gameObject.SetActive(true);
 
+        // ===== EQUIPAMENTOS / PASSIVOS =====
+
         // ARMOR
         if (item.addedArmor > 0 && playerArmor != null)
         {
@@ -107,38 +106,29 @@ public class NPCShopUI : MonoBehaviour
         {
             PlayerDash playerDash = playerController.GetComponent<PlayerDash>();
             if (playerDash != null)
+            {
                 playerDash.dashDistance += item.addedDashDistance;
-            equipmentUI?.EquipDash(playerDash.dashDistance, item.icon);
+                equipmentUI?.EquipDash(playerDash.dashDistance, item.icon);
+            }
         }
 
-       // REVIVES
-if (item.addedRevives > 0)
-{
-    PlayerRespawn respawn = playerController.GetComponent<PlayerRespawn>();
-    if (respawn != null)
-    {
-        // Adiciona revives sem limitar
-        respawn.currentRevives += item.addedRevives;
-
-        // Atualiza UI
-        equipmentUI?.UpdateRevivesUI(respawn.currentRevives, item.icon);
-
-        Debug.Log("Revives agora: " + respawn.currentRevives);
-    }
-}
-
-
-
-        // HEALTH POTION -> adiciona ao inventário de consumíveis
-        if (item.addedHealth > 0 && playerConsumables != null)
+        // REVIVES
+        if (item.addedRevives > 0 && playerController != null)
         {
-            playerConsumables.AddHealthPotion(1); // quantidade de poções
+            PlayerRespawn respawn = playerController.GetComponent<PlayerRespawn>();
+            if (respawn != null)
+            {
+                respawn.currentRevives += item.addedRevives;
+                equipmentUI?.UpdateRevivesUI(respawn.currentRevives, item.icon);
+            }
         }
 
-        // MANA POTION -> adiciona ao inventário de consumíveis
-        if (item.addedMana > 0 && playerConsumables != null)
+        // ===== CONSUMÍVEIS -> HOTBAR =====
+        bool isConsumable = item.addedHealth > 0 || item.addedMana > 0;
+
+        if (isConsumable && hotbar != null)
         {
-            playerConsumables.AddManaPotion(1);
+            hotbar.AddItemToHotbar(item);
         }
 
         Debug.Log("Compraste: " + item.itemName);
