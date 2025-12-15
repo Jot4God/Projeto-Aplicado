@@ -18,7 +18,12 @@ public class PlayerAttack : MonoBehaviour
     // ===== ANIMAÇÃO PLAYER =====
     [Header("Animação do Player")]
     public Animator animator;
-    public string attackTrigger = "Attack";  // Trigger Sword default
+    public string attackTrigger = "Attack";
+
+    // ===== SOM DE ATAQUE =====
+    [Header("Som de Ataque")]
+    public AudioSource audioSource;
+    public AudioClip attackSound;
 
     // ===== ARMA STATE MACHINE =====
     private enum WeaponType { Sword, Spear, Axe }
@@ -49,17 +54,20 @@ public class PlayerAttack : MonoBehaviour
 
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        // === TROCA DE ARMA COM X ===
+        // === TROCA DE ARMA ===
         if (Input.GetKeyDown(KeyCode.X))
         {
             CycleWeapon();
         }
 
-        // === ATAQUE COM LMB ===
+        // === ATAQUE ===
         if (Input.GetMouseButtonDown(0) && !isAttacking)
         {
             if (playerMana != null && playerMana.UseMana(manaCost))
@@ -76,49 +84,56 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // ===========================
-    //         ATAQUE
+    //           ATAQUE
     // ===========================
     IEnumerator Attack()
     {
         isAttacking = true;
 
-        // Trigger correto da arma ativa
+        // Trigger da animação
         if (animator != null)
             animator.SetTrigger(attackTrigger);
 
+        // SOM DE ATAQUE
+        if (audioSource != null && attackSound != null)
+            audioSource.PlayOneShot(attackSound);
+
         ShowAttackPointSprite(true);
 
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+        Collider[] hitEnemies = Physics.OverlapSphere(
+            attackPoint.position,
+            attackRange,
+            enemyLayers
+        );
 
         foreach (Collider enemy in hitEnemies)
         {
-            EnemyController ec = enemy.GetComponent<EnemyController>();
-            if (ec) ec.TakeDamage(attackDamage);
+            if (enemy.TryGetComponent(out EnemyController ec))
+                ec.TakeDamage(attackDamage);
 
-            BanditAI bandit = enemy.GetComponent<BanditAI>();
-            if (bandit) bandit.TakeDamage(attackDamage);
+            if (enemy.TryGetComponent(out BanditAI bandit))
+                bandit.TakeDamage(attackDamage);
 
-            KnightAI knight = enemy.GetComponent<KnightAI>();
-            if (knight) knight.TakeDamage(attackDamage);
+            if (enemy.TryGetComponent(out KnightAI knight))
+                knight.TakeDamage(attackDamage);
 
-            WolfAI wolf = enemy.GetComponent<WolfAI>();
-            if (wolf) wolf.TakeDamage(attackDamage);
+            if (enemy.TryGetComponent(out WolfAI wolf))
+                wolf.TakeDamage(attackDamage);
 
-            CerberusAI cerberus = enemy.GetComponent<CerberusAI>();
-            if (cerberus) cerberus.TakeDamage(attackDamage);
+            if (enemy.TryGetComponent(out CerberusAI cerberus))
+                cerberus.TakeDamage(attackDamage);
 
-            KnightCaptainAI knightcaptain = enemy.GetComponent<KnightCaptainAI>();
-            if (knightcaptain) knightcaptain.TakeDamage(attackDamage);
+            if (enemy.TryGetComponent(out KnightCaptainAI knightcaptain))
+                knightcaptain.TakeDamage(attackDamage);
 
-            DemonSlimeAI demonslime = enemy.GetComponent<DemonSlimeAI>();
-            if (demonslime) demonslime.TakeDamage(attackDamage);
+            if (enemy.TryGetComponent(out DemonSlimeAI demonslime))
+                demonslime.TakeDamage(attackDamage);
 
-            GuardsAI guards = enemy.GetComponent<GuardsAI>();
-            if (guards) guards.TakeDamage(attackDamage);
+            if (enemy.TryGetComponent(out GuardsAI guards))
+                guards.TakeDamage(attackDamage);
         }
 
         yield return new WaitForSeconds(attackCooldown);
-
         isAttacking = false;
     }
 
@@ -176,15 +191,14 @@ public class PlayerAttack : MonoBehaviour
     // ===========================
     void ShowAttackPointSprite(bool show)
     {
-        if (attackPoint != null)
-        {
-            SpriteRenderer sr = attackPoint.GetComponent<SpriteRenderer>();
-            if (sr != null)
-                sr.enabled = show;
+        if (attackPoint == null) return;
 
-            if (show)
-                attackPointTimer = attackPointVisibleDuration;
-        }
+        SpriteRenderer sr = attackPoint.GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.enabled = show;
+
+        if (show)
+            attackPointTimer = attackPointVisibleDuration;
     }
 
     void OnDrawGizmosSelected()

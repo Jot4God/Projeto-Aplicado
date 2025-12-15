@@ -1,138 +1,148 @@
+using System;
 using UnityEngine;
-using System.Collections.Generic;   // <-- para Dictionary
+using System.Collections.Generic;
 using System.Collections;
 
 [RequireComponent(typeof(Collider))]
 public class Portal3D : MonoBehaviour
 {
+    public static event Action<Portal3D> OnPortalUsed;
+
     [Header("Ligação")]
-    public Portal3D target;              // Outro portal (destino)
-    public Transform exitPoint;          // Onde QUEM VEM DO OUTRO aparece neste portal
+    public Portal3D target;
+    public Transform exitPoint;
 
     [Header("Opções")]
-    public float reentryCooldown = 0.30f;    // evitar reentrada imediata
-    public bool requirePlayerTag = true;     // só teleporta objetos com Tag "Player"
-    public bool matchExitRotation = true;    // alinhar rotação ao sair
-    public bool preserveVelocity = true;     // manter velocidade (reorientada)
-    public float exitForwardBoost = 0f;      // boost extra na direção do ExitPoint
+    public float reentryCooldown = 0.30f;
+    public bool requirePlayerTag = true;
+    public bool matchExitRotation = true;
+    public bool preserveVelocity = true;
+    public float exitForwardBoost = 0f;
 
     [Header("Entradas Necessárias")]
-    [Tooltip("Número de vezes que o objeto tem de entrar no portal até o teleporte ativar. 1 = teleporta logo à primeira.")]
     public int requiredPasses = 1;
 
-    [Header("Câmara (salto instantâneo)")]
-    public bool snapMainCamera = true;       // faz a câmara “saltar” sem mostrar a viagem
-    public bool alignCameraWithExit = false; // opcional: alinhar também a rotação da câmara com o Exit
-        // ---------------------------
+    [Header("Câmara")]
+    public bool snapMainCamera = true;
+    public bool alignCameraWithExit = false;
+
+    // ===========================
     // FREEZE PLAYER
-    // ---------------------------
+    // ===========================
     [Header("Freeze Player")]
-    [Tooltip("Tempo que o jogador fica congelado ao entrar no portal.")]
     public float freezePlayerDuration = 2f;
-    // ---------------------------
-    // NOVO — FADE SCREEN
-    // ---------------------------
+
+    // ===========================
+    // FADE SCREEN
+    // ===========================
     [Header("Fade")]
-    public GameObject fadeScreen;        // tela preta
-    public float fadeDuration = 1f;      // tempo que fica ativa
-    // ---------------------------
+    public GameObject fadeScreen;
+    public float fadeDuration = 1f;
 
-    // ---------------------------
-    // NOVO — APENAS UMA VEZ
-    // ---------------------------
+    // ===========================
+    // MÚSICA
+    // ===========================
+    [Header("Música Ambiente")]
+    public GameObject ambientMusicObject;
+
+    private static AudioSource currentMusic;
+
     [Header("Uso Único")]
-    public bool singleUse = false;       // se true, portal só funciona 1x
-    private bool alreadyUsed = false;    // interno
-    // ---------------------------
+    public bool singleUse = false;
+    private bool alreadyUsed = false;
 
+    private bool isInUse = false;
     private Collider trigger;
-
-    // Guarda quantas vezes cada Traveler já passou neste portal
     private Dictionary<PortalTraveler, int> passCounts = new Dictionary<PortalTraveler, int>();
-
-    void Reset()
-    {
-        trigger = GetComponent<Collider>();
-        if (trigger) trigger.isTrigger = true;
-    }
 
     void Awake()
     {
         trigger = GetComponent<Collider>();
-        if (trigger && !trigger.isTrigger) trigger.isTrigger = true;
+        if (trigger && !trigger.isTrigger)
+            trigger.isTrigger = true;
 
-        if (requiredPasses < 1)
-            requiredPasses = 1;
-
-        // Garante que a tela preta começa desativada
         if (fadeScreen != null)
             fadeScreen.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Se já foi usado e está marcado como "single use", não faz mais nada
+        if (isInUse)
+            return;
+
         if (singleUse && alreadyUsed)
             return;
 
         if (!target || !target.exitPoint)
-        {
-            Debug.LogWarning($"[Portal3D] {name}: Target/Target.exitPoint não definidos.");
             return;
-        }
 
         if (requirePlayerTag && !other.CompareTag("Player"))
             return;
 
         var traveler = other.GetComponent<PortalTraveler>();
-
-        // cooldown
         if (traveler && traveler.lockedUntil > Time.time)
             return;
 
-        // ---- LÓGICA DAS N VEZES QUE PASSA ----
         if (requiredPasses > 1 && traveler != null)
         {
-            int count = 0;
-            passCounts.TryGetValue(traveler, out count);
+            passCounts.TryGetValue(traveler, out int count);
             count++;
             passCounts[traveler] = count;
 
             if (count < requiredPasses)
-            {
-                Debug.Log($"[Portal3D] {name}: {other.name} passou {count}x, precisa de {requiredPasses}x para ativar.");
                 return;
-            }
-
-            passCounts[traveler] = requiredPasses;
         }
 
-        // ------------------------------------
-        // ATIVAR FADE SCREEN (se existir)
-        // ------------------------------------
+        StartCoroutine(PortalSequence(other.gameObject, traveler));
+    }
+
+    // ===========================
+    // SEQUÊNCIA COMPLETA
+    // ===========================
+    IEnumerator PortalSequence(GameObject obj, PortalTraveler traveler)
+    {
+        isInUse = true;
+
+        // 1️⃣ FREEZE (dura exatamente o tempo do inspector)
+        StartCoroutine(FreezePlayer(obj));
+
+        // 2️⃣ FADE IN
         if (fadeScreen != null)
-            StartCoroutine(ShowFadeScreen());
+            fadeScreen.SetActive(true);
 
-        Teleport(other.gameObject, traveler);
+        // garante 1 frame de render
+        yield return null;
 
-        // Marca como usado e desativa, se o portal for single-use
+        // 3️⃣ MÚSICA
+        HandleAmbientMusic();
+
+        // 4️⃣ TELEPORTE
+        Teleport(obj, traveler);
+
+        // 5️⃣ ESPERA FADE
+        yield return new WaitForSeconds(fadeDuration);
+
+        // 6️⃣ FADE OUT
+        if (fadeScreen != null)
+            fadeScreen.SetActive(false);
+
         if (singleUse)
         {
             alreadyUsed = true;
-            this.enabled = false; // desativa TODO o script
+            enabled = false;
         }
+
+        isInUse = false;
     }
- IEnumerator FreezePlayer(GameObject obj)
+
+    // ===========================
+    // FREEZE PLAYER (SEGURO)
+    // ===========================
+    IEnumerator FreezePlayer(GameObject obj)
     {
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         CharacterController cc = obj.GetComponent<CharacterController>();
 
-        MonoBehaviour movementScript = obj.GetComponent<MonoBehaviour>(); 
-        // Se me disseres qual é o script de movimento, eu congelo direitinho.
-
-        float timer = freezePlayerDuration;
-
-        // Congelar Rigidbody
         if (rb)
         {
             rb.linearVelocity = Vector3.zero;
@@ -140,48 +150,69 @@ public class Portal3D : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        // Congelar CharacterController
         if (cc)
             cc.enabled = false;
 
-        // Espera
-        while (timer > 0)
-        {
-            timer -= Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSeconds(freezePlayerDuration);
 
-        // Soltar Rigidbody
         if (rb)
             rb.isKinematic = false;
 
-        // Soltar CC
         if (cc)
             cc.enabled = true;
     }
-    // --------------------------
-    // ROTINA DO FADE
-    // --------------------------
-    System.Collections.IEnumerator ShowFadeScreen()
-    {
-        fadeScreen.SetActive(true);
-        yield return new WaitForSeconds(fadeDuration);
-        fadeScreen.SetActive(false);
-    }
-    // --------------------------
 
+    // ===========================
+    // MÚSICA
+    // ===========================
+    void HandleAmbientMusic()
+    {
+        if (ambientMusicObject == null)
+            return;
+
+        if (!ambientMusicObject.activeInHierarchy)
+            ambientMusicObject.SetActive(true);
+
+        AudioSource newMusic = ambientMusicObject.GetComponent<AudioSource>();
+        if (newMusic == null)
+            return;
+
+        if (currentMusic == null)
+        {
+            AudioSource[] all = FindObjectsOfType<AudioSource>();
+            foreach (AudioSource src in all)
+            {
+                if (src.isPlaying)
+                {
+                    currentMusic = src;
+                    break;
+                }
+            }
+        }
+
+        if (currentMusic != null && currentMusic != newMusic)
+            currentMusic.Stop();
+
+        if (!newMusic.isPlaying)
+            newMusic.Play();
+
+        currentMusic = newMusic;
+    }
+
+    // ===========================
+    // TELEPORTE
+    // ===========================
     void Teleport(GameObject obj, PortalTraveler traveler)
     {
         Transform dest = target.exitPoint;
-        var rb = obj.GetComponent<Rigidbody>();
-        var cc = obj.GetComponent<CharacterController>();
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        CharacterController cc = obj.GetComponent<CharacterController>();
 
         Vector3 oldPos = obj.transform.position;
-        Quaternion oldRot = obj.transform.rotation;
+        Vector3 velocityWorld = Vector3.zero;
 
-        Vector3 vWorld = Vector3.zero;
         if (rb && preserveVelocity)
-            vWorld = rb.linearVelocity;
+            velocityWorld = rb.linearVelocity;
 
         Quaternion finalRot = matchExitRotation ? dest.rotation : obj.transform.rotation;
 
@@ -200,9 +231,8 @@ public class Portal3D : MonoBehaviour
         {
             if (preserveVelocity)
             {
-                Vector3 vLocalToEntrance = transform.InverseTransformDirection(vWorld);
-                Vector3 vToExit = dest.TransformDirection(vLocalToEntrance);
-                rb.linearVelocity = vToExit;
+                Vector3 localVel = transform.InverseTransformDirection(velocityWorld);
+                rb.linearVelocity = dest.TransformDirection(localVel);
             }
 
             if (exitForwardBoost > 0f)
@@ -211,18 +241,14 @@ public class Portal3D : MonoBehaviour
 
         if (snapMainCamera && Camera.main != null)
         {
-            Transform cam = Camera.main.transform;
-            Vector3 delta = obj.transform.position - oldPos;
-            cam.position += delta;
+            Camera.main.transform.position += obj.transform.position - oldPos;
 
             if (alignCameraWithExit)
-                cam.rotation = matchExitRotation ? dest.rotation : cam.rotation;
+                Camera.main.transform.rotation = finalRot;
         }
 
         if (traveler != null)
             traveler.lockedUntil = Time.time + target.reentryCooldown;
-
-        Debug.Log($"[Portal3D] {name} -> {target.name} | {obj.name} @ {dest.position}");
     }
 
     void OnDrawGizmos()
