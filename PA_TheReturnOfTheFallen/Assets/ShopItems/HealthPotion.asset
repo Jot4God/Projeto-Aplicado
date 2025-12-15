@@ -15,8 +15,13 @@ MonoBehaviour:
   itemName: Health Potion
   icon: {fileID: 21300000, guid: 3b3d4725f7bf22d49b7fee920fa7ba24, type: 3}
   price: 40
-  description: 
+  description: 'Recupera a vida toda do Player
+
+'
   addedArmor: 0
   addedHealth: 100
   addedSpeed: 0
+  addedRevives: 0
+  addedDashDistance: 0
+  addedMana: 0
   isSold: 0

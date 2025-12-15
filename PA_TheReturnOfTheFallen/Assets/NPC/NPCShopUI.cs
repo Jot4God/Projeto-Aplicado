@@ -14,6 +14,11 @@ public class NPCShopUI : MonoBehaviour
     public TMP_SpriteAsset coinSpriteAsset;
     public HotbarController hotbar;
 
+    [Header("Tooltip UI")]
+    public GameObject tooltipPanel;
+    public TMP_Text tooltipText;
+
+
     [Header("Referências do Jogador")]
     public PlayerMoney playerMoney;
     public PlayerArmor playerArmor;
@@ -76,32 +81,22 @@ public class NPCShopUI : MonoBehaviour
             return;
         }
 
-        // Desconta dinheiro
         playerMoney.SpendMoney(item.price);
         UpdateMoneyUI();
 
-        // Marca como vendido
-        item.isSold = true;
-        buyButton.interactable = false;
-        itemUI.transform.Find("SoldText")?.gameObject.SetActive(true);
-
-        // ===== EQUIPAMENTOS / PASSIVOS =====
-
-        // ARMOR
+        // ===== PASSIVOS / EQUIPAMENTOS =====
         if (item.addedArmor > 0 && playerArmor != null)
         {
             playerArmor.EquipArmor(item.addedArmor);
             equipmentUI?.EquipArmorIcon(item.icon, playerArmor.currentArmor);
         }
 
-        // SPEED
         if (item.addedSpeed > 0 && playerController != null)
         {
             playerController.speed += item.addedSpeed;
             equipmentUI?.EquipSpeed(playerController.speed, item.icon);
         }
 
-        // DASH
         if (item.addedDashDistance > 0 && playerController != null)
         {
             PlayerDash playerDash = playerController.GetComponent<PlayerDash>();
@@ -112,7 +107,6 @@ public class NPCShopUI : MonoBehaviour
             }
         }
 
-        // REVIVES
         if (item.addedRevives > 0 && playerController != null)
         {
             PlayerRespawn respawn = playerController.GetComponent<PlayerRespawn>();
@@ -123,13 +117,17 @@ public class NPCShopUI : MonoBehaviour
             }
         }
 
-        // ===== CONSUMÍVEIS -> HOTBAR =====
-        bool isConsumable = item.addedHealth > 0 || item.addedMana > 0;
+        // ===== CONSUMÍVEIS =====
+bool isConsumable = item.addedHealth > 0 || item.addedMana > 0;
 
-        if (isConsumable && hotbar != null)
-        {
-            hotbar.AddItemToHotbar(item);
-        }
+if (isConsumable && hotbar != null)
+{
+    // Adiciona 5 unidades em vez de 1
+    for (int i = 0; i < 5; i++)
+    {
+        hotbar.AddItemToHotbar(item);
+    }
+}
 
         Debug.Log("Compraste: " + item.itemName);
     }
