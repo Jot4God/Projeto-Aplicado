@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider))]
 public class Portal3D : MonoBehaviour
 {
+    // 🔔 EVENTO GLOBAL
     public static event Action<Portal3D> OnPortalUsed;
 
     [Header("Ligação")]
@@ -103,14 +104,13 @@ public class Portal3D : MonoBehaviour
     {
         isInUse = true;
 
-        // 1️⃣ FREEZE (dura exatamente o tempo do inspector)
+        // 1️⃣ FREEZE
         StartCoroutine(FreezePlayer(obj));
 
         // 2️⃣ FADE IN
         if (fadeScreen != null)
             fadeScreen.SetActive(true);
 
-        // garante 1 frame de render
         yield return null;
 
         // 3️⃣ MÚSICA
@@ -118,6 +118,9 @@ public class Portal3D : MonoBehaviour
 
         // 4️⃣ TELEPORTE
         Teleport(obj, traveler);
+
+        // ✅ DISPARA EVENTO (PORTAL FOI USADO)
+        OnPortalUsed?.Invoke(this);
 
         // 5️⃣ ESPERA FADE
         yield return new WaitForSeconds(fadeDuration);
@@ -136,7 +139,7 @@ public class Portal3D : MonoBehaviour
     }
 
     // ===========================
-    // FREEZE PLAYER (SEGURO)
+    // FREEZE PLAYER
     // ===========================
     IEnumerator FreezePlayer(GameObject obj)
     {
@@ -177,19 +180,6 @@ public class Portal3D : MonoBehaviour
         if (newMusic == null)
             return;
 
-        if (currentMusic == null)
-        {
-            AudioSource[] all = FindObjectsOfType<AudioSource>();
-            foreach (AudioSource src in all)
-            {
-                if (src.isPlaying)
-                {
-                    currentMusic = src;
-                    break;
-                }
-            }
-        }
-
         if (currentMusic != null && currentMusic != newMusic)
             currentMusic.Stop();
 
@@ -227,13 +217,10 @@ public class Portal3D : MonoBehaviour
             obj.transform.SetPositionAndRotation(dest.position, finalRot);
         }
 
-        if (rb)
+        if (rb && preserveVelocity)
         {
-            if (preserveVelocity)
-            {
-                Vector3 localVel = transform.InverseTransformDirection(velocityWorld);
-                rb.linearVelocity = dest.TransformDirection(localVel);
-            }
+            Vector3 localVel = transform.InverseTransformDirection(velocityWorld);
+            rb.linearVelocity = dest.TransformDirection(localVel);
 
             if (exitForwardBoost > 0f)
                 rb.linearVelocity += dest.forward * exitForwardBoost;
