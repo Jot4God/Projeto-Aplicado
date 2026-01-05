@@ -2,17 +2,58 @@ using UnityEngine;
 
 public class NPCInteractionTrigger : MonoBehaviour
 {
-    public NPCInteraction npcController; 
+    [Header("NPC")]
+    public NPCInteraction npcController;
+
+    [Header("Ambiente temporário (quando estás perto)")]
+    public bool changeAmbientWhileInside = true;
+    public AudioClip npcAmbientClip;
+    [Range(0f, 1f)] public float npcAmbientVolume = 1f;
+
+    // Guardar o que estava antes
+    private AudioClip previousClip;
+    private float previousVolume;
+    private bool hasPrevious;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-            npcController.PlayerPerto = true;
+        if (!other.CompareTag("Player")) return;
+
+        npcController.PlayerPerto = true;
+
+        if (!changeAmbientWhileInside) return;
+        if (AmbientPlayer.Instance == null) return;
+        if (npcAmbientClip == null) return;
+
+        // Guardar o ambiente atual só na primeira entrada
+        if (!hasPrevious)
+        {
+            previousClip = AmbientPlayer.Instance.CurrentClip;
+            previousVolume = AmbientPlayer.Instance.CurrentVolume;
+            hasPrevious = true;
+        }
+
+        // Trocar para a música do NPC
+        AmbientPlayer.Instance.PlayAmbient(npcAmbientClip, npcAmbientVolume);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-            npcController.PlayerPerto = false;
+        if (!other.CompareTag("Player")) return;
+
+        npcController.PlayerPerto = false;
+
+        if (!changeAmbientWhileInside) return;
+        if (AmbientPlayer.Instance == null) return;
+
+        // Voltar ao que estava
+        if (hasPrevious && previousClip != null)
+        {
+            AmbientPlayer.Instance.PlayAmbient(previousClip, previousVolume);
+        }
+
+        hasPrevious = false;
+        previousClip = null;
+        previousVolume = 1f;
     }
 }

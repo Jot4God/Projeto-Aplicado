@@ -21,6 +21,19 @@ public class DialogueTriggerUI : MonoBehaviour
     public float showTime = 5f;
 
     // ============================
+    // SOM (ONE-SHOT)
+    // ============================
+    [Header("Som (One Shot ao abrir diálogo)")]
+    [Tooltip("Som a tocar uma única vez quando o diálogo abre.")]
+    public AudioClip openDialogueSfx;
+
+    [Range(0f, 1f)]
+    public float openDialogueSfxVolume = 1f;
+
+    [Tooltip("Se vazio, usa AudioSource no próprio objeto; se não houver, cria um temporário.")]
+    public AudioSource sfxSource;
+
+    // ============================
     // FREEZE
     // ============================
     [Header("Freeze do Player")]
@@ -36,7 +49,6 @@ public class DialogueTriggerUI : MonoBehaviour
     // ============================
     // TRIGGERS
     // ============================
-
     private void OnTriggerEnter(Collider other)
     {
         TryStartDialogue(other.gameObject);
@@ -58,10 +70,12 @@ public class DialogueTriggerUI : MonoBehaviour
     // ============================
     // ROTINA PRINCIPAL
     // ============================
-
     private IEnumerator ShowDialogueRoutine(GameObject player)
     {
         isShowing = true;
+
+        // ✅ Toca 1 vez ao abrir o diálogo (não mexe no ambient)
+        PlayOpenDialogueSfx();
 
         if (freezePlayer)
             StartCoroutine(FreezePlayerDuringDialogue(player));
@@ -94,9 +108,38 @@ public class DialogueTriggerUI : MonoBehaviour
     }
 
     // ============================
+    // SOM (ONE-SHOT)
+    // ============================
+    private void PlayOpenDialogueSfx()
+    {
+        if (openDialogueSfx == null) return;
+
+        // Se não atribuíram um source, tenta obter do objeto
+        if (sfxSource == null)
+            sfxSource = GetComponent<AudioSource>();
+
+        if (sfxSource != null)
+        {
+            sfxSource.PlayOneShot(openDialogueSfx, openDialogueSfxVolume);
+            return;
+        }
+
+        // Fallback: cria um AudioSource temporário
+        GameObject go = new GameObject("DialogueSFX_Temp");
+        go.transform.position = transform.position;
+
+        AudioSource temp = go.AddComponent<AudioSource>();
+        temp.spatialBlend = 0f; // 2D
+        temp.playOnAwake = false;
+        temp.volume = 1f;
+
+        temp.PlayOneShot(openDialogueSfx, openDialogueSfxVolume);
+        Destroy(go, openDialogueSfx.length + 0.1f);
+    }
+
+    // ============================
     // DIÁLOGOS
     // ============================
-
     private void ShowStep(int index)
     {
         foreach (Transform child in dialoguePanel.transform)
@@ -150,7 +193,6 @@ public class DialogueTriggerUI : MonoBehaviour
     // ==================================================
     // FREEZE + IDLE BLOQUEADO (ANY STATE SAFE)
     // ==================================================
-
     private IEnumerator FreezePlayerDuringDialogue(GameObject player)
     {
         PlayerController pCtrl = player.GetComponent<PlayerController>();

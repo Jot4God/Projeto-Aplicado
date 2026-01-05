@@ -7,7 +7,7 @@ public class DemonSlimeAI : MonoBehaviour
     [Header("Movimento")]
     public Transform player;
     public float speed = 4f;
-    public float chaseDistance = 8f; 
+    public float chaseDistance = 8f;
     public float attackRange = 1.5f;
     public Transform[] patrolPoints;
     public float patrolWait = 2f;
@@ -17,18 +17,17 @@ public class DemonSlimeAI : MonoBehaviour
     private int currentHealth;
 
     [Header("Ataque")]
-    public int damage = 30;            
-    public float attackCooldown = 1f;  
-    private float lastAttackTime = 0f; 
+    public int damage = 30;
+    public float attackCooldown = 1f;
+    private float lastAttackTime = 0f;
 
     [Header("Hitbox de Ataque")]
-    public Transform attackPoint;      // Ponto onde a hitbox é verificada (frente do slime)
-    public float attackRadius = 0.8f;  // Raio da hitbox
-    public LayerMask playerLayer;      // Layer do Player
+    public Transform attackPoint;
+    public float attackRadius = 0.8f;
+    public LayerMask playerLayer;
 
-    // flags para controlo do dano por animação
-    private bool canApplyDamage = false;             // se este ataque pode aplicar dano
-    private bool hasAppliedDamageThisSwing = false;  // para não dar dano múltiplas vezes no mesmo ataque
+    private bool canApplyDamage = false;
+    private bool hasAppliedDamageThisSwing = false;
 
     [Header("Recompensas")]
     public int xpReward = 20;
@@ -37,9 +36,9 @@ public class DemonSlimeAI : MonoBehaviour
     public int moneyDropAmount = 1;
 
     [Header("Animation")]
-    public Animator animator;                 
-    public string runningBool = "isRunning";  
-    public string attackTrigger = "Attack";   
+    public Animator animator;
+    public string runningBool = "isRunning";
+    public string attackTrigger = "Attack";
 
     [Header("Projéteis de Fogo")]
     public GameObject fireballPrefab;
@@ -47,13 +46,19 @@ public class DemonSlimeAI : MonoBehaviour
     public float fireballCooldown = 5f;
     private float lastFireballTime = 0f;
 
+    [Header("SFX (Fireball One Shot)")]
+    public AudioClip fireballSfx;
+    [Range(0f, 1f)] public float fireballSfxVolume = 1f;
+    [Tooltip("Opcional. Se vazio, tenta usar AudioSource no inimigo; se não houver, cria um temporário.")]
+    public AudioSource sfxSource;
+
     private int currentPatrol = 0;
     private float waitTimer = 0f;
     private Rigidbody rb;
     private Vector3 currentDirection = Vector3.zero;
 
-    private SpriteRenderer spriteRenderer;  
-    private Color originalColor;            
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
 
     private enum State { Patrolling, Chasing, Attacking }
     private State state = State.Patrolling;
@@ -81,6 +86,9 @@ public class DemonSlimeAI : MonoBehaviour
 
         if (spriteRenderer != null)
             spriteRenderer.flipX = true;
+
+        if (sfxSource == null)
+            sfxSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -89,14 +97,14 @@ public class DemonSlimeAI : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, player.position);
 
-        if (dist <= attackRange) state = State.Attacking;       
-        else if (dist <= chaseDistance) state = State.Chasing;  
-        else state = State.Patrolling;                          
+        if (dist <= attackRange) state = State.Attacking;
+        else if (dist <= chaseDistance) state = State.Chasing;
+        else state = State.Patrolling;
 
         switch (state)
         {
             case State.Patrolling: Patrol(); break;
-            case State.Chasing:   Chase();  break;
+            case State.Chasing: Chase(); break;
             case State.Attacking: Attack(); break;
         }
 
@@ -106,7 +114,6 @@ public class DemonSlimeAI : MonoBehaviour
             animator.SetBool(runningBool, shouldRun);
         }
 
-        // FIREBALL UPDATE CORRIGIDO
         if (Time.time >= lastFireballTime + fireballCooldown && state == State.Chasing)
             ShootFireball();
 
@@ -159,7 +166,6 @@ public class DemonSlimeAI : MonoBehaviour
 
     void Attack()
     {
-        // Quando está a atacar, paramos o movimento
         currentDirection = Vector3.zero;
 
         if (Time.time >= lastAttackTime + attackCooldown)
@@ -167,7 +173,6 @@ public class DemonSlimeAI : MonoBehaviour
             if (animator != null)
                 animator.SetTrigger(attackTrigger);
 
-            // Marca que este ataque pode dar dano (quando o evento de animação disparar)
             canApplyDamage = true;
             hasAppliedDamageThisSwing = false;
 
@@ -175,9 +180,6 @@ public class DemonSlimeAI : MonoBehaviour
         }
     }
 
-    // ===== ESTES MÉTODOS SÃO CHAMADOS PELA ANIMAÇÃO (HITBOX) =====
-
-    // Chama este método num Animation Event no frame em que o slime devia “acertar”
     public void OnAttackHit()
     {
         if (!canApplyDamage || hasAppliedDamageThisSwing) return;
@@ -187,7 +189,6 @@ public class DemonSlimeAI : MonoBehaviour
             return;
         }
 
-        // Procura o Player dentro da hitbox
         Collider[] hits = Physics.OverlapSphere(attackPoint.position, attackRadius, playerLayer);
 
         foreach (Collider hit in hits)
@@ -196,19 +197,17 @@ public class DemonSlimeAI : MonoBehaviour
             if (ph != null)
             {
                 ph.TakeDamage(damage);
-                hasAppliedDamageThisSwing = true; // Garante que só bate uma vez por swing
+                hasAppliedDamageThisSwing = true;
                 break;
             }
         }
     }
 
-    // Chama este método num Animation Event no fim da animação de ataque
     public void OnAttackEnd()
     {
         canApplyDamage = false;
     }
 
-    // ===== FIREBALL 2D CORRIGIDO =====
     void ShootFireball()
     {
         if (fireballPrefab != null && player != null)
@@ -217,18 +216,37 @@ public class DemonSlimeAI : MonoBehaviour
 
             GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
 
-            // Aqui está a correção: a fireball usa Rigidbody2D
             Rigidbody2D rb2d = fireball.GetComponent<Rigidbody2D>();
-
             if (rb2d != null)
-            {
                 rb2d.linearVelocity = dir * fireballSpeed;
-            }
 
             lastFireballTime = Time.time;
+
+            // ✅ Som da fireball
+            PlayFireballSfx();
         }
     }
-    // ===== FIM DA CORREÇÃO =====
+
+    private void PlayFireballSfx()
+    {
+        if (fireballSfx == null) return;
+
+        if (sfxSource != null)
+        {
+            sfxSource.PlayOneShot(fireballSfx, fireballSfxVolume);
+            return;
+        }
+
+        GameObject go = new GameObject("FireballSFX_Temp");
+        go.transform.position = transform.position;
+
+        AudioSource temp = go.AddComponent<AudioSource>();
+        temp.spatialBlend = 0f; // 2D
+        temp.playOnAwake = false;
+
+        temp.PlayOneShot(fireballSfx, fireballSfxVolume);
+        Destroy(go, fireballSfx.length + 0.1f);
+    }
 
     public void TakeDamage(int damage)
     {
@@ -252,40 +270,38 @@ public class DemonSlimeAI : MonoBehaviour
             spriteRenderer.color = originalColor;
     }
 
-void Die()
-{
-    Debug.Log(name + " morreu!");
-
-    if (player != null)
+    void Die()
     {
-        PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
-        if (playerLevel != null)
+        Debug.Log(name + " morreu!");
+
+        if (player != null)
         {
-            playerLevel.AddXP(xpReward);
-            Debug.Log("Jogador ganhou " + xpReward + " XP!");
+            PlayerLevel playerLevel = player.GetComponent<PlayerLevel>();
+            if (playerLevel != null)
+            {
+                playerLevel.AddXP(xpReward);
+                Debug.Log("Jogador ganhou " + xpReward + " XP!");
+            }
         }
-    }
 
-    if (healthPickupPrefab != null && Random.value < 0.5f)
-    {
-        Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
-        Instantiate(healthPickupPrefab, spawnPos, Quaternion.identity);
-    }
-
-    if (moneyPickupPrefab != null && Random.value < 0.7f)
-    {
-        for (int i = 0; i < moneyDropAmount; i++)
+        if (healthPickupPrefab != null && Random.value < 0.5f)
         {
             Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
-            Instantiate(moneyPickupPrefab, spawnPos, Quaternion.identity);
+            Instantiate(healthPickupPrefab, spawnPos, Quaternion.identity);
         }
+
+        if (moneyPickupPrefab != null && Random.value < 0.7f)
+        {
+            for (int i = 0; i < moneyDropAmount; i++)
+            {
+                Vector3 spawnPos = transform.position + new Vector3(0f, -5f, 0f);
+                Instantiate(moneyPickupPrefab, spawnPos, Quaternion.identity);
+            }
+        }
+
+        SceneManager.LoadScene("GameVictory");
+        Destroy(gameObject);
     }
-
-    // 🔵 CARREGAR A CENA DE VITÓRIA
-    SceneManager.LoadScene("GameVictory");
-
-    Destroy(gameObject);
-}
 
     void OnDrawGizmosSelected()
     {
@@ -294,7 +310,6 @@ void Die()
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
 
-        // Gizmo da hitbox de ataque (para veres onde está o ataque)
         if (attackPoint != null)
         {
             Gizmos.color = Color.magenta;

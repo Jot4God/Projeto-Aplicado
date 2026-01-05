@@ -41,12 +41,24 @@ public class Portal3D : MonoBehaviour
     public float fadeDuration = 1f;
 
     // ===========================
-    // MÚSICA
+    // AMBIENTE (NOVO - RECOMENDADO)
     // ===========================
-    [Header("Música Ambiente")]
-    public GameObject ambientMusicObject;
+    [Header("Ambiente (Recomendado)")]
+    [Tooltip("Clip de ambiente que este portal deve ativar.")]
+    public AudioClip ambientClip;
 
-    private static AudioSource currentMusic;
+    [Range(0f, 1f)]
+    public float ambientVolume = 1f;
+
+    [Tooltip("Se desligado, este portal não altera o ambiente.")]
+    public bool changeAmbientOnUse = true;
+
+    // ===========================
+    // LEGACY (OPCIONAL)
+    // ===========================
+    [Header("Música Ambiente (Legacy - evita tocar aqui)")]
+    [Tooltip("Opcional: se não quiseres arrastar o AudioClip, podes apontar para um objeto com AudioSource e ele usa o clip desse AudioSource. Este AudioSource NÃO deve tocar por si.")]
+    public GameObject ambientMusicObject;
 
     [Header("Uso Único")]
     public bool singleUse = false;
@@ -64,6 +76,17 @@ public class Portal3D : MonoBehaviour
 
         if (fadeScreen != null)
             fadeScreen.SetActive(false);
+
+        // Se tiveres "legacy object" com AudioSource, garante que não toca sozinho
+        if (ambientMusicObject != null)
+        {
+            var src = ambientMusicObject.GetComponent<AudioSource>();
+            if (src != null)
+            {
+                src.playOnAwake = false;
+                if (src.isPlaying) src.Stop();
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -113,7 +136,7 @@ public class Portal3D : MonoBehaviour
 
         yield return null;
 
-        // 3️⃣ MÚSICA
+        // 3️⃣ AMBIENTE (AGORA TROCA NO AmbientPlayer GLOBAL)
         HandleAmbientMusic();
 
         // 4️⃣ TELEPORTE
@@ -166,27 +189,43 @@ public class Portal3D : MonoBehaviour
     }
 
     // ===========================
-    // MÚSICA
+    // AMBIENTE (SÓ 1 A TOCAR)
     // ===========================
     void HandleAmbientMusic()
     {
-        if (ambientMusicObject == null)
+        if (!changeAmbientOnUse)
             return;
 
-        if (!ambientMusicObject.activeInHierarchy)
-            ambientMusicObject.SetActive(true);
+        AudioClip clipToPlay = ambientClip;
+        float volToPlay = ambientVolume;
 
-        AudioSource newMusic = ambientMusicObject.GetComponent<AudioSource>();
-        if (newMusic == null)
+        // Fallback legacy: se não arrastares o clip, vai buscar ao AudioSource do objeto
+        if (clipToPlay == null && ambientMusicObject != null)
+        {
+            AudioSource legacySource = ambientMusicObject.GetComponent<AudioSource>();
+            if (legacySource != null)
+            {
+                // garante que não toca por si
+                if (legacySource.isPlaying) legacySource.Stop();
+                legacySource.playOnAwake = false;
+
+                clipToPlay = legacySource.clip;
+                volToPlay = Mathf.Clamp01(legacySource.volume);
+            }
+        }
+
+        if (clipToPlay == null)
             return;
 
-        if (currentMusic != null && currentMusic != newMusic)
-            currentMusic.Stop();
-
-        if (!newMusic.isPlaying)
-            newMusic.Play();
-
-        currentMusic = newMusic;
+        // ✅ Toca SEMPRE no AmbientPlayer global (isto pára o anterior)
+        if (AmbientPlayer.Instance != null)
+        {
+            AmbientPlayer.Instance.PlayAmbient(clipToPlay, volToPlay);
+        }
+        else
+        {
+            Debug.LogWarning("[Portal3D] Não existe AmbientPlayer na cena. Cria um AmbientPlayer global com AudioSource + script AmbientPlayer.");
+        }
     }
 
     // ===========================

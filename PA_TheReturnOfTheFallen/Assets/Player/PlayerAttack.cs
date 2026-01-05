@@ -20,10 +20,23 @@ public class PlayerAttack : MonoBehaviour
     public Animator animator;
     public string attackTrigger = "Attack";
 
-    // ===== SOM DE ATAQUE =====
-    [Header("Som de Ataque")]
-    public AudioSource audioSource;
+    // ===== SOM: SEPARADO (MISS/SWING vs HIT) =====
+    [Header("Áudio (Separado)")]
+    [Tooltip("AudioSource para o som do ataque quando NÃO acerta (swing/miss).")]
+    public AudioSource attackAudioSource;
+
+    [Tooltip("AudioSource para o som quando ACERTA (hit/impact).")]
+    public AudioSource hitAudioSource;
+
+    [Header("Clips")]
+    [Tooltip("Som do swing/miss (toca apenas se NÃO acertar).")]
     public AudioClip attackSound;
+
+    [Tooltip("Som do impacto/hit (toca apenas se acertar).")]
+    public AudioClip hitSound;
+
+    [Tooltip("Se true, toca o hit apenas 1x por ataque, mesmo acertando em vários inimigos.")]
+    public bool playHitSoundOncePerAttack = true;
 
     // ===== ARMA STATE MACHINE =====
     private enum WeaponType { Sword, Spear, Axe }
@@ -55,8 +68,12 @@ public class PlayerAttack : MonoBehaviour
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
 
-        if (audioSource == null)
-            audioSource = GetComponent<AudioSource>();
+        // Se não preencheres no Inspector, tenta apanhar automaticamente
+        if (attackAudioSource == null)
+            attackAudioSource = GetComponent<AudioSource>();
+
+        // hitAudioSource fica por preencher se quiseres um separado;
+        // recomenda-se criar um segundo AudioSource no Player (ou child) e arrastar no Inspector.
     }
 
     void Update()
@@ -90,51 +107,124 @@ public class PlayerAttack : MonoBehaviour
     {
         isAttacking = true;
 
-        // Trigger da animação
+        // Trigger da animação (sempre)
         if (animator != null)
             animator.SetTrigger(attackTrigger);
 
-        // SOM DE ATAQUE
-        if (audioSource != null && attackSound != null)
-            audioSource.PlayOneShot(attackSound);
-
         ShowAttackPointSprite(true);
 
+        // 1) Ver quem foi atingido primeiro
         Collider[] hitEnemies = Physics.OverlapSphere(
             attackPoint.position,
             attackRange,
             enemyLayers
         );
 
+        bool hitSomething = false;
+        bool hitSoundPlayed = false;
+
         foreach (Collider enemy in hitEnemies)
         {
+            bool didDamageThisCollider = false;
+
             if (enemy.TryGetComponent(out EnemyController ec))
+            {
                 ec.TakeDamage(attackDamage);
+                didDamageThisCollider = true;
+            }
 
             if (enemy.TryGetComponent(out BanditAI bandit))
+            {
                 bandit.TakeDamage(attackDamage);
+                didDamageThisCollider = true;
+            }
 
             if (enemy.TryGetComponent(out KnightAI knight))
+            {
                 knight.TakeDamage(attackDamage);
+                didDamageThisCollider = true;
+            }
 
             if (enemy.TryGetComponent(out WolfAI wolf))
+            {
                 wolf.TakeDamage(attackDamage);
+                didDamageThisCollider = true;
+            }
 
             if (enemy.TryGetComponent(out CerberusAI cerberus))
+            {
                 cerberus.TakeDamage(attackDamage);
+                didDamageThisCollider = true;
+            }
 
             if (enemy.TryGetComponent(out KnightCaptainAI knightcaptain))
+            {
                 knightcaptain.TakeDamage(attackDamage);
+                didDamageThisCollider = true;
+            }
 
             if (enemy.TryGetComponent(out DemonSlimeAI demonslime))
+            {
                 demonslime.TakeDamage(attackDamage);
+                didDamageThisCollider = true;
+            }
 
             if (enemy.TryGetComponent(out GuardsAI guards))
+            {
                 guards.TakeDamage(attackDamage);
+                didDamageThisCollider = true;
+            }
+
+            if (didDamageThisCollider)
+            {
+                hitSomething = true;
+
+                // Se quiseres tocar hit por cada inimigo (não recomendado), mete playHitSoundOncePerAttack = false
+                if (!playHitSoundOncePerAttack)
+                {
+                    PlayHitSound();
+                }
+                else if (!hitSoundPlayed)
+                {
+                    PlayHitSound();
+                    hitSoundPlayed = true;
+                }
+            }
+        }
+
+        // 2) Garantir que NÃO mistura: ou hit OU swing/miss
+        if (!hitSomething)
+        {
+            PlayAttackMissSound();
+        }
+        else
+        {
+            // Se for "once per attack" e ainda não tocou (caso raro), toca aqui
+            if (playHitSoundOncePerAttack && !hitSoundPlayed)
+                PlayHitSound();
         }
 
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
+    }
+
+    void PlayAttackMissSound()
+    {
+        if (attackAudioSource != null && attackSound != null)
+            attackAudioSource.PlayOneShot(attackSound);
+    }
+
+    void PlayHitSound()
+    {
+        if (hitAudioSource != null && hitSound != null)
+        {
+            hitAudioSource.PlayOneShot(hitSound);
+            return;
+        }
+
+        // Fallback: se não tiveres hitAudioSource atribuído, usa o attackAudioSource
+        if (attackAudioSource != null && hitSound != null)
+            attackAudioSource.PlayOneShot(hitSound);
     }
 
     // ===========================

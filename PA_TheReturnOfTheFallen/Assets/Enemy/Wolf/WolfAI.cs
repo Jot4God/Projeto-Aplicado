@@ -6,7 +6,7 @@ public class WolfAI : MonoBehaviour
     [Header("Movimento")]
     public Transform player;
     public float speed = 4f;
-    public float chaseDistance = 8f; 
+    public float chaseDistance = 8f;
     public float attackRange = 1.5f;
     public Transform[] patrolPoints;
     public float patrolWait = 2f;
@@ -16,9 +16,9 @@ public class WolfAI : MonoBehaviour
     private int currentHealth;
 
     [Header("Ataque")]
-    public int damage = 30;            
-    public float attackCooldown = 1f;  
-    private float lastAttackTime = 0f; 
+    public int damage = 30;
+    public float attackCooldown = 1f;
+    private float lastAttackTime = 0f;
 
     [Header("Recompensas")]
     public int xpReward = 20;
@@ -27,9 +27,9 @@ public class WolfAI : MonoBehaviour
     public int moneyDropAmount = 1;
 
     [Header("Animation")]
-    public Animator animator;                 
-    public string runningBool = "isRunning";  
-    public string attackTrigger = "Attack";   
+    public Animator animator;
+    public string runningBool = "isRunning";
+    public string attackTrigger = "Attack";
 
     [Header("Projéteis de Fogo")]
     public GameObject fireballPrefab;
@@ -37,13 +37,19 @@ public class WolfAI : MonoBehaviour
     public float fireballCooldown = 5f;
     private float lastFireballTime = 0f;
 
+    [Header("SFX (Fireball One Shot)")]
+    public AudioClip fireballSfx;
+    [Range(0f, 1f)] public float fireballSfxVolume = 1f;
+    [Tooltip("Opcional. Se vazio, tenta usar AudioSource no inimigo; se não houver, cria um temporário.")]
+    public AudioSource sfxSource;
+
     private int currentPatrol = 0;
     private float waitTimer = 0f;
     private Rigidbody rb;
     private Vector3 currentDirection = Vector3.zero;
 
-    private SpriteRenderer spriteRenderer;  
-    private Color originalColor;            
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
 
     private enum State { Patrolling, Chasing, Attacking }
     private State state = State.Patrolling;
@@ -72,6 +78,9 @@ public class WolfAI : MonoBehaviour
 
         if (spriteRenderer != null)
             spriteRenderer.flipX = false;
+
+        if (sfxSource == null)
+            sfxSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -80,14 +89,14 @@ public class WolfAI : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, player.position);
 
-        if (dist <= attackRange) state = State.Attacking;       
-        else if (dist <= chaseDistance) state = State.Chasing;  
-        else state = State.Patrolling;                          
+        if (dist <= attackRange) state = State.Attacking;
+        else if (dist <= chaseDistance) state = State.Chasing;
+        else state = State.Patrolling;
 
         switch (state)
         {
             case State.Patrolling: Patrol(); break;
-            case State.Chasing:   Chase();  break;
+            case State.Chasing: Chase(); break;
             case State.Attacking: Attack(); break;
         }
 
@@ -97,7 +106,6 @@ public class WolfAI : MonoBehaviour
             animator.SetBool(runningBool, shouldRun);
         }
 
-        // FIREBALL UPDATE CORRIGIDO
         if (Time.time >= lastFireballTime + fireballCooldown && state == State.Chasing)
             ShootFireball();
 
@@ -160,14 +168,13 @@ public class WolfAI : MonoBehaviour
                 PlayerHP ph = player.GetComponent<PlayerHP>();
                 if (ph != null)
                 {
-                    ph.TakeDamage(damage); 
+                    ph.TakeDamage(damage);
                     lastAttackTime = Time.time;
                 }
             }
         }
     }
 
-    // ===== FIREBALL 2D CORRIGIDO =====
     void ShootFireball()
     {
         if (fireballPrefab != null && player != null)
@@ -176,18 +183,37 @@ public class WolfAI : MonoBehaviour
 
             GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
 
-            // Aqui está a correção: a fireball usa Rigidbody2D
             Rigidbody2D rb2d = fireball.GetComponent<Rigidbody2D>();
-
             if (rb2d != null)
-            {
                 rb2d.linearVelocity = dir * fireballSpeed;
-            }
 
             lastFireballTime = Time.time;
+
+            // ✅ Som da fireball
+            PlayFireballSfx();
         }
     }
-    // ===== FIM DA CORREÇÃO =====
+
+    private void PlayFireballSfx()
+    {
+        if (fireballSfx == null) return;
+
+        if (sfxSource != null)
+        {
+            sfxSource.PlayOneShot(fireballSfx, fireballSfxVolume);
+            return;
+        }
+
+        GameObject go = new GameObject("FireballSFX_Temp");
+        go.transform.position = transform.position;
+
+        AudioSource temp = go.AddComponent<AudioSource>();
+        temp.spatialBlend = 0f; // 2D
+        temp.playOnAwake = false;
+
+        temp.PlayOneShot(fireballSfx, fireballSfxVolume);
+        Destroy(go, fireballSfx.length + 0.1f);
+    }
 
     public void TakeDamage(int damage)
     {
