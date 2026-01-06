@@ -14,6 +14,11 @@ public class PlayerHP : MonoBehaviour
     [Header("Armadura")]
     public PlayerArmor playerArmor;
 
+    [Header("Audio - Heal")]
+    public AudioSource healAudioSource;   // AudioSource no Player (ou noutro objeto)
+    public AudioClip healSfx;             // Som quando recebe vida
+    [Range(0f, 1f)] public float healVolume = 1f;
+
     private PlayerRespawn respawn;
 
     void Awake()
@@ -36,6 +41,10 @@ public class PlayerHP : MonoBehaviour
             playerArmor = GetComponent<PlayerArmor>();
 
         respawn = GetComponent<PlayerRespawn>();
+
+        // Se não arrastares no Inspector, tenta buscar um AudioSource no Player
+        if (healAudioSource == null)
+            healAudioSource = GetComponent<AudioSource>();
 
         UpdateHealthText();
     }
@@ -86,11 +95,25 @@ public class PlayerHP : MonoBehaviour
 
     public void Heal(int amount)
     {
+        // Só toca som se realmente curou alguma coisa
+        int before = currentHealth;
+
         currentHealth += amount;
         currentHealth = Mathf.Min(currentHealth, maxHealth);
 
         if (healthBar != null) healthBar.value = currentHealth;
         UpdateHealthText();
+
+        if (currentHealth > before) // houve cura efetiva
+            PlayHealSfx();
+    }
+
+    private void PlayHealSfx()
+    {
+        if (healAudioSource == null || healSfx == null) return;
+
+        // Usa o AudioSource (não é PlayClipAtPoint)
+        healAudioSource.PlayOneShot(healSfx, healVolume);
     }
 
     void Die()

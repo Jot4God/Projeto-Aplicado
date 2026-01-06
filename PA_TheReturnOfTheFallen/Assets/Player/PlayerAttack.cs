@@ -38,6 +38,15 @@ public class PlayerAttack : MonoBehaviour
     [Tooltip("Se true, toca o hit apenas 1x por ataque, mesmo acertando em vários inimigos.")]
     public bool playHitSoundOncePerAttack = true;
 
+    // ✅ FIX: lock de facing durante o ataque
+    [Header("Fix Direção do Ataque")]
+    public bool lockFacingDuringAttack = true;
+
+    // (Opcional) se quiseres impedir movimento durante o ataque
+    public bool freezeMovementDuringAttack = false;
+
+    private PlayerController playerController; // ✅ FIX
+
     // ===== ARMA STATE MACHINE =====
     private enum WeaponType { Sword, Spear, Axe }
     private WeaponType currentWeapon = WeaponType.Sword;
@@ -64,6 +73,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         playerMana = GetComponent<PlayerMana>();
+        playerController = GetComponent<PlayerController>(); // ✅ FIX
 
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
@@ -71,9 +81,6 @@ public class PlayerAttack : MonoBehaviour
         // Se não preencheres no Inspector, tenta apanhar automaticamente
         if (attackAudioSource == null)
             attackAudioSource = GetComponent<AudioSource>();
-
-        // hitAudioSource fica por preencher se quiseres um separado;
-        // recomenda-se criar um segundo AudioSource no Player (ou child) e arrastar no Inspector.
     }
 
     void Update()
@@ -100,12 +107,35 @@ public class PlayerAttack : MonoBehaviour
             ShowAttackPointSprite(false);
     }
 
+    // ✅ FIX: escolher a direção que vale para este ataque (não muda a meio)
+    int GetAttackStartDirection()
+    {
+        float x = Input.GetAxisRaw("Horizontal");
+        if (Mathf.Abs(x) > 0.0001f)
+            return x > 0 ? 1 : -1;
+
+        // fallback: última direção do player
+        if (playerController != null)
+            return playerController.FacingDirection;
+
+        return 1;
+    }
+
     // ===========================
     //           ATAQUE
     // ===========================
     IEnumerator Attack()
     {
         isAttacking = true;
+
+        // ✅ FIX: lock do facing no início do ataque
+        int lockedDir = GetAttackStartDirection();
+
+        if (lockFacingDuringAttack && playerController != null)
+            playerController.LockFacing(lockedDir);
+
+        if (freezeMovementDuringAttack && playerController != null)
+            playerController.podeMover = false;
 
         // Trigger da animação (sempre)
         if (animator != null)
@@ -179,7 +209,6 @@ public class PlayerAttack : MonoBehaviour
             {
                 hitSomething = true;
 
-                // Se quiseres tocar hit por cada inimigo (não recomendado), mete playHitSoundOncePerAttack = false
                 if (!playHitSoundOncePerAttack)
                 {
                     PlayHitSound();
@@ -199,12 +228,19 @@ public class PlayerAttack : MonoBehaviour
         }
         else
         {
-            // Se for "once per attack" e ainda não tocou (caso raro), toca aqui
             if (playHitSoundOncePerAttack && !hitSoundPlayed)
                 PlayHitSound();
         }
 
         yield return new WaitForSeconds(attackCooldown);
+
+        // ✅ FIX: libertar lock no fim do ataque
+        if (freezeMovementDuringAttack && playerController != null)
+            playerController.podeMover = true;
+
+        if (lockFacingDuringAttack && playerController != null)
+            playerController.UnlockFacing();
+
         isAttacking = false;
     }
 

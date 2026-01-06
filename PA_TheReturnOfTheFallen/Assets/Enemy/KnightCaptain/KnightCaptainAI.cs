@@ -28,6 +28,13 @@ public class KnightCaptainAI : MonoBehaviour
     private bool canApplyDamage = false;
     private bool hasAppliedDamageThisSwing = false;
 
+    [Header("SFX (Attack One Shot)")]
+    public AudioClip attackSfx;
+    [Range(0f, 1f)] public float attackSfxVolume = 1f;
+    [Range(0f, 1f)] public float attackSfxSpatialBlend = 1f;
+    [Tooltip("Opcional. Se vazio, tenta usar AudioSource no inimigo; se não houver, cria um temporário.")]
+    public AudioSource sfxSource;
+
     [Header("Recompensas")]
     public int xpReward = 20;
     public GameObject healthPickupPrefab;
@@ -55,8 +62,6 @@ public class KnightCaptainAI : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         rb.useGravity = true;
-
-        // ⛔ impede o inimigo de mexer no Y
         rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
 
         currentHealth = maxHealth;
@@ -76,6 +81,9 @@ public class KnightCaptainAI : MonoBehaviour
             originalColor = spriteRenderer.color;
             spriteRenderer.flipX = false;
         }
+
+        if (sfxSource == null)
+            sfxSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -90,15 +98,9 @@ public class KnightCaptainAI : MonoBehaviour
 
         switch (state)
         {
-            case State.Patrolling:
-                Patrol();
-                break;
-            case State.Chasing:
-                Chase();
-                break;
-            case State.Attacking:
-                Attack();
-                break;
+            case State.Patrolling: Patrol(); break;
+            case State.Chasing: Chase(); break;
+            case State.Attacking: Attack(); break;
         }
 
         if (animator != null)
@@ -120,10 +122,8 @@ public class KnightCaptainAI : MonoBehaviour
 
             if (spriteRenderer != null)
             {
-                if (currentDirection.x < 0f)
-                    spriteRenderer.flipX = true;
-                else if (currentDirection.x > 0f)
-                    spriteRenderer.flipX = false;
+                if (currentDirection.x < 0f) spriteRenderer.flipX = true;
+                else if (currentDirection.x > 0f) spriteRenderer.flipX = false;
             }
         }
     }
@@ -138,8 +138,6 @@ public class KnightCaptainAI : MonoBehaviour
 
         Vector3 target = patrolPoints[currentPatrol].position;
         Vector3 dir = target - transform.position;
-
-        // ⛔ impede movimento vertical
         dir.y = 0f;
 
         currentDirection = dir.normalized;
@@ -159,10 +157,7 @@ public class KnightCaptainAI : MonoBehaviour
     void Chase()
     {
         Vector3 dir = player.position - transform.position;
-
-        // ⛔ impedir inimigo de subir/descer
         dir.y = 0f;
-
         currentDirection = dir.normalized;
     }
 
@@ -175,6 +170,9 @@ public class KnightCaptainAI : MonoBehaviour
             if (animator != null)
                 animator.SetTrigger(attackTrigger);
 
+            // ✅ Som de ataque (no momento em que inicia o swing)
+            PlayAttackSfx();
+
             canApplyDamage = true;
             hasAppliedDamageThisSwing = false;
 
@@ -182,6 +180,28 @@ public class KnightCaptainAI : MonoBehaviour
         }
     }
 
+    private void PlayAttackSfx()
+    {
+        if (attackSfx == null) return;
+
+        if (sfxSource != null)
+        {
+            sfxSource.PlayOneShot(attackSfx, attackSfxVolume);
+            return;
+        }
+
+        GameObject go = new GameObject("AttackSFX_Temp");
+        go.transform.position = transform.position;
+
+        AudioSource temp = go.AddComponent<AudioSource>();
+        temp.spatialBlend = attackSfxSpatialBlend;
+        temp.playOnAwake = false;
+
+        temp.PlayOneShot(attackSfx, attackSfxVolume);
+        Destroy(go, attackSfx.length + 0.1f);
+    }
+
+    // (Animation Event) — chamar no frame em que a espada acerta
     public void OnAttackHit()
     {
         if (!canApplyDamage || hasAppliedDamageThisSwing) return;
@@ -205,6 +225,7 @@ public class KnightCaptainAI : MonoBehaviour
         }
     }
 
+    // (Animation Event) — chamar no fim da animação de ataque
     public void OnAttackEnd()
     {
         canApplyDamage = false;
@@ -219,7 +240,7 @@ public class KnightCaptainAI : MonoBehaviour
         if (spriteRenderer != null)
         {
             spriteRenderer.color = Color.red;
-            Invoke("RestoreColor", 0.1f);
+            Invoke(nameof(RestoreColor), 0.1f);
         }
 
         if (currentHealth <= 0)

@@ -18,7 +18,6 @@ public class NPCShopUI : MonoBehaviour
     public GameObject tooltipPanel;
     public TMP_Text tooltipText;
 
-
     [Header("Referências do Jogador")]
     public PlayerMoney playerMoney;
     public PlayerArmor playerArmor;
@@ -27,10 +26,27 @@ public class NPCShopUI : MonoBehaviour
     public PlayerController playerController;
     public PlayerMana playerMana;
 
+    [Header("Audio - Compra")]
+    public AudioSource buyAudioSource;     // AudioSource (no NPC/UI/Canvas, onde quiseres)
+    public AudioClip buySfx;               // Som quando compra
+    [Range(0f, 1f)] public float buyVolume = 1f;
+
     void Start()
     {
         foreach (ShopItem item in itemsForSale)
             item.isSold = false;
+
+        // Garantir AudioSource (se não arrastares no Inspector)
+        if (buyAudioSource == null)
+            buyAudioSource = GetComponent<AudioSource>();
+
+        if (buyAudioSource != null)
+        {
+            buyAudioSource.playOnAwake = false;
+            buyAudioSource.loop = false;
+            buyAudioSource.spatialBlend = 0f; // 2D (som de UI)
+            buyAudioSource.dopplerLevel = 0f;
+        }
 
         LoadItems();
         UpdateMoneyUI();
@@ -84,6 +100,9 @@ public class NPCShopUI : MonoBehaviour
         playerMoney.SpendMoney(item.price);
         UpdateMoneyUI();
 
+        // Som de compra (só quando compra mesmo)
+        PlayBuySfx();
+
         // ===== PASSIVOS / EQUIPAMENTOS =====
         if (item.addedArmor > 0 && playerArmor != null)
         {
@@ -118,17 +137,23 @@ public class NPCShopUI : MonoBehaviour
         }
 
         // ===== CONSUMÍVEIS =====
-bool isConsumable = item.addedHealth > 0 || item.addedMana > 0;
+        bool isConsumable = item.addedHealth > 0 || item.addedMana > 0;
 
-if (isConsumable && hotbar != null)
-{
-    // Adiciona 5 unidades em vez de 1
-    for (int i = 0; i < 5; i++)
-    {
-        hotbar.AddItemToHotbar(item);
-    }
-}
+        if (isConsumable && hotbar != null)
+        {
+            // Adiciona 5 unidades em vez de 1
+            for (int i = 0; i < 5; i++)
+            {
+                hotbar.AddItemToHotbar(item);
+            }
+        }
 
         Debug.Log("Compraste: " + item.itemName);
+    }
+
+    private void PlayBuySfx()
+    {
+        if (buyAudioSource == null || buySfx == null) return;
+        buyAudioSource.PlayOneShot(buySfx, buyVolume);
     }
 }

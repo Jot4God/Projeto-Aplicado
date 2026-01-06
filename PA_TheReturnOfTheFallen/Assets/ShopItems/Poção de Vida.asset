@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Ring Dash
   icon: {fileID: 21300000, guid: 70736cea30baf0c47ad3b2226b8f342a, type: 3}
-  price: 50
+  price: 40
   description: 'Recupera a vida toda do Player
 
 '

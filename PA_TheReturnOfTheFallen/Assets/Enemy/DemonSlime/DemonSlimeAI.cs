@@ -29,6 +29,13 @@ public class DemonSlimeAI : MonoBehaviour
     private bool canApplyDamage = false;
     private bool hasAppliedDamageThisSwing = false;
 
+    [Header("SFX (Attack One Shot)")]
+    public AudioClip attackSfx;
+    [Range(0f, 1f)] public float attackSfxVolume = 1f;
+    [Range(0f, 1f)] public float attackSfxSpatialBlend = 1f;
+    [Tooltip("Opcional. Se vazio, tenta usar AudioSource no inimigo; se não houver, cria um temporário.")]
+    public AudioSource sfxSource;
+
     [Header("Recompensas")]
     public int xpReward = 20;
     public GameObject healthPickupPrefab;
@@ -50,7 +57,7 @@ public class DemonSlimeAI : MonoBehaviour
     public AudioClip fireballSfx;
     [Range(0f, 1f)] public float fireballSfxVolume = 1f;
     [Tooltip("Opcional. Se vazio, tenta usar AudioSource no inimigo; se não houver, cria um temporário.")]
-    public AudioSource sfxSource;
+    public AudioSource fireballSfxSource;
 
     private int currentPatrol = 0;
     private float waitTimer = 0f;
@@ -89,6 +96,9 @@ public class DemonSlimeAI : MonoBehaviour
 
         if (sfxSource == null)
             sfxSource = GetComponent<AudioSource>();
+
+        if (fireballSfxSource == null)
+            fireballSfxSource = sfxSource; // se quiseres usar o mesmo
     }
 
     void Update()
@@ -173,6 +183,9 @@ public class DemonSlimeAI : MonoBehaviour
             if (animator != null)
                 animator.SetTrigger(attackTrigger);
 
+            // ✅ Som de ataque (quando inicia a animação)
+            PlayAttackSfx();
+
             canApplyDamage = true;
             hasAppliedDamageThisSwing = false;
 
@@ -180,6 +193,28 @@ public class DemonSlimeAI : MonoBehaviour
         }
     }
 
+    private void PlayAttackSfx()
+    {
+        if (attackSfx == null) return;
+
+        if (sfxSource != null)
+        {
+            sfxSource.PlayOneShot(attackSfx, attackSfxVolume);
+            return;
+        }
+
+        GameObject go = new GameObject("AttackSFX_Temp");
+        go.transform.position = transform.position;
+
+        AudioSource temp = go.AddComponent<AudioSource>();
+        temp.spatialBlend = attackSfxSpatialBlend;
+        temp.playOnAwake = false;
+
+        temp.PlayOneShot(attackSfx, attackSfxVolume);
+        Destroy(go, attackSfx.length + 0.1f);
+    }
+
+    // (Animation Event) — chamar no frame do impacto
     public void OnAttackHit()
     {
         if (!canApplyDamage || hasAppliedDamageThisSwing) return;
@@ -203,6 +238,7 @@ public class DemonSlimeAI : MonoBehaviour
         }
     }
 
+    // (Animation Event) — chamar no fim do ataque
     public void OnAttackEnd()
     {
         canApplyDamage = false;
@@ -231,9 +267,9 @@ public class DemonSlimeAI : MonoBehaviour
     {
         if (fireballSfx == null) return;
 
-        if (sfxSource != null)
+        if (fireballSfxSource != null)
         {
-            sfxSource.PlayOneShot(fireballSfx, fireballSfxVolume);
+            fireballSfxSource.PlayOneShot(fireballSfx, fireballSfxVolume);
             return;
         }
 
@@ -241,7 +277,7 @@ public class DemonSlimeAI : MonoBehaviour
         go.transform.position = transform.position;
 
         AudioSource temp = go.AddComponent<AudioSource>();
-        temp.spatialBlend = 0f; // 2D
+        temp.spatialBlend = 0f; // mantém 2D como tinhas
         temp.playOnAwake = false;
 
         temp.PlayOneShot(fireballSfx, fireballSfxVolume);
@@ -257,7 +293,7 @@ public class DemonSlimeAI : MonoBehaviour
         if (spriteRenderer != null)
         {
             spriteRenderer.color = Color.red;
-            Invoke("RestoreColor", 0.1f);
+            Invoke(nameof(RestoreColor), 0.1f);
         }
 
         if (currentHealth <= 0)

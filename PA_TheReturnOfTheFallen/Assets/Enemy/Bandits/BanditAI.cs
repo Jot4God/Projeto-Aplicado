@@ -6,8 +6,8 @@ public class BanditAI : MonoBehaviour
     [Header("Movimento")]
     public Transform player;
     public float speed = 4f;
-    public float chaseDistance = 8f; // Distância de detecção para perseguir o jogador
-    public float attackRange = 1.5f; // Range onde o inimigo aplica o dano
+    public float chaseDistance = 8f;
+    public float attackRange = 1.5f;
     public Transform[] patrolPoints;
     public float patrolWait = 2f;
 
@@ -16,9 +16,16 @@ public class BanditAI : MonoBehaviour
     private int currentHealth;
 
     [Header("Ataque")]
-    public int damage = 30;            // 🔹 Dano que este inimigo causa
-    public float attackCooldown = 1f;  // Tempo entre ataques
-    private float lastAttackTime = 0f; // Controle do tempo de cooldown
+    public int damage = 30;
+    public float attackCooldown = 1f;
+    private float lastAttackTime = 0f;
+
+    [Header("SFX (Attack One Shot)")]
+    public AudioClip attackSfx;
+    [Range(0f, 1f)] public float attackSfxVolume = 1f;
+    [Range(0f, 1f)] public float attackSfxSpatialBlend = 1f; // 1 = 3D, 0 = 2D
+    [Tooltip("Opcional. Se vazio, tenta usar AudioSource no inimigo; se não houver, cria um temporário.")]
+    public AudioSource sfxSource;
 
     [Header("Recompensas")]
     public int xpReward = 20;
@@ -27,17 +34,17 @@ public class BanditAI : MonoBehaviour
     public int moneyDropAmount = 1;
 
     [Header("Animation")]
-    public Animator animator;                 // <-- para controlar Idle/Run
-    public string runningBool = "isRunning";  // <-- nome do bool no Animator
-    public string attackTrigger = "Attack";  // <-- trigger para animação de ataque
+    public Animator animator;
+    public string runningBool = "isRunning";
+    public string attackTrigger = "Attack";
 
     private int currentPatrol = 0;
     private float waitTimer = 0f;
     private Rigidbody rb;
     private Vector3 currentDirection = Vector3.zero;
 
-    private SpriteRenderer spriteRenderer;   // Para alterar a cor do inimigo
-    private Color originalColor;             // Cor original do inimigo
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
 
     private enum State { Patrolling, Chasing, Attacking }
     private State state = State.Patrolling;
@@ -57,22 +64,18 @@ public class BanditAI : MonoBehaviour
             if (p) player = p.transform;
         }
 
-        // Apanha o Animator automaticamente se não estiver ligado
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
 
-        // Inicializa o SpriteRenderer para alteração de cor
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
-        {
-            originalColor = spriteRenderer.color; // Guarda a cor original
-        }
+            originalColor = spriteRenderer.color;
 
-        // Inicia com o flip para a direita (de frente)
         if (spriteRenderer != null)
-        {
-            spriteRenderer.flipX = true; // Começa virado para a direita (sem flip)
-        }
+            spriteRenderer.flipX = true;
+
+        if (sfxSource == null)
+            sfxSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -81,12 +84,10 @@ public class BanditAI : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, player.position);
 
-        // Verifica se o jogador está dentro do range de detecção para perseguir ou atacar
-        if (dist <= attackRange) state = State.Attacking;  // Dentro do range de ataque, pode atacar
-        else if (dist <= chaseDistance) state = State.Chasing; // Se estiver dentro do range de perseguição, começa a perseguir
-        else state = State.Patrolling; // Se não estiver dentro de nenhum dos ranges, patrulha
+        if (dist <= attackRange) state = State.Attacking;
+        else if (dist <= chaseDistance) state = State.Chasing;
+        else state = State.Patrolling;
 
-        // Realiza ações de acordo com o estado
         switch (state)
         {
             case State.Patrolling: Patrol(); break;
@@ -94,15 +95,12 @@ public class BanditAI : MonoBehaviour
             case State.Attacking: Attack(); break;
         }
 
-        // ===== animação =====
-        // Atualiza animação de corrida se estiver perseguindo o jogador
         if (animator != null)
         {
             bool shouldRun = (state == State.Chasing);
             animator.SetBool(runningBool, shouldRun);
         }
 
-        // Debug para aplicar dano manualmente
         if (Input.GetKeyDown(KeyCode.K))
             TakeDamage(10);
     }
@@ -114,22 +112,10 @@ public class BanditAI : MonoBehaviour
             Vector3 newPos = transform.position + currentDirection * speed * Time.fixedDeltaTime;
             rb.MovePosition(newPos);
 
-            // Flip horizontal depende da direção do movimento
-            if (currentDirection.x < 0)
+            if (spriteRenderer != null)
             {
-                // Se o inimigo se move para a esquerda, faz o flip
-                if (spriteRenderer != null)
-                {
-                    spriteRenderer.flipX = false; // Fica de costas (flip)
-                }
-            }
-            else if (currentDirection.x > 0)
-            {
-                // Se o inimigo se move para a direita, desfaz o flip
-                if (spriteRenderer != null)
-                {
-                    spriteRenderer.flipX = true; // Fica de frente (sem flip)
-                }
+                if (currentDirection.x < 0) spriteRenderer.flipX = false;
+                else if (currentDirection.x > 0) spriteRenderer.flipX = true;
             }
         }
     }
@@ -164,24 +150,45 @@ public class BanditAI : MonoBehaviour
 
     void Attack()
     {
-        // Só realiza o ataque se o cooldown for cumprido
         if (Time.time >= lastAttackTime + attackCooldown)
         {
-            // Chama a animação de ataque
             if (animator != null)
                 animator.SetTrigger(attackTrigger);
 
-            // Aplica o dano se o jogador está dentro do range de ataque
+            // ✅ Som de ataque
+            PlayAttackSfx();
+
             if (Vector3.Distance(transform.position, player.position) <= attackRange)
             {
                 PlayerHP ph = player.GetComponent<PlayerHP>();
                 if (ph != null)
                 {
-                    ph.TakeDamage(damage); // Aplica o dano ao jogador
-                    lastAttackTime = Time.time; // Atualiza o tempo de cooldown
+                    ph.TakeDamage(damage);
+                    lastAttackTime = Time.time;
                 }
             }
         }
+    }
+
+    private void PlayAttackSfx()
+    {
+        if (attackSfx == null) return;
+
+        if (sfxSource != null)
+        {
+            sfxSource.PlayOneShot(attackSfx, attackSfxVolume);
+            return;
+        }
+
+        GameObject go = new GameObject("AttackSFX_Temp");
+        go.transform.position = transform.position;
+
+        AudioSource temp = go.AddComponent<AudioSource>();
+        temp.spatialBlend = attackSfxSpatialBlend;
+        temp.playOnAwake = false;
+
+        temp.PlayOneShot(attackSfx, attackSfxVolume);
+        Destroy(go, attackSfx.length + 0.1f);
     }
 
     public void TakeDamage(int damage)
@@ -190,12 +197,10 @@ public class BanditAI : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth, 0);
         Debug.Log(name + " recebeu " + damage + " de dano! Vida atual: " + currentHealth);
 
-        // Muda a cor para vermelho ao levar dano
         if (spriteRenderer != null)
         {
             spriteRenderer.color = Color.red;
-            // Restaura a cor original após um curto tempo
-            Invoke("RestoreColor", 0.1f);
+            Invoke(nameof(RestoreColor), 0.1f);
         }
 
         if (currentHealth <= 0)
@@ -205,9 +210,7 @@ public class BanditAI : MonoBehaviour
     void RestoreColor()
     {
         if (spriteRenderer != null)
-        {
             spriteRenderer.color = originalColor;
-        }
     }
 
     void Die()
@@ -244,10 +247,9 @@ public class BanditAI : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Gizmos de Debug para o range de detecção e o range de ataque
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, chaseDistance); // Range de perseguição
+        Gizmos.DrawWireSphere(transform.position, chaseDistance);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);  // Range de ataque
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
