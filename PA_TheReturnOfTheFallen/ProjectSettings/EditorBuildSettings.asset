@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 3f978a11ed021614081b0c1bf0969a89
   - enabled: 1
-    path: Assets/Scenes/TestArea.unity
+    path: Assets/Scenes/GameScene.unity
     guid: 7f566c6df12a5a64982d2f9563064087
   - enabled: 1
     path: Assets/Scenes/TutorialCombatArea.unity
